@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Movimento de Caixa" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<style name="Title" isDefault="false" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" isDefault="false" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" isDefault="false" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" isDefault="false" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" isDefault="false" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style isDefault="false" style="Row" mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="idEmpresa" class="java.lang.Integer"/>
+	<parameter name="saldoAnterior" class="java.lang.Double"/>
+	<parameter name="dataInicial" class="java.util.Date"/>
+	<parameter name="dataFinal" class="java.util.Date"/>
+	<parameter name="valorEntrada" class="java.lang.Double"/>
+	<parameter name="valorSaida" class="java.lang.Double"/>
+	<parameter name="saldoAtual" class="java.lang.Double"/>
+	<queryString>
+		<![CDATA[Select distinct 
+    movimentocaixa.idmovimentoCaixa, movimentocaixa.dataMovimento, movimentocaixa.descricao, movimentocaixa.ValorEntrada, 
+    movimentocaixa.valorSaida, movimentocaixa.planoconta_idplanoConta, movimentocaixa.empresa_idempresa,
+    empresa.nomeFantasia, empresa.idempresa, empresa.razaoSocial,
+    planoconta.idplanoconta, planoconta.numeroconta
+From
+    empresa join movimentocaixa on empresa.idempresa = movimentoCaixa.empresa_idempresa
+    join planoconta on movimentocaixa.planoconta_idplanoconta = planoconta.idplanoconta
+where (empresa.idempresa=$P{idEmpresa}) and (movimentocaixa.dataMovimento>=$P{dataInicial}) 
+       and (movimentocaixa.dataMovimento<=$P{dataFinal}) 
+order by movimentocaixa.dataMovimento]]>
+	</queryString>
+	<field name="idmovimentoCaixa" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataMovimento" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ValorEntrada" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorSaida" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="planoconta_idplanoConta" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="empresa_idempresa" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomeFantasia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idempresa" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="razaoSocial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idplanoconta" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numeroconta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="123" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement style="Detail" positionType="Float" x="198" y="104" width="102" height="18"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{dataFinal}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement style="Detail" positionType="Float" x="75" y="104" width="85" height="18"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{dataInicial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="171" y="104" width="16" height="18"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="104" width="56" height="18"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Período :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="51" width="281" height="43"/>
+				<textElement>
+					<font size="30"/>
+				</textElement>
+				<text><![CDATA[Movimento de Caixa]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="122" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="126" y="0" width="426" height="23"/>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{razaoSocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="126" y="23" width="426" height="17"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nomeFantasia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="483" y="8" width="69" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Valor Saída]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="385" y="8" width="85" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Valor Entrada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="171" y="8" width="69" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Histórico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="92" y="8" width="47" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Data ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="12" y="8" width="69" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nº Conta]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="2" y="0" width="555" height="19" backcolor="#FFFFFF"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="158" y="1" width="227" height="18"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descricao}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00">
+					<reportElement style="Detail" positionType="Float" x="401" y="1" width="69" height="18"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$F{ValorEntrada}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00">
+					<reportElement style="Detail" positionType="Float" x="481" y="1" width="58" height="18"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$F{valorSaida}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="10" y="1" width="56" height="18"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{numeroconta}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+					<reportElement style="Detail" positionType="Float" x="79" y="1" width="69" height="17"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[$F{dataMovimento}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="100" splitType="Stretch">
+			<rectangle>
+				<reportElement x="240" y="7" width="312" height="87"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="275" y="73" width="100" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Saldo Atual]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00">
+				<reportElement style="Detail" positionType="Float" x="395" y="70" width="69" height="18"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{saldoAtual}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="false">
+				<reportElement style="Detail" positionType="Float" x="395" y="13" width="69" height="18"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{saldoAnterior}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00">
+				<reportElement style="Detail" positionType="Float" x="478" y="41" width="66" height="18"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{valorSaida}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="275" y="44" width="100" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Total do Período]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00">
+				<reportElement style="Detail" positionType="Float" x="395" y="41" width="69" height="18"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{valorEntrada}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="99" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="275" y="16" width="100" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Saldo Anterior]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="1" width="555" height="1" backcolor="#000000"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="441" y="10" width="80" height="15" forecolor="#000000"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="10" y="11" width="197" height="14" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="521" y="10" width="40" height="15" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+  <persistence-unit name="jGDynamicPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>model.Acerto</class>
+    <class>model.Acesso</class>
+    <class>model.Aliquota</class>
+    <class>model.Auxproduto</class>
+    <class>model.Banco</class>
+    <class>model.BandeirasCartao</class>
+    <class>model.ChequeFechaCaixa</class>
+    <class>model.ChequeMovBanco</class>
+    <class>model.ChequeMovCaixa</class>
+    <class>model.Cliente</class>
+    <class>model.Clienteautorizados</class>
+    <class>model.Clientecondominio</class>
+    <class>model.Clientedocumentos</class>
+    <class>model.Clienteendereco</class>
+    <class>model.Clienteenderecoentrega</class>
+    <class>model.Clientefechamento</class>
+    <class>model.Clientehistorico</class>
+    <class>model.Clientepessoafisica</class>
+    <class>model.Clientepessoajuridica</class>
+    <class>model.Clientesocios</class>
+    <class>model.CodigoBarras</class>
+    <class>model.Codigofiscal</class>
+    <class>model.Configuracao</class>
+    <class>model.Contaspagar</class>
+    <class>model.Contasreceber</class>
+    <class>model.Contasreceberforma</class>
+    <class>model.Contasreceberpagamento</class>
+    <class>model.Contasreceberprodutos</class>
+    <class>model.Contolechequefornecedor</class>
+    <class>model.Controlecartao</class>
+    <class>model.Controlecheques</class>
+    <class>model.Creditoreceberprodutos</class>
+    <class>model.Creditosreceber</class>
+    <class>model.CustoProduto</class>
+    <class>model.Devolucao</class>
+    <class>model.Devolucaocredito</class>
+    <class>model.Devolucaodefeito</class>
+    <class>model.Devolucaoproduto</class>
+    <class>model.Docentrada</class>
+    <class>model.Emissorecf</class>
+    <class>model.Empresa</class>
+    <class>model.Entradaproduto</class>
+    <class>model.Enviodevolucaodefeito</class>
+    <class>model.Enviodevolucaodefeitoproduto</class>
+    <class>model.Estoque</class>
+    <class>model.Faturasreceber</class>
+    <class>model.Fechacaixa</class>
+    <class>model.FechamentoCliente</class>
+    <class>model.FechamentoMes</class>
+    <class>model.Formacontaspagar</class>
+    <class>model.Formapagamento</class>
+    <class>model.Formavenda</class>
+    <class>model.Fornecedor</class>
+    <class>model.Forpedido</class>
+    <class>model.Forpedproduto</class>
+    <class>model.Forproduto</class>
+    <class>model.Grupoconta</class>
+    <class>model.Grupoproduto</class>
+    <class>model.Ibpt</class>
+    <class>model.Movimentobanco</class>
+    <class>model.Movimentocaixa</class>
+    <class>model.Municipios</class>
+    <class>model.Nfentrada</class>
+    <class>model.NotaSaida</class>
+    <class>model.Pagamentocontaspagar</class>
+    <class>model.ParametrosLocal</class>
+    <class>model.Parcelacartao</class>
+    <class>model.Planoconta</class>
+    <class>model.Produto</class>
+    <class>model.ProdutoImagem</class>
+    <class>model.Reducaoz</class>
+    <class>model.Retirada</class>
+    <class>model.Saida</class>
+    <class>model.Saidatransferencia</class>
+    <class>model.Saidatransferenciaproduto</class>
+    <class>model.Subgrupo</class>
+    <class>model.Subgrupoproduto</class>
+    <class>model.Terminalcliente</class>
+    <class>model.Terminalproduto</class>
+    <class>model.Tranfereciaproduto</class>
+    <class>model.Transferencia</class>
+    <class>model.Usuarios</class>
+    <class>model.Venda</class>
+    <class>model.Vendedor</class>
+    <class>model.Vinculo</class>
+    <class>modeloParametros.Parametros</class>
+    <class>telas.RelatoriosGerenciais.Relentradasaida</class>
+    <class>view.ViewClienteFechamento</class>
+    <class>view.ViewConsultaProdutoFornecedor</class>
+    <class>view.Viewconsultaprodutoestoque</class>
+    <class>view.Viewdevolucaodefeitoenviadas</class>
+    <class>view.Viewdevolucaodefeitoproduto</class>
+    <class>view.Viewmovimentocaixa</class>
+    <class>view.Viewprodutoentrada</class>
+    <class>view.Viewprodutosaida</class>
+    <class>view.Viewrelatoriodevolucao</class>
+    <properties>
+      <property name="hibernate.connection.username" value="root"/>
+      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+      <property name="hibernate.connection.password" value=""/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/jgdynamic?zeroDateTimeBehavior=convertToNull"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="remoto" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>model.Acerto</class>
+    <class>model.Acesso</class>
+    <class>model.Aliquota</class>
+    <class>model.Auxproduto</class>
+    <class>model.Banco</class>
+    <class>model.ChequeFechaCaixa</class>
+    <class>model.ChequeMovBanco</class>
+    <class>model.ChequeMovCaixa</class>
+    <class>model.Cliente</class>
+    <class>model.Clienteautorizados</class>
+    <class>model.Clientecondominio</class>
+    <class>model.Clientedocumentos</class>
+    <class>model.Clienteendereco</class>
+    <class>model.Clienteenderecoentrega</class>
+    <class>model.Clientefechamento</class>
+    <class>model.Clientehistorico</class>
+    <class>model.Clientepessoafisica</class>
+    <class>model.Clientepessoajuridica</class>
+    <class>model.Clientesocios</class>
+    <class>model.Configuracao</class>
+    <class>model.Contaspagar</class>
+    <class>model.Contasreceber</class>
+    <class>model.Contasreceberforma</class>
+    <class>model.Contasreceberpagamento</class>
+    <class>model.Contasreceberprodutos</class>
+    <class>model.Contolechequefornecedor</class>
+    <class>model.Controlecheques</class>
+    <class>model.Creditoreceberprodutos</class>
+    <class>model.Creditosreceber</class>
+    <class>model.Devolucao</class>
+    <class>model.Devolucaocredito</class>
+    <class>model.Devolucaoproduto</class>
+    <class>model.Docentrada</class>
+    <class>model.Emissorecf</class>
+    <class>model.Empresa</class>
+    <class>model.Entradaproduto</class>
+    <class>model.Estoque</class>
+    <class>model.Faturasreceber</class>
+    <class>model.Faturasreceberparcelas</class>
+    <class>model.Fechacaixa</class>
+    <class>model.Formacontaspagar</class>
+    <class>model.Formapagamento</class>
+    <class>model.Formavenda</class>
+    <class>model.Fornecedor</class>
+    <class>model.Forpedido</class>
+    <class>model.Forpedproduto</class>
+    <class>model.Forproduto</class>
+    <class>model.Grupoconta</class>
+    <class>model.Grupoproduto</class>
+    <class>model.Movimentobanco</class>
+    <class>model.Movimentocaixa</class>
+    <class>model.Nfentrada</class>
+    <class>model.Pagamentocontaspagar</class>
+    <class>model.Planoconta</class>
+    <class>model.Produto</class>
+    <class>model.ProdutoImagem</class>
+    <class>model.Reducaoz</class>
+    <class>model.Retirada</class>
+    <class>model.Saida</class>
+    <class>model.Saidatransferencia</class>
+    <class>model.Saidatransferenciaproduto</class>
+    <class>model.Senhacaixa</class>
+    <class>model.Subgrupo</class>
+    <class>model.Subgrupoproduto</class>
+    <class>model.Terminalcliente</class>
+    <class>model.Terminalproduto</class>
+    <class>model.Tranfereciaproduto</class>
+    <class>model.Transferencia</class>
+    <class>model.Usuarios</class>
+    <class>model.Venda</class>
+    <class>model.Vendedor</class>
+    <class>model.Vinculo</class>
+    <class>modeloParametros.Parametros</class>
+    <class>telas.RelatoriosGerenciais.Relentradasaida</class>
+    <class>view.ViewConsultaProdutoFornecedor</class>
+    <class>view.Viewconsultaprodutoestoque</class>
+    <class>view.Viewprodutoentrada</class>
+    <class>view.Viewprodutosaida</class>
+    <class>view.Viewrelatoriodevolucao</class>
+    <properties>
+      <property name="hibernate.connection.username" value="root"/>
+      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+      <property name="hibernate.connection.password" value="simples"/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://189.101.220.117:8082/jgdynamic"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="parametrosPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <properties>
+      <property name="hibernate.connection.username" value="activ2br2"/>
+      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+      <property name="hibernate.connection.password" value="30Tour03"/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://mysql.activetour.com.br:3306/activ2br2?zeroDateTimeBehavior=convertToNull"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+    </properties>
+  </persistence-unit>
+</persistence>
