@@ -988,6 +988,7 @@ private void valorCustojFormattedTextFieldKeyReleased(java.awt.event.KeyEvent ev
         if (parametrosLocal != null) {
             if (!novoProduto) {
                 salvarEstoqueEmrpesaCorrente();
+                AlterarEstoqueEmrpesaCorrente();
             } else {
                 salvarEstoqueEmrpesaCorrente();
             }
@@ -1000,6 +1001,15 @@ private void valorCustojFormattedTextFieldKeyReleased(java.awt.event.KeyEvent ev
             estoque = new Estoque();
             gerarEstoque();
             estoque.setEmpresa(this.config.getEmpresa().getIdempresa());
+            SalvarEstoque();
+        }
+    }
+    
+    public void AlterarEstoqueEmrpesaCorrente(){
+        if (estoque!=null){
+            estoque.setValorVenda(Formatacao.formatarStringfloat(valorVendajFormattedTextField.getText()));
+            estoque.setValorDesconto(Formatacao.formatarStringfloat(valorDescontojFormattedTextField.getText()));
+            estoque.setValorCusto(Formatacao.formatarStringDouble(valorCustojFormattedTextField.getText()));
             SalvarEstoque();
         }
     }

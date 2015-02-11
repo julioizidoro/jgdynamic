@@ -19,7 +19,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.Fornecedor;
 import model.Subgrupoproduto;
+import model.View.Viewconsultaprodutogrupo;
 import telas.Fornecedor.FrmConsultaFornecedor;
+import telas.GrupoProduto.FrmConsultaGRupo;
 import view.ViewConsultaProdutoFornecedor;
 import view.Viewconsultaprodutoestoque;
 
@@ -290,7 +292,7 @@ public class FrmRelatorioGiro extends javax.swing.JFrame implements ItelaGiro{
         }else if (fornecedorjRadioButton.isSelected()){
             new FrmConsultaFornecedor(this);
         }else if (grupojRadioButton.isSelected()){
-            //teste
+            new FrmConsultaGRupo(this);
         }else JOptionPane.showMessageDialog(rootPane, "Selecione o tipo de relatório");
     }
     
@@ -381,13 +383,49 @@ public class FrmRelatorioGiro extends javax.swing.JFrame implements ItelaGiro{
     }
 
     public void setGrupoProduto(Subgrupoproduto subGrupo) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (subGrupo!=null){
+            gerarValoresGrupoProduto(subGrupo.getIdsubGrupoProduto());
+        }
     }
     
     
     public void exportarExcel(){      
         GiroProdutoController giroProdutoController = new GiroProdutoController();
         giroProdutoController.listarGiro("relGiroProdutos");
+    }
+    
+    public void gerarValoresGrupoProduto(int idSubGrupo) {
+        VendaController vendaController = new VendaController();
+        GiroProdutoController giroProdutoController = new GiroProdutoController();
+        List<Viewconsultaprodutogrupo> listaProduto = giroProdutoController.listarProdutoGrupo(idSubGrupo, config.getEmpresa().getIdempresa());
+        if (listaProduto != null) {
+            String linha1 = "Insert into relGiro(idProduto, descricao,  estoque ";
+            String linhacampos = "";
+            double quantidadeTotal=0;
+            for (int i = 0; i < listaProduto.size(); i++) {
+                quantidadeTotal=0;
+                linhacampos = "";
+                for (int m = 0; m < listaMes.size(); m++) {
+                    String mes = listaMes.get(m).getMes() + listaMes.get(m).getAno();
+                    linhacampos = linhacampos +  ",qtda_" + (m+1);
+                }
+                
+                linhacampos = linhacampos + ",Total) values (" + (listaProduto.get(i).getReferencia() + ",'" + listaProduto.get(i).getDescricao() + "'"   + 
+                              "," +  listaProduto.get(i).getQuantidadeEstoque());
+                String linhavalor = "";
+                for (int m = 0; m < listaMes.size(); m++) {
+                    String dataInicial = listaMes.get(m).getAno() + "-" + Formatacao.retornaDataInicia(listaMes.get(m).getNumeroMes());
+                    String dataFinal = listaMes.get(m).getAno() + "-" + Formatacao.retornaDataFinal(listaMes.get(m).getNumeroMes());
+                    double quantidade = vendaController.quantidadeVendida(listaProduto.get(i).getIdProduto(), dataInicial, dataFinal);
+                    quantidadeTotal = quantidadeTotal + quantidade;
+                    linhavalor =  linhavalor + (", " + quantidade);
+                }
+                linhavalor = linhavalor + "," + quantidadeTotal;
+                String sql = linha1 + linhacampos + linhavalor + ")";
+                giroProdutoController.SalvarValores(sql);
+            }
+        }
+        exportarExcel();
     }
     
     

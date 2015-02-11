@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.View.Viewconsultaprodutogrupo;
 import view.ViewConsultaProdutoFornecedor;
 
 
@@ -42,9 +43,19 @@ public class GiroProdutoController {
      }
      
      public List<ViewConsultaProdutoFornecedor> listarProdutofornecedor(int idFornecedor) {
-         giroProdutoFacade = new GiroProdutoFacade();
+        giroProdutoFacade = new GiroProdutoFacade();
         try {
             return giroProdutoFacade.listarProdutofornecedor(idFornecedor);
+        } catch (SQLException ex) {
+            Logger.getLogger(GiroProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+     }
+     
+     public List<Viewconsultaprodutogrupo> listarProdutoGrupo(int idSubGrupo, int idEmpresa) {
+         giroProdutoFacade = new GiroProdutoFacade();
+        try {
+            return giroProdutoFacade.listarProdutoGrupo(idSubGrupo, idEmpresa);
         } catch (SQLException ex) {
             Logger.getLogger(GiroProdutoController.class.getName()).log(Level.SEVERE, null, ex);
             return null;

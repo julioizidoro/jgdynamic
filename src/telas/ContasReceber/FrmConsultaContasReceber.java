@@ -1635,14 +1635,18 @@ try{
             if (linha >= 0) {
                 contasExcluir = listaVencendo.get(linha);
             }
+        }else if (contasjTabbedPane.getSelectedIndex() == 3) {
+            linha = dias180jTable.getSelectedRow();
+            if (linha >= 0) {
+                contasExcluir = lista180dias.get(linha);
+            }
         }
         if (contasExcluir != null) {
             ContasReceberController contasReceberController = new ContasReceberController();
-            if (contasExcluir.getTipo().equalsIgnoreCase("Parcela Conta")) {
-                excluirContasReceberProduto(contasExcluir.getIdcontasReceber());
-                contasReceberController.excluirContasReceber(contasExcluir);
-                carregarModel();
-            }
+            excluirContasReceberProduto(contasExcluir.getIdcontasReceber());
+            contasReceberController.excluirContasReceber(contasExcluir);
+            JOptionPane.showMessageDialog(rootPane, "Conta Excluida xom Sucesso");
+            carregarModel();
         }
     }
 

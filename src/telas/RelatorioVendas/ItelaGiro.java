@@ -15,5 +15,5 @@ public interface ItelaGiro {
     
     void setFornecedor(Fornecedor fornecedor);
     void setGrupoProduto(Subgrupoproduto subGrupo);
-    
+   
 }

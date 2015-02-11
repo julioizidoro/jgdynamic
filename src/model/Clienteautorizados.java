@@ -26,6 +26,8 @@ public class Clienteautorizados implements Serializable {
     private String rg;
     @Column(name = "foneCelular")
     private String foneCelular;
+    @Column(name = "operadora")
+    private String operadora;
     @Basic(optional = false)
     @Column(name = "cliente_idcliente")
     private int clienteIdcliente;
@@ -52,6 +54,14 @@ public class Clienteautorizados implements Serializable {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getOperadora() {
+        return operadora;
+    }
+
+    public void setOperadora(String operadora) {
+        this.operadora = operadora;
     }
 
     public void setNome(String nome) {

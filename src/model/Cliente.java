@@ -51,6 +51,8 @@ public class Cliente implements Serializable {
     private String foneFixo;
     @Column(name = "foneCelular")
     private String foneCelular;
+    @Column(name = "operadora")
+    private String operadora;
     @Column(name = "email")
     private String email;
     @Lob
@@ -77,6 +79,16 @@ public class Cliente implements Serializable {
     public String getSituacaoTemp() {
         return situacaoTemp;
     }
+
+    public String getOperadora() {
+        return operadora;
+    }
+
+    public void setOperadora(String operadora) {
+        this.operadora = operadora;
+    }
+
+    
 
     public void setSituacaoTemp(String situacaoTemp) {
         this.situacaoTemp = situacaoTemp;

@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class ConsultaClienteTableModel extends AbstractTableModel{
     
     private List<Cliente> listaCliente;
-    private String[] colunas ={"Código", "Nome / Razão Social", "Tipo Cadastro", "Fone Fixo", "Fone Celular", "E-mail" , "Situação"};
+    private String[] colunas ={"Código", "Nome / Razão Social", "Tipo Cadastro", "Fone Fixo", "Fone Celular","Operadora", "E-mail" , "Situação"};
 
     public ConsultaClienteTableModel(List<Cliente> listaCliente) {
         this.listaCliente = listaCliente;
@@ -41,7 +41,9 @@ public class ConsultaClienteTableModel extends AbstractTableModel{
         }else if (columnIndex==4){
             return listaCliente.get(rowIndex).getFoneCelular();
         }else if (columnIndex==5){
-            return listaCliente.get(rowIndex).getEmail();
+            return listaCliente.get(rowIndex).getOperadora();
+        }else if (columnIndex==6){
+               return listaCliente.get(rowIndex).getEmail();
         }else return listaCliente.get(rowIndex).getSituacao();
     }
     
@@ -61,6 +63,8 @@ public class ConsultaClienteTableModel extends AbstractTableModel{
          }else if (columnIndex==3){
              return String.class;
          }else if (columnIndex==4){
+             return String.class;
+         }else if (columnIndex==5){
              return String.class;
          }else return String.class;
     }

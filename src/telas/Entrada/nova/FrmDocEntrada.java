@@ -693,21 +693,23 @@ dataSaidajDateChooser = new com.toedter.calendar.JDateChooser(null, null, datePa
         }else docEntrada.setValorTotal(0.0f);
         EntradaProdutoController entradaProdutoController = new EntradaProdutoController();
         docEntrada = entradaProdutoController.salvarDocEntrada(docEntrada);
-        if (docEntrada.getTipoDocumento().equalsIgnoreCase("Nota Fiscal")){
-            if (notaFiscal==null){
-                notaFiscal = new Nfentrada();
+        if (notaFiscal == null) {
+            notaFiscal = new Nfentrada();
+            if (docEntrada.getTipoDocumento().equalsIgnoreCase("Nota Fiscal")) {
+                notaFiscal.setArquivonfe(xmlNfe);
+                notaFiscal.setDataEmissao(dataEmissaojDateChooser.getDate());
+                notaFiscal.setDataSaida(dataSaidajDateChooser.getDate());
+                notaFiscal.setEspecie(especiejComboBox.getSelectedItem().toString());
+                notaFiscal.setNumero(numerojTextField.getText());
+                notaFiscal.setSerie(seriejTextField.getText());
+                notaFiscal.setSubSerie(subSeriejTextField.getText());
             }
-            notaFiscal.setArquivonfe(xmlNfe);
-            notaFiscal.setDataEmissao(dataEmissaojDateChooser.getDate());
-            notaFiscal.setDataSaida(dataSaidajDateChooser.getDate());
-            notaFiscal.setEspecie(especiejComboBox.getSelectedItem().toString());
-            notaFiscal.setNumero(numerojTextField.getText());
-            notaFiscal.setSerie(seriejTextField.getText());
-            notaFiscal.setSubSerie(subSeriejTextField.getText());
             notaFiscal.setTipoDocumento(tipoDocumentojComboBox.getSelectedItem().toString());
-            if (valorProdutosjTextField.getText().length()>0){
+            if (valorProdutosjTextField.getText().length() > 0) {
                 notaFiscal.setValorProdutos(Formatacao.formatarStringfloat(valorProdutosjTextField.getText()));
-            }else notaFiscal.setValorProdutos(0.0f);
+            } else {
+                notaFiscal.setValorProdutos(0.0f);
+            }
             notaFiscal.setValorTotal(docEntrada.getValorTotal());
             notaFiscal.setDocentrada(docEntrada.getIdDocEntrada());
             notaFiscal = entradaProdutoController.salvarEntradaNF(notaFiscal);

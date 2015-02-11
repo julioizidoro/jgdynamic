@@ -25,7 +25,6 @@ import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Clientecondominio;
 import model.Clienteendereco;
-import model.Clienteenderecoentrega;
 import model.Clientefechamento;
 import model.Municipios;
 import telas.Municipios.FrmConsultaMunicipios;
@@ -137,6 +136,8 @@ dataCadastrojDateChooser = new com.toedter.calendar.JDateChooser(null, null, dat
     maskPattern, placeHolder));
     estadojTextField = new javax.swing.JTextField();
     jButton1 = new javax.swing.JButton();
+    operadorajComboBox = new javax.swing.JComboBox();
+    jLabel2 = new javax.swing.JLabel();
     jPanel4 = new javax.swing.JPanel();
     jLabel24 = new javax.swing.JLabel();
     nomeSindicoljTextField = new javax.swing.JTextField();
@@ -268,6 +269,10 @@ cnpjjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
         }
     });
 
+    operadorajComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fixo", "Tim", "Vivo", "Claro", "Oi", "Nextel" }));
+
+    jLabel2.setText("Operadora");
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -310,23 +315,25 @@ cnpjjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
                                     .addComponent(jLabel3)
                                     .addComponent(cnpjjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(iejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(iejTextField))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(foneFixojFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
+                                    .addComponent(jLabel5)
+                                    .addComponent(foneFixojFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(foneCelularjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(74, 74, 74)
-                                        .addComponent(jLabel7))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(foneCelularjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(emailjTextField))))
+                                    .addComponent(jLabel2)
+                                    .addComponent(operadorajComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(emailjTextField)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(tipoLogradourojComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
@@ -375,21 +382,27 @@ cnpjjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             .addContainerGap()
             .addComponent(jLabel1)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(razaoSocialjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel3)
-                .addComponent(jLabel4)
-                .addComponent(jLabel5)
-                .addComponent(jLabel6)
-                .addComponent(jLabel7))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(cnpjjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(iejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(foneFixojFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(foneCelularjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(razaoSocialjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel7))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cnpjjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(iejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(foneFixojFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(foneCelularjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jLabel2)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(operadorajComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel13)
@@ -902,6 +915,7 @@ cnpjjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel26;
@@ -946,6 +960,7 @@ cnpjjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
     private javax.swing.JTextField numeroSindicojTextField;
     private javax.swing.JTextField numerojTextField;
     private javax.swing.JTextField observacaojTextField;
+    private javax.swing.JComboBox operadorajComboBox;
     private javax.swing.JTextField razaoSocialjTextField;
     private javax.swing.JButton salvarjButton;
     private javax.swing.JComboBox situacaojComboBox;
@@ -976,6 +991,7 @@ cnpjjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
         iejTextField.setText(cliente.getDocEstadual());
         foneFixojFormattedTextField.setText(cliente.getFoneFixo());
         foneCelularjFormattedTextField.setText(cliente.getFoneCelular());
+        operadorajComboBox.setSelectedItem(cliente.getOperadora());
         emailjTextField.setText(cliente.getEmail());
         dataCosultaCNPJjDateChooser.setDate(cliente.getDataConsultacpf());
         situacaojComboBox.setSelectedItem(cliente.getSituacao());
@@ -1068,6 +1084,7 @@ cnpjjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
         cliente.setDocFederal(cnpjjFormattedTextField.getText());
         cliente.setEmail(emailjTextField.getText());
         cliente.setFoneCelular(foneCelularjFormattedTextField.getText());
+        cliente.setOperadora(operadorajComboBox.getSelectedItem().toString());
         cliente.setFoneFixo(foneFixojFormattedTextField.getText());
         cliente.setNome(razaoSocialjTextField.getText());
         cliente.setObservacoes(observacaojTextField.getText());

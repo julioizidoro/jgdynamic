@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import telas.RelatorioVendas.GiroMes;
+import model.View.Viewconsultaprodutogrupo;
 import view.ViewConsultaProdutoFornecedor;
 
 
@@ -36,6 +36,11 @@ public class GiroProdutoFacade {
      public List<ViewConsultaProdutoFornecedor> listarProdutofornecedor(int idFornecedor) throws SQLException{
          giroProdutoDao = new GiroProdutoDao();
          return giroProdutoDao.listarProdutofornecedor(idFornecedor);
+     }
+     
+     public List<Viewconsultaprodutogrupo> listarProdutoGrupo(int idSubGrupo, int idEmpresa) throws SQLException{
+         giroProdutoDao = new GiroProdutoDao();
+         return giroProdutoDao.listarProdutoGrupo(idSubGrupo, idEmpresa);
      }
      
      public ResultSet listarGiro(String sql){

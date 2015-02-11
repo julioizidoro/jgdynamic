@@ -16,6 +16,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;
+import model.View.Viewconsultaprodutogrupo;
 import view.ViewConsultaProdutoFornecedor;
 
 
@@ -86,6 +87,12 @@ public class GiroProdutoDao {
     public List<ViewConsultaProdutoFornecedor> listarProdutofornecedor(int idFornecedor) throws SQLException{
         manager = ConexaoSingleton.getConexao();
         Query q = manager.createQuery("Select f From ViewConsultaProdutoFornecedor f where f.idfornecedor="+ idFornecedor);
+        return  q.getResultList();
+    }
+    
+    public List<Viewconsultaprodutogrupo> listarProdutoGrupo(int idSubGrupo, int idEmpresa) throws SQLException{
+        manager = ConexaoSingleton.getConexao();
+        Query q = manager.createQuery("Select f From Viewconsultaprodutogrupo f where f.subgrupoprodutoidsubGrupoProduto="+ idSubGrupo + " and f.empresaIdempresa=" + idEmpresa);
         return  q.getResultList();
     }
     

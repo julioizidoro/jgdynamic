@@ -900,8 +900,9 @@ public final class FrmConsultaClientes extends javax.swing.JFrame implements Icl
         clientejTable.getColumnModel().getColumn(2).setPreferredWidth(40);
         clientejTable.getColumnModel().getColumn(3).setPreferredWidth(40);
         clientejTable.getColumnModel().getColumn(4).setPreferredWidth(40);
-        clientejTable.getColumnModel().getColumn(5).setPreferredWidth(100);
-        clientejTable.getColumnModel().getColumn(6).setPreferredWidth(20);
+        clientejTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+        clientejTable.getColumnModel().getColumn(6).setPreferredWidth(100);
+        clientejTable.getColumnModel().getColumn(7).setPreferredWidth(20);
         clientejTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         clientejTable.repaint();
     }

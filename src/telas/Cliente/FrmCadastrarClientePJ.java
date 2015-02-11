@@ -137,6 +137,8 @@ dataCadastrojDateChooser = new com.toedter.calendar.JDateChooser(null, null, dat
     maskPattern, placeHolder));
     estadojTextField = new javax.swing.JTextField();
     jButton4 = new javax.swing.JButton();
+    operadorajComboBox = new javax.swing.JComboBox();
+    jLabel48 = new javax.swing.JLabel();
     jPanel2 = new javax.swing.JPanel();
     jLabel21 = new javax.swing.JLabel();
     nomeSociojTextField = new javax.swing.JTextField();
@@ -283,6 +285,10 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
         }
     });
 
+    operadorajComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fixo", "Tim", "Vivo", "Claro", "Oi", "Nextel" }));
+
+    jLabel48.setText("Operadora");
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -325,23 +331,25 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
                                 .addComponent(jLabel3)
                                 .addComponent(cnpjjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(iejTextField))
+                            .addGap(18, 18, 18)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(iejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel5)
+                                .addComponent(foneFixojFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(10, 10, 10)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(foneCelularjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(foneFixojFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel48)
+                                .addComponent(operadorajComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(74, 74, 74)
-                                    .addComponent(jLabel7))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(foneCelularjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(emailjTextField))))
+                                .addComponent(jLabel7)
+                                .addComponent(emailjTextField)))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(razaoSocialjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -401,19 +409,25 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(nomeFantasiajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel3)
-                .addComponent(jLabel4)
-                .addComponent(jLabel5)
-                .addComponent(jLabel6)
-                .addComponent(jLabel7))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(cnpjjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(iejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(foneFixojFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(foneCelularjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel7))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cnpjjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(iejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(foneFixojFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(foneCelularjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jLabel48)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(operadorajComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel13)
@@ -456,7 +470,7 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
                         .addComponent(observacaojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(dataCadastrojDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(dataAtualizacaojDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(13, Short.MAX_VALUE))
+            .addContainerGap(51, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab("Dados de Identificação", jPanel1);
@@ -485,9 +499,11 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
         }
     });
     jScrollPane1.setViewportView(sociosjTable);
-    sociosjTable.getColumnModel().getColumn(0).setResizable(false);
-    sociosjTable.getColumnModel().getColumn(1).setResizable(false);
-    sociosjTable.getColumnModel().getColumn(2).setResizable(false);
+    if (sociosjTable.getColumnModel().getColumnCount() > 0) {
+        sociosjTable.getColumnModel().getColumn(0).setResizable(false);
+        sociosjTable.getColumnModel().getColumn(1).setResizable(false);
+        sociosjTable.getColumnModel().getColumn(2).setResizable(false);
+    }
 
     jLabel23.setText("Tipo");
 
@@ -557,7 +573,7 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
                         .addComponent(jLabel23))))
             .addGap(18, 18, 18)
             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(13, Short.MAX_VALUE))
+            .addContainerGap(22, Short.MAX_VALUE))
     );
     jPanel2Layout.setVerticalGroup(
         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -799,7 +815,7 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
                 .addComponent(cepSociojFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(cidadeSociojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(estadoSociojComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(14, Short.MAX_VALUE))
+            .addContainerGap(56, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab("Dados Complementares", jPanel4);
@@ -844,7 +860,7 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
                 .addComponent(tipoFechamentojComboBox, 0, 202, Short.MAX_VALUE)
                 .addComponent(jLabel45)
                 .addComponent(emitirComprovantejComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addComponent(jLabel46)
@@ -890,7 +906,7 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
                     .addComponent(jLabel47)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(clienteDescontojComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap(194, Short.MAX_VALUE))
+            .addContainerGap(204, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab("Dados Fechamento", jPanel6);
@@ -1125,6 +1141,7 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1150,6 +1167,7 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
     private javax.swing.JTextField numeroSociojTextField;
     private javax.swing.JTextField numerojTextField;
     private javax.swing.JTextField observacaojTextField;
+    private javax.swing.JComboBox operadorajComboBox;
     private javax.swing.JTextField razaoSocialjTextField;
     private javax.swing.JButton salvarjButton;
     private javax.swing.JComboBox situacaojComboBox;
@@ -1183,6 +1201,7 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
         iejTextField.setText(cliente.getDocEstadual());
         foneFixojFormattedTextField.setText(cliente.getFoneFixo());
         foneCelularjFormattedTextField.setText(cliente.getFoneCelular());
+        operadorajComboBox.setSelectedItem(cliente.getOperadora());
         emailjTextField.setText(cliente.getEmail());
         dataCosultaCNPJjDateChooser.setDate(cliente.getDataConsultacpf());
         situacaojComboBox.setSelectedItem(cliente.getSituacao());
@@ -1330,6 +1349,7 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
         cliente.setDocFederal(cnpjjFormattedTextField.getText());
         cliente.setEmail(emailjTextField.getText());
         cliente.setFoneCelular(foneCelularjFormattedTextField.getText());
+        cliente.setOperadora(operadorajComboBox.getSelectedItem().toString());
         cliente.setFoneFixo(foneFixojFormattedTextField.getText());
         cliente.setNome(razaoSocialjTextField.getText());
         cliente.setObservacoes(observacaojTextField.getText());

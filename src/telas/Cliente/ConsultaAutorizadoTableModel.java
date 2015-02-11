@@ -15,7 +15,7 @@ import model.Clienteautorizados;
 public class ConsultaAutorizadoTableModel extends AbstractTableModel{
     
     private List<Clienteautorizados> listaAutorizados;
-    private String[] colunas ={"Nome", "Nº RG", "Fone Celular"};
+    private String[] colunas ={"Nome", "Nº RG", "Fone Celular", "Operadora"};
 
     public ConsultaAutorizadoTableModel(List<Clienteautorizados> listaAutorizados) {
         this.listaAutorizados = listaAutorizados;
@@ -34,7 +34,9 @@ public class ConsultaAutorizadoTableModel extends AbstractTableModel{
             return listaAutorizados.get(rowIndex).getNome();
         }else if (columnIndex==1){
             return listaAutorizados.get(rowIndex).getRg();
-        }else return listaAutorizados.get(rowIndex).getFoneCelular();
+        }else if (columnIndex==2) {
+                return listaAutorizados.get(rowIndex).getFoneCelular();
+        }else return listaAutorizados.get(rowIndex).getOperadora();
     }
     
     @Override
@@ -48,6 +50,8 @@ public class ConsultaAutorizadoTableModel extends AbstractTableModel{
              return String.class;
          }else if (columnIndex==1){
              return  String.class;
+         }else if (columnIndex==2){
+             return String.class;
          }else return String.class;
     }
 }
