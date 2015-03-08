@@ -770,7 +770,7 @@ cpfjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
 
     formaPagamentojComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Boleto", "Cheque", "Cobrança", "Depósito", "Folha", "Loja", " " }));
 
-    jLabel45.setText("Emitir Comprovatne");
+    jLabel45.setText("Emitir NF-e");
 
     emitirComprovantejComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sim", "Não" }));
 
@@ -785,7 +785,7 @@ cpfjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
 
     jLabel47.setText("Cliente com Desconto");
 
-    clienteDescontojComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NAO", "SIM" }));
+    clienteDescontojComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Não", "Sim" }));
 
     javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
     jPanel6.setLayout(jPanel6Layout);
@@ -844,7 +844,7 @@ cpfjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
                     .addComponent(jLabel47)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(clienteDescontojComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap(194, Short.MAX_VALUE))
+            .addContainerGap(185, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab("Dados Fechamento", jPanel6);
@@ -1151,13 +1151,15 @@ cpfjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
     
     public void popularTelaFechamento(){
         tipoFechamentojComboBox.setSelectedItem(clientefechamento.getTipoFechamento());
-        diaPagamentojComboBox.setSelectedItem(clientefechamento.getDiaPagamento());
+        String diaPagto = String.valueOf(clientefechamento.getDiaPagamento());
+        if (clientefechamento.getDiaPagamento()<10){
+            diaPagto = "0" + diaPagto;
+        }
+        diaPagamentojComboBox.setSelectedItem(diaPagto);
         formaPagamentojComboBox.setSelectedItem(clientefechamento.getFormaPagamento());
         emitirComprovantejComboBox.setSelectedItem(clientefechamento.getNotaFiscal());
         limiteCreditojTextField.setText(Formatacao.foramtarDoubleString(clientefechamento.getLimiteCredito()));
-        if(cliente.getPossuiDesconto()==0){
-            clienteDescontojComboBox.setSelectedItem("NAO");
-        }else clienteDescontojComboBox.setSelectedItem("SIM");
+        clienteDescontojComboBox.setSelectedItem(cliente.getPossuiDesconto());
     }
     
     public void popularTelaEndereco(){
@@ -1222,9 +1224,7 @@ cpfjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
         cliente.setSituacao(situacaojComboBox.getSelectedItem().toString());
         cliente.setTipo("PF");
         cliente.setOperacao(10);
-        if (clienteDescontojComboBox.getSelectedItem().toString().equalsIgnoreCase("NAO")){
-            cliente.setPossuiDesconto(0);
-        }else cliente.setPossuiDesconto(1);
+        cliente.setPossuiDesconto(clienteDescontojComboBox.getSelectedItem().toString());
     }
     
     public void popularEndereco(){

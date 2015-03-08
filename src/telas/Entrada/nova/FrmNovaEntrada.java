@@ -1417,6 +1417,7 @@ public class FrmNovaEntrada extends javax.swing.JFrame implements ItelaConsulta 
             }
             vinculo.setFornecedor(docEntrada.getFornecedor());
             vinculo.setProduto(produto.getIdProduto());
+            vinculo.setEmpresa(config.getEmpresa().getIdempresa());
             vinculo.setValorCompra(Formatacao.formatarStringfloat(custojTextField.getText()));
             VinculoController vinculoController = new VinculoController();
             vinculoController.salvarVinculo(vinculo);

@@ -13,6 +13,7 @@ import beanController.NotaEletronica;
 import com.toedter.calendar.JTextFieldDateEditor;
 import controler.Config;
 import controler.relatoriosJasper;
+import facade.GrupoProdutoFacade;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
@@ -20,13 +21,17 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Banco;
 import model.Estoque;
 import model.Fornecedor;
+import model.Grupoproduto;
 import model.Produto;
 import model.Vendedor;
 import telas.Fornecedor.FrmConsultaFornecedor;
+import telas.Produtos.FrmCadastrarProduto;
 import telas.Produtos.FrmConsultaProdutos;
 
 /**
@@ -53,6 +58,7 @@ public class FrmRelatorioComissao extends javax.swing.JFrame implements ItelaCon
         maskPattern = "##/##/####";
         placeHolder = '_';
         initComponents();
+        preencherGrupoProduto();
         URL url = this.getClass().getResource("/imagens/logo_mini.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
@@ -85,6 +91,8 @@ public class FrmRelatorioComissao extends javax.swing.JFrame implements ItelaCon
         maskPattern, placeHolder));
 jLabel4 = new javax.swing.JLabel();
 jLabel5 = new javax.swing.JLabel();
+jLabel6 = new javax.swing.JLabel();
+grupojComboBox = new javax.swing.JComboBox();
 jPanel3 = new javax.swing.JPanel();
 jButton3 = new javax.swing.JButton();
 jButton4 = new javax.swing.JButton();
@@ -136,6 +144,8 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
 
     jLabel5.setText("Data Final");
 
+    jLabel6.setText("Grupo de Produto");
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -164,7 +174,9 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel5)
-                        .addComponent(dataFinaljDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(dataFinaljDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabel6)
+                .addComponent(grupojComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap(19, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
@@ -192,6 +204,10 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(produtojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jButton2))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jLabel6)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(grupojComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
@@ -229,14 +245,14 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(57, 57, 57))
+            .addGap(49, 49, 49))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
@@ -261,6 +277,10 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
         if (fornecedor!=null){
             codigo=codigo+"F";
         }
+        Grupoproduto grupo = (Grupoproduto) grupojComboBox.getSelectedItem();
+        if (grupo.getIdgrupoProduto()>0){
+            codigo="VG";
+        }
         if (codigo.equalsIgnoreCase("V")){
             sql = gerarSqlVendedor();
         }else if (codigo.equalsIgnoreCase("VP")){
@@ -269,6 +289,8 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
             sql = gerarSqlVendedorFornecedor();
         }else if (codigo.equalsIgnoreCase("VPF")){
             sql = gerarSqlVendedorFornecedorProduto();
+        }else if (codigo.equalsIgnoreCase("VG")){
+            sql = gerarSqlVendedorGrupoProduto();
         }
         gerarRelatorio(sql);
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -294,6 +316,7 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
     private com.toedter.calendar.JDateChooser dataFinaljDateChooser;
     private com.toedter.calendar.JDateChooser dataInicialjDateChooser;
     private javax.swing.JTextField fornecedorjTextField;
+    private javax.swing.JComboBox grupojComboBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -303,6 +326,7 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField nomeVendedorjTextField;
@@ -356,6 +380,24 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
                 " and venda.dataVenda>='" + Formatacao.ConvercaoDataSql(dataInicialjDateChooser.getDate()) +
                     "' and venda.dataVenda<='" + Formatacao.ConvercaoDataSql(dataFinaljDateChooser.getDate())+
                 "' and fornecedor.idfornecedor=" + fornecedor.getIdfornecedor() +
+                " and venda.empresa_idempresa=" + config.getEmpresa().getIdempresa();
+        sql = sql + " order by venda.dataVenda, produto.descricao";
+        return sql;
+    }
+    
+    public String gerarSqlVendedorGrupoProduto(){
+        Grupoproduto grupo = (Grupoproduto) grupojComboBox.getSelectedItem();
+        String sql = "Select venda.idvenda, vendedor.nomeCompleto, vendedor.situacao,"+
+        "venda.dataVenda, saida.quantidade, saida.valorVenda, produto.referencia, produto.unidade,"+
+        "produto.descricao, produto.subgrupoproduto_idsubGrupoProduto from " ;
+	sql = sql + " vendedor join venda on vendedor.idvendedor = venda.vendedor_idvendedor"+
+            " join saida on venda.idvenda = saida.venda_idvenda" +
+            " join produto on saida.produto_idProduto = produto.idProduto";
+    
+        sql = sql + " where  vendedor.idvendedor=" + vendedor.getIdvendedor() +  
+                " and venda.dataVenda>='" + Formatacao.ConvercaoDataSql(dataInicialjDateChooser.getDate()) +
+                    "' and venda.dataVenda<='" + Formatacao.ConvercaoDataSql(dataFinaljDateChooser.getDate())+
+                "' and produto.subgrupoproduto_idsubGrupoProduto=" + grupo.getIdgrupoProduto()+
                 " and venda.empresa_idempresa=" + config.getEmpresa().getIdempresa();
         sql = sql + " order by venda.dataVenda, produto.descricao";
         return sql;
@@ -442,6 +484,24 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
     public void setArquivo(File arquivo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public final void preencherGrupoProduto(){
+        GrupoProdutoFacade grupoProdutoFacade = new GrupoProdutoFacade();
+        Grupoproduto grupo = new Grupoproduto();
+        grupo.setIdgrupoProduto(0);
+        grupo.setDescricao("Nenhum");
+        grupojComboBox.addItem(grupo);
+        try {
+            List<Grupoproduto> listaGrupoProduto = grupoProdutoFacade.listarGrupoProduto();
+            for(int i=0;i<listaGrupoProduto.size();i++){
+                grupojComboBox.addItem(listaGrupoProduto.get(i));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(FrmCadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
     
 
 

@@ -200,6 +200,9 @@ jPanel2Layout.setHorizontalGroup(
         if (this.tipo==2){
             gerarRelatorioRelacaoTransferencia();
         }
+        if (this.tipo==3){
+            gerarRelatorioAcerto();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -255,6 +258,23 @@ jPanel2Layout.setHorizontalGroup(
             }
             new relatoriosJasper(url, parameters);
             this.dispose();
+    }
+    
+    public void gerarRelatorioAcerto() {
+        String url = ("telas/Estoque/reportRelacaoAcerto.jasper");
+        Map parameters = new HashMap();
+        try {
+            parameters.put("dataInicial", dataIniciojDateChooser.getDate());
+            parameters.put("dataFinal", dataFinaljDateChooser.getDate());
+            parameters.put("nomeFantasia", this.config.getEmpresa().getNomeFantasia());
+            parameters.put("RazaoSocial", this.config.getEmpresa().getRazaoSocial());
+            parameters.put("idempresa", this.config.getEmpresa().getIdempresa());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Não foi possível gerar o relatório " + ex);
+            ex.printStackTrace();
+        }
+        new relatoriosJasper(url, parameters);
+        this.dispose();
     }
 
 }

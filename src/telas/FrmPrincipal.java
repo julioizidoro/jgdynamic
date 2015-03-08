@@ -96,6 +96,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         config.carregarConfiguracao();
         this.setTitle("      jGDynamic - " + config.getEmpresa().getNomeFantasia());
         usuariologadojLabel.setText("Usuário Logado : " + this.usuarioLogado.getUsuario().getNome());
+        nomeFantasiajLabel.setText(config.getEmpresa().getNomeFantasia());
+        razaoSocialjLabel.setText(config.getEmpresa().getRazaoSocial());
         this.setVisible(true);
     }
     
@@ -143,6 +145,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         adicionarPlanoContasjButton5 = new javax.swing.JButton();
         consultaEntradajButton1 = new javax.swing.JButton();
         usuariologadojLabel = new javax.swing.JLabel();
+        nomeFantasiajLabel = new javax.swing.JLabel();
+        razaoSocialjLabel = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         sairSistemajMenuItem = new javax.swing.JMenuItem();
@@ -160,6 +164,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem27 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -604,6 +609,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         usuariologadojLabel.setText("Nome do Usuario");
         getContentPane().add(usuariologadojLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 540, -1, -1));
 
+        nomeFantasiajLabel.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        nomeFantasiajLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nomeFantasiajLabel.setText("Lojão do Alemão - CANASVIEIRAS");
+        getContentPane().add(nomeFantasiajLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 860, 50));
+
+        razaoSocialjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        razaoSocialjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        razaoSocialjLabel.setText("Lenz Comércio de Materiais de Contrução Ltda ERIELI");
+        getContentPane().add(razaoSocialjLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 860, 50));
+
         jMenu1.setText("Arquivo");
 
         sairSistemajMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/door.png"))); // NOI18N
@@ -717,6 +732,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItem14);
+
+        jMenuItem27.setText("Relação Acerto");
+        jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem27ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem27);
 
         jMenuItem8.setText("Entrada e Saída");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -1200,6 +1223,10 @@ private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         verificarEstoqueDuplicado();
     }//GEN-LAST:event_jMenuItem26ActionPerformed
 
+    private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
+        new FrmRelatorioData(3, config);
+    }//GEN-LAST:event_jMenuItem27ActionPerformed
+
 
     /**
     * @param args the command line arguments
@@ -1258,6 +1285,7 @@ private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
+    private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -1271,7 +1299,9 @@ private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JPanel jPanel7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JMenuItem nivelAcessojMenuItem;
+    private javax.swing.JLabel nomeFantasiajLabel;
     private javax.swing.JMenuItem parametrosjMenuItem;
+    private javax.swing.JLabel razaoSocialjLabel;
     private javax.swing.JButton registrarTransferenciajButton;
     private javax.swing.JButton registrarTransferenciajButton1;
     private javax.swing.JButton registrarTransferenciajButton2;

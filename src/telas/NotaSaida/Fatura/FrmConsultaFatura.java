@@ -308,7 +308,7 @@ public class FrmConsultaFatura extends javax.swing.JFrame {
     }
     
     public void carregarDuplicatas(int idFatura){
-        String sqlDuplicata = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.cliente.idcliente=" + cliente.getIdcliente() + " and f.numeroFatura=" + idFatura +  " order by f.numeroDocumento";
+        String sqlDuplicata = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.cliente.idcliente=" + cliente.getIdcliente() + " and c.numeroFatura=" + idFatura +  " order by c.numeroDocumento";
         ContasReceberController contasReceberController = new ContasReceberController();
         List<Contasreceber> listaParcelas = contasReceberController.listarContas(sqlDuplicata);
         listaDuplicata = new ArrayList<DuplicataBean>();

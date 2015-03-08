@@ -174,9 +174,11 @@ jMenuItem3 = new javax.swing.JMenuItem();
 jMenu6 = new javax.swing.JMenu();
 jMenu9 = new javax.swing.JMenu();
 jMenuItem15 = new javax.swing.JMenuItem();
+jMenuItem20 = new javax.swing.JMenuItem();
 jMenu10 = new javax.swing.JMenu();
 jMenuItem17 = new javax.swing.JMenuItem();
 jMenuItem18 = new javax.swing.JMenuItem();
+jMenuItem19 = new javax.swing.JMenuItem();
 
 jMenu1.setText("jMenu1");
 
@@ -670,6 +672,11 @@ try{
     jMenuBar2.add(jMenu8);
 
     jMenu5.setText("Faturas");
+    jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            jMenu5MouseClicked(evt);
+        }
+    });
     jMenu5.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jMenu5ActionPerformed(evt);
@@ -709,6 +716,11 @@ try{
     jMenu5.add(jMenuItem5);
 
     jMenuItem6.setText("Parcelas");
+    jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jMenuItem6ActionPerformed(evt);
+        }
+    });
     jMenu5.add(jMenuItem6);
 
     jMenuBar2.add(jMenu5);
@@ -757,6 +769,14 @@ try{
     });
     jMenu9.add(jMenuItem15);
 
+    jMenuItem20.setText("por Nota");
+    jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jMenuItem20ActionPerformed(evt);
+        }
+    });
+    jMenu9.add(jMenuItem20);
+
     jMenu6.add(jMenu9);
 
     jMenu10.setText("Receber");
@@ -776,6 +796,14 @@ try{
         }
     });
     jMenu10.add(jMenuItem18);
+
+    jMenuItem19.setText("Cliente");
+    jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jMenuItem19ActionPerformed(evt);
+        }
+    });
+    jMenu10.add(jMenuItem19);
 
     jMenu6.add(jMenu10);
 
@@ -1080,6 +1108,73 @@ try{
         new FrmRelatorioContasReceber(config, usuarioLogado);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        if (cliente!=null){
+            String url = ("telas/ContasReceber/Relatorios/contasReceberCliente.jasper");
+            Map parameters = new HashMap();
+            try {
+                parameters.put("nomeFantasia", this.config.getEmpresa().getNomeFantasia());
+                parameters.put("RazaoSocial", this.config.getEmpresa().getRazaoSocial());
+                parameters.put("idcliente", this.cliente.getIdcliente());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Não foi possível gerar o relatório " + ex);
+                ex.printStackTrace();
+            }
+            new relatoriosJasper(url, parameters);
+        }else JOptionPane.showMessageDialog(rootPane, "Selecione um Cliente");
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        int linha = faturasjTable.getSelectedRow();
+        if (linha>=0){
+            Faturasreceber fatura = listaFatura.get(linha);
+            fatura.setContasreceberpagamento(2);
+            ContasReceberController contasReceberController = new ContasReceberController();
+            contasReceberController.salvarFatura(fatura);
+            carregarModel();
+        }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        int linha= -1;
+        int idConta = 0;
+        if (contasjTabbedPane.getSelectedIndex() == 0) {
+            linha = vencidasjTable.getSelectedRow();
+            if (linha >= 0) {
+                idConta = listaVencidas.get(linha).getIdcontasReceber();
+            }
+        } else if (contasjTabbedPane.getSelectedIndex() == 1) {
+            linha = vencerjTable.getSelectedRow();
+            if (linha >= 0) {
+                idConta = listaVencer.get(linha).getIdcontasReceber();
+            }
+        } else if (contasjTabbedPane.getSelectedIndex() == 2) {
+            linha = vencendojTable.getSelectedRow();
+            if (linha >= 0) {
+                idConta = listaVencendo.get(linha).getIdcontasReceber();
+            }
+        }
+        if (idConta > 0) {
+            String url = ("telas/ContasReceber/Relatorios/produtosNotaContasRebecer.jasper");
+            Map parameters = new HashMap();
+            try {
+                parameters.put("nomeFantasia", this.config.getEmpresa().getNomeFantasia());
+                parameters.put("RazaoSocial", this.config.getEmpresa().getRazaoSocial());
+                parameters.put("idcontareceber",idConta);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Não foi possível gerar o relatório " + ex);
+                ex.printStackTrace();
+            }
+            new relatoriosJasper(url, parameters);
+        }
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+        if (contasjTabbedPane.getSelectedIndex()!=4){
+            JOptionPane.showMessageDialog(rootPane, "Vá para Aba Faturas Geradas em Aberto");
+        }
+    }//GEN-LAST:event_jMenu5MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AssociadosjPanel;
     private javax.swing.JToolBar BarradeTarefasjToolBar;
@@ -1120,7 +1215,9 @@ try{
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -1175,6 +1272,7 @@ try{
         String sqlContaVencer = null;
         String sqlContaVencidas = null;
         String sqlConta180dias = null;
+        String sqlFatura = null;
         //Faturas
         
         
@@ -1186,7 +1284,7 @@ try{
             sqlContaVencer = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.dataVencimento>'" + dataAtual + "' and c.empresa.idempresa="+ this.config.getEmpresa().getIdempresa() + " order by c.dataVencimento";
             sqlContaVencidas = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.dataVencimento>'" + data180 + "' and c.dataVencimento<'" + dataAtual + "' and c.empresa.idempresa="+ this.config.getEmpresa().getIdempresa() + " order by c.dataVencimento";
             sqlConta180dias = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.dataVencimento<'" + data180 + "' and c.empresa.idempresa="+ this.config.getEmpresa().getIdempresa() + " order by c.dataVencimento";
-            
+            sqlFatura = "select f from Faturasreceber f where f.contasreceberpagamento=1 and f.empresa=" + config.getEmpresa().getIdempresa() + " order by f.dataVencimento";
             sqlCredito = " select c from Creditosreceber c where c.contasreceberpagamento=1 and c.empresa=" + this.config.getEmpresa().getIdempresa(); 
         }else {
             
@@ -1194,7 +1292,7 @@ try{
             sqlContaVencer = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.dataVencimento>'" + dataAtual + "' and c.cliente.idcliente="  + cliente.getIdcliente() +  " and c.empresa.idempresa=" + this.config.getEmpresa().getIdempresa() + " order by c.dataVencimento";
             sqlContaVencidas = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.dataVencimento>'" + data180 + "' and c.dataVencimento<'" + dataAtual + "' and c.cliente.idcliente="  + cliente.getIdcliente() +  " and c.empresa.idempresa=" + this.config.getEmpresa().getIdempresa() + " order by c.dataVencimento";
             sqlConta180dias = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.dataVencimento<'" + data180 + "' and c.cliente.idcliente="  + cliente.getIdcliente() +  " and c.empresa.idempresa=" + this.config.getEmpresa().getIdempresa() + " order by c.dataVencimento";
-            
+            sqlFatura = "select f from Faturasreceber f where f.contasreceberpagamento=1 and f.cliente=" + cliente.getIdcliente() + "  and f.empresa=" + config.getEmpresa().getIdempresa() + " order by f.dataVencimento";
             sqlCredito = " select c from Creditosreceber c where c.contasreceberpagamento=1 and c.cliente=" +cliente.getIdcliente() + " and c.empresa=" + this.config.getEmpresa().getIdempresa();
             
             //Faturas 
@@ -1218,7 +1316,7 @@ try{
         
         consultarCreditos(sqlCredito);
         
-        String sqlFatura = "select f from Faturasreceber f where f.contasreceberpagamento=1 order by f.dataVencimento";
+        
         
         
         listaFatura = contasReceberController.listarFaturas(sqlFatura);
@@ -1571,6 +1669,7 @@ try{
                 Contasreceberpagamento contasreceberpagamento = contasReceberController.consultarContaReceberPagamento(1);
                 for(int i=0;i<listaContas.size();i++){
                     Contasreceber conta = listaContas.get(i);
+                    conta.setPagamento("NAO");
                     conta.setNumeroFaturaGerada("0");
                     conta.setContasreceberpagamento(contasreceberpagamento);
                     contasReceberController.salvarContasReceber(conta);

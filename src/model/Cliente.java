@@ -17,7 +17,7 @@ import javax.persistence.*;
 @Table(name = "cliente")
 public class Cliente implements Serializable {
     @Column(name = "possuiDesconto")
-    private Integer possuiDesconto;
+    private String possuiDesconto;
     @Column(name = "codigoAntigo")
     private Integer codigoAntigo;
     @Column(name = "operacao")
@@ -225,13 +225,14 @@ public class Cliente implements Serializable {
         this.operacao = operacao;
     }
 
-    public Integer getPossuiDesconto() {
+    public String getPossuiDesconto() {
         return possuiDesconto;
     }
 
-    public void setPossuiDesconto(Integer possuiDesconto) {
+    public void setPossuiDesconto(String possuiDesconto) {
         this.possuiDesconto = possuiDesconto;
     }
+
 
     public Integer getCodigoAntigo() {
         return codigoAntigo;
