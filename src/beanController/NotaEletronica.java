@@ -5,7 +5,6 @@
 
 package beanController;
 
-import model.*;
 import java.util.Date;
 
 /**

@@ -31,6 +31,7 @@ public class Config {
     private boolean remoto;
     private String caminhoAcbr;
     private String caminhoNFe;
+    private String ambientenfe;
 
     public Config() {
         this.remoto = false;
@@ -50,6 +51,14 @@ public class Config {
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
+    }
+
+    public String getAmbientenfe() {
+        return ambientenfe;
+    }
+
+    public void setAmbientenfe(String ambientenfe) {
+        this.ambientenfe = ambientenfe;
     }
 
     public String getIni() {
@@ -87,6 +96,7 @@ public class Config {
             setIni(props.getProperty("caminhoini"));
             carregarEmpresa(Integer.parseInt(id));
             setCaminhoAcbr(props.getProperty("Acbr"));
+            setAmbientenfe(props.getProperty("ambientenfe"));
             setCaminhoNFe(props.getProperty("nfe"));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

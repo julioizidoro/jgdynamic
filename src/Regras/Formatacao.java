@@ -6,7 +6,7 @@
 package Regras;
 
 
-import controler.Criptografia;
+import controler.Criptografia1;
 import controler.CriptografiaMD5;
 import controler.Sigap;
 import java.security.NoSuchAlgorithmException;
@@ -174,6 +174,12 @@ public class Formatacao {
       return dataFormatada;
   }
     
+    public static String ConvercaoDataDANFEDuplicata(Date data){
+      DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+      String dataFormatada = df.format(data);
+      return dataFormatada;
+  }
+    
   public static String ConvercaoDataNfe(Date data, String timeZona){
       String formato = "yyyy-MM-dd'T'HH:mm:ss'" + timeZona + "'";
       DateFormat df = new SimpleDateFormat(formato);
@@ -244,7 +250,7 @@ public class Formatacao {
 //    }
     
     public static String criptografarSenha(char[] s){
-        Criptografia cripto = new CriptografiaMD5();
+        Criptografia1 cripto = new CriptografiaMD5();
         String senha="";
         for (int i=0;i<s.length;i++){
             senha+= s[i];

@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import model.Municipios;
 import telas.Cliente.Icliente;
 import telas.Fornecedor.IFornecedor;
+import telas.NotaSaida.INotaSaidaBean;
 
 /**
  *
@@ -25,6 +26,7 @@ public class FrmConsultaMunicipios extends javax.swing.JFrame {
     private MunicipiosTableModel model;
     private Icliente telaCliente;
     private IFornecedor telaFornecedor;
+    private INotaSaidaBean telaNotaSaida;
 
     /**
      * Creates new form FrmConsultaMunicipios
@@ -42,6 +44,17 @@ public class FrmConsultaMunicipios extends javax.swing.JFrame {
     
     public FrmConsultaMunicipios(IFornecedor telaFornecedor) {
         this.telaFornecedor = telaFornecedor;
+        initComponents();
+        URL url = this.getClass().getResource("/imagens/logo_mini.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
+        this.setLocationRelativeTo(null);
+        carregarListaMunicipios(null);
+        this.setVisible(true);
+    }
+    
+    public FrmConsultaMunicipios(INotaSaidaBean telaNotaSaida) {
+        this.telaNotaSaida = telaNotaSaida;
         initComponents();
         URL url = this.getClass().getResource("/imagens/logo_mini.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
@@ -229,6 +242,8 @@ public class FrmConsultaMunicipios extends javax.swing.JFrame {
                 this.telaCliente.setMunicipio(listaMunicipios.get(linha));
             }else if (this.telaFornecedor!=null){
                 this.telaFornecedor.setMunicipio(listaMunicipios.get(linha));
+            }else if (this.telaNotaSaida!=null){
+                this.telaNotaSaida.setMunicipio(listaMunicipios.get(linha));
             }
             this.dispose();
         }else {

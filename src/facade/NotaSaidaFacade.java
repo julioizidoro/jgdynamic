@@ -7,7 +7,7 @@ package facade;
 import dao.NotaSaidaDao;
 import java.sql.SQLException;
 import java.util.List;
-import model.NotaSaida;
+import model.Notasaida;
 
 /**
  *
@@ -17,17 +17,17 @@ public class NotaSaidaFacade {
     
     NotaSaidaDao notaSaidaDao;
     
-    public List<NotaSaida> consultarNotaSaida(String data) throws Exception{
+    public List<Notasaida> consultarNotaSaida(String data) throws Exception{
         notaSaidaDao = new NotaSaidaDao();
         return notaSaidaDao.consultarNotaSaida(data);
     }
     
-    public NotaSaida salvarNotaSaida(NotaSaida notaSaida) throws Exception{
+    public Notasaida salvarNotaSaida(Notasaida notaSaida) throws Exception{
         notaSaidaDao = new NotaSaidaDao();
         return notaSaidaDao.salvarNotaSaida(notaSaida);
     }
     
-    public List<NotaSaida> consultarNotaSaida(String dataInicial, String dataFinal) throws Exception{
+    public List<Notasaida> consultarNotaSaida(String dataInicial, String dataFinal) throws Exception{
         notaSaidaDao = new NotaSaidaDao();
         return notaSaidaDao.consultarNotaSaida(dataInicial, dataFinal);
     }
@@ -37,7 +37,7 @@ public class NotaSaidaFacade {
         return notaSaidaDao.consultarUltimaNotaEmitida();
     }
     
-    public List<NotaSaida> filtrarNotaSaida(String sql) throws SQLException{
+    public List<Notasaida> filtrarNotaSaida(String sql) throws SQLException{
         notaSaidaDao = new NotaSaidaDao();
         return notaSaidaDao.filtrarNotaSaida(sql);
     }

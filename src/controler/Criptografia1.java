@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author Acer
  */
-public interface Criptografia{
+public interface Criptografia1{
 
     String encrypt(String value) throws NoSuchAlgorithmException;
 

@@ -50,14 +50,15 @@ import model.Contasreceberprodutos;
 import model.Fornecedor;
 import model.Ibpt;
 import model.Municipios;
-import model.NotaSaida;
+import model.Notasaida;
 import model.ParametrosLocal;
 import model.Produto;
 import model.Saida;
 import model.Terminalcliente;
 import model.Terminalproduto;
-import model.Venda;
+import model.View.Viewvendasaidaproduto;
 import telas.Cliente.FrmConsultaClientes;
+import telas.Municipios.FrmConsultaMunicipios;
 import telas.NotaSaida.Fatura.DuplicataBean;
 import telas.NotaSaida.Fatura.DuplicataTableModel;
 import telas.NotaSaida.Fatura.FaturaBean;
@@ -74,9 +75,7 @@ public class FrmEmitirNotaSaida01 extends javax.swing.JFrame implements INotaSai
     private char placeHolder;
     private NotaSaidaBean notaSaidaBean;
     private List<NotaSaidaProdutoBean> listaProdutoBean;
-    private Cliente cliente;
     private Config config;
-    private Clienteendereco clienteEndereco;
     private ListaProdutoSaidaBeanTableModel modelProduto;
     private UsuarioLogado usuarioLogado;
     private FileWriter arquivo;
@@ -113,6 +112,7 @@ public class FrmEmitirNotaSaida01 extends javax.swing.JFrame implements INotaSai
         ParametroLocalController parametroLocalController = new ParametroLocalController();
         parametrosLocal = parametroLocalController.localizarEmpresa(this.config.getEmpresa().getIdparametros());
         dataEmissaojDateChooser.setDate(new Date());
+        seriejTextField.setText(String.valueOf(config.getEmpresa().getSerieNFe()));
         this.setVisible(true);
     }
 
@@ -155,6 +155,8 @@ public class FrmEmitirNotaSaida01 extends javax.swing.JFrame implements INotaSai
     jLabel16 = new javax.swing.JLabel();
     jLabel17 = new javax.swing.JLabel();
     valorTributosjTextField = new javax.swing.JTextField();
+    tipoOperacaojComboBox = new javax.swing.JComboBox();
+    jLabel22 = new javax.swing.JLabel();
     jPanel2 = new javax.swing.JPanel();
     jLabel10 = new javax.swing.JLabel();
     nomejTextField = new javax.swing.JTextField();
@@ -178,10 +180,11 @@ public class FrmEmitirNotaSaida01 extends javax.swing.JFrame implements INotaSai
     jLabel28 = new javax.swing.JLabel();
     bairrojTextField = new javax.swing.JTextField();
     jLabel29 = new javax.swing.JLabel();
-    estadojComboBox = new javax.swing.JComboBox();
     jLabel30 = new javax.swing.JLabel();
     jButton7 = new javax.swing.JButton();
     contribuintejComboBox = new javax.swing.JComboBox();
+    estadojTextField = new javax.swing.JTextField();
+    jButton6 = new javax.swing.JButton();
     jPanel3 = new javax.swing.JPanel();
     jScrollPane1 = new javax.swing.JScrollPane();
     produtojTable = new javax.swing.JTable();
@@ -190,6 +193,7 @@ public class FrmEmitirNotaSaida01 extends javax.swing.JFrame implements INotaSai
     jButton4 = new javax.swing.JButton();
     jButton5 = new javax.swing.JButton();
     jButton8 = new javax.swing.JButton();
+    jButton9 = new javax.swing.JButton();
     jPanel5 = new javax.swing.JPanel();
     jLabel14 = new javax.swing.JLabel();
     formaPagamentojComboBox = new javax.swing.JComboBox();
@@ -230,7 +234,7 @@ jLabel2.setText("CFOP sem ST");
 
 jLabel3.setText("Tipo de NF-e");
 
-tipoNFejComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Saida", "Entrada", " " }));
+tipoNFejComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Saida", "Entrada" }));
 
 jLabel4.setText("No. da NF-e");
 
@@ -277,7 +281,9 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
 
     jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+    gerarjButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tick.png"))); // NOI18N
     gerarjButton.setText("Gerar NF-e");
+    gerarjButton.setToolTipText("Gerar NF-e");
     gerarjButton.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             gerarjButtonActionPerformed(evt);
@@ -311,23 +317,22 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     valorTributosjTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
     valorTributosjTextField.setText("0");
 
+    tipoOperacaojComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Venda", "Devolução" }));
+
+    jLabel22.setText("Tipo de Operação");
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel1Layout.createSequentialGroup()
             .addContainerGap()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel23)
-                        .addComponent(observacaojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)
                         .addComponent(jLabel2)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(semSTjComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 777, Short.MAX_VALUE)
-                            .addComponent(comSTjComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(dataEmissaojDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,8 +354,9 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel9)
                                         .addComponent(totalNotajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(6, 6, 6)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(comSTjComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(tipoNFejComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -367,9 +373,17 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
                             .addGap(29, 29, 29)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6)
-                                .addComponent(naturezaOperacaojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addContainerGap())
+                                .addComponent(naturezaOperacaojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(564, 564, 564)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel22)
+                                .addComponent(tipoOperacaojComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(semSTjComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(observacaojTextField))
+                    .addGap(6, 6, 6)))
+            .addContainerGap(36, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,9 +397,13 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(semSTjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jLabel3)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel3)
+                .addComponent(jLabel22))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(tipoNFejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(tipoNFejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tipoOperacaojComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel4)
@@ -456,6 +474,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
 
     jLabel26.setText("Complemento");
 
+    cidadejTextField.setEditable(false);
     cidadejTextField.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             cidadejTextFieldActionPerformed(evt);
@@ -468,8 +487,6 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
 
     jLabel29.setText("Bairro");
 
-    estadojComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SC", "RS", "PR", "SP", "RJ", "ES", "MG", "MT", "MS", "BH" }));
-
     jLabel30.setText("Estado");
 
     jButton7.setText("Consultar Cliente");
@@ -480,6 +497,15 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     });
 
     contribuintejComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1 - Contribuinto do ICMS", "2 - Contribuinte isento de IE", "9 - Não Contribuinto do ICMS" }));
+
+    estadojTextField.setEditable(false);
+
+    jButton6.setText("Pesquisar");
+    jButton6.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton6ActionPerformed(evt);
+        }
+    });
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
@@ -505,54 +531,49 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
                 .addComponent(nomejTextField)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel11)
-                        .addComponent(cpfjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(rgjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel12)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGap(9, 9, 9)
-                    .addComponent(contribuintejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(foneFixojFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel13))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel15)
-                        .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel29)
                         .addComponent(bairrojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(27, 27, 27)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel28)
                         .addComponent(cepjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(13, 13, 13)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(34, 34, 34)
-                            .addComponent(jLabel27)
-                            .addGap(303, 303, 303))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(cidadejTextField)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(cidadejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton6)
+                            .addGap(30, 30, 30))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel27)
                             .addGap(18, 18, 18)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(estadojComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE))))
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addComponent(jLabel10)
-                    .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(estadojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton7)))
+                    .addComponent(jButton7))
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel11)
+                        .addComponent(cpfjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(rgjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel12))
+                    .addGap(9, 9, 9)
+                    .addComponent(contribuintejComboBox, 0, 207, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(foneFixojFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13))
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel15)
+                        .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addComponent(jLabel10)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addContainerGap())
     );
     jPanel2Layout.setVerticalGroup(
@@ -567,13 +588,11 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
-                        .addComponent(jLabel12)
-                        .addComponent(jLabel15))
+                        .addComponent(jLabel12))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cpfjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(rgjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(contribuintejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -586,26 +605,29 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
                         .addComponent(numerojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(logradourojTextFiel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel29)
-                                .addComponent(jLabel28)
-                                .addComponent(jLabel27))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(bairrojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cepjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(estadojComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cidadejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel29)
+                        .addComponent(jLabel28)
+                        .addComponent(jLabel27)
                         .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(bairrojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cepjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cidadejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(estadojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton6))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jButton7))
                 .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addComponent(jLabel13)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(jLabel15))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(foneFixojFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap(236, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(foneFixojFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(emailjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addContainerGap(230, Short.MAX_VALUE))
     );
 
     jTabbedPane1.addTab("Cliente", jPanel2);
@@ -675,26 +697,34 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         }
     });
 
+    jButton9.setText("Incluir ECF");
+    jButton9.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton9ActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
     jPanel3Layout.setHorizontalGroup(
         jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel3Layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane1)
-            .addContainerGap())
-        .addGroup(jPanel3Layout.createSequentialGroup()
-            .addGap(41, 41, 41)
-            .addComponent(jButton2)
-            .addGap(49, 49, 49)
-            .addComponent(jButton3)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-            .addComponent(jButton8)
-            .addGap(38, 38, 38)
-            .addComponent(jButton4)
-            .addGap(34, 34, 34)
-            .addComponent(jButton5)
-            .addGap(30, 30, 30))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addComponent(jButton2)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton3)
+                    .addGap(37, 37, 37)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(31, 31, 31)
+                    .addComponent(jButton8)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton4)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton5)))
+            .addContainerGap(23, Short.MAX_VALUE))
     );
     jPanel3Layout.setVerticalGroup(
         jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -707,7 +737,8 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
                 .addComponent(jButton3)
                 .addComponent(jButton4)
                 .addComponent(jButton5)
-                .addComponent(jButton8))
+                .addComponent(jButton8)
+                .addComponent(jButton9))
             .addContainerGap())
     );
 
@@ -1014,8 +1045,8 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 843, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 870, Short.MAX_VALUE)
+            .addContainerGap())
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1066,8 +1097,8 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (cliente!=null){
-            new FrmConsultaProdutoConta(config, cliente.getIdcliente(), this);
+        if (notaSaidaBean.getCodigoCliente()>0){
+            new FrmConsultaProdutoConta(config, notaSaidaBean.getCodigoCliente(), this);
         }else JOptionPane.showMessageDialog(rootPane, "Cliente não selecionado");
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -1090,10 +1121,6 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             JOptionPane.showMessageDialog(rootPane, erro);
             gerarjButton.setText("Gerar NF-e");
         } else {
-            
-            notaSaidaBean.setCliente(cliente);
-            notaSaidaBean.setClienteEndereco(clienteEndereco);
-            notaSaidaBean.setEmpresa(this.config.getEmpresa());
             notaSaidaBean.setDataEmissao((dataEmissaojDateChooser.getDate()));
             notaSaidaBean.setDataSaida((dataEmissaojDateChooser.getDate()));
             notaSaidaBean.setFormaPagamento(formaPagamentojComboBox.getSelectedItem().toString());
@@ -1135,7 +1162,9 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        calcularTotaisNotaFiscal();
+        if (notaSaidaBean.getCodigoMunicipio().equalsIgnoreCase("0")){
+            JOptionPane.showMessageDialog(rootPane, "Erro Código Municipio");
+        }else calcularTotaisNotaFiscal();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -1153,7 +1182,17 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        new FrmConsultaFatura(cliente, config, this);
+        if (formaPagamentojComboBox.getSelectedItem().toString().equalsIgnoreCase("A PRAZO")) {
+            if (notaSaidaBean.getCodigoCliente() > 0) {
+                ClienteController clienteController = new ClienteController();
+                Cliente cliente = clienteController.consultarClienteId(notaSaidaBean.getCodigoCliente());
+                if (cliente != null) {
+                    new FrmConsultaFatura(cliente, config, this);
+                }
+            }
+        }else {
+            JOptionPane.showMessageDialog(rootPane, "Condição de Pagamento selcionada não é A PRAZO");
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -1187,6 +1226,42 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         }
     }//GEN-LAST:event_jButton15ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        new FrmConsultaMunicipios(this);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        String numeroECF = JOptionPane.showInputDialog("Informe Nº do Cupom Fiscal");
+        VendaController vendaController = new VendaController();
+        List<Viewvendasaidaproduto> listaVenda;
+        if (numeroECF.length()>2){
+            listaVenda = vendaController.listarVendaSaidaProdutoNumeroECF(numeroECF);
+            if (listaVenda==null){
+                listaVenda = new ArrayList<Viewvendasaidaproduto>();
+            }
+            for (int i = 0; i < listaVenda.size(); i++) {
+                NotaSaidaProdutoBean notaSaidaProdutoBean = new NotaSaidaProdutoBean();
+                ProdutoController produtoController = new ProdutoController();
+                Produto produto = produtoController.consultarProdutoid(listaVenda.get(i).getIdproduto());
+                notaSaidaProdutoBean.setProduto(produto);
+                notaSaidaProdutoBean.setQuantidade(listaVenda.get(i).getQuantidade());
+                notaSaidaProdutoBean.setValorDesconto(listaVenda.get(i).getValorDesconto());
+                notaSaidaProdutoBean.setValorUnitario(listaVenda.get(i).getValorVenda() / listaVenda.get(i).getQuantidade());
+                notaSaidaProdutoBean.setValortotal(listaVenda.get(i).getValorVenda());
+                String aliquota = pesquisarAliquota(notaSaidaProdutoBean.getProduto().getAliquota());
+                if (aliquota.equalsIgnoreCase("ST")) {
+                    Codigofiscal cf = (Codigofiscal) comSTjComboBox.getSelectedItem();
+                    notaSaidaProdutoBean.setCfop(cf.getCfop());
+                } else {
+                    Codigofiscal cf = (Codigofiscal) semSTjComboBox.getSelectedItem();
+                    notaSaidaProdutoBean.setCfop(cf.getCfop());
+                }
+                listaProdutoBean.add(notaSaidaProdutoBean);
+            }
+            setModelProduto();
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
     /**
      * @param ags the command line arguments
      */
@@ -1204,7 +1279,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     private javax.swing.JTable duplicatajTable;
     private javax.swing.JTable duplicatajTable1;
     private javax.swing.JTextField emailjTextField;
-    private javax.swing.JComboBox estadojComboBox;
+    private javax.swing.JTextField estadojTextField;
     private javax.swing.JFormattedTextField foneFixojFormattedTextField;
     private javax.swing.JComboBox formaPagamentojComboBox;
     private javax.swing.JButton gerarjButton;
@@ -1217,8 +1292,10 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1233,6 +1310,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -1277,6 +1355,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     private javax.swing.JComboBox semSTjComboBox;
     private javax.swing.JTextField seriejTextField;
     private javax.swing.JComboBox tipoNFejComboBox;
+    private javax.swing.JComboBox tipoOperacaojComboBox;
     private javax.swing.JTextField totalNotajTextField;
     private javax.swing.JTextField totalProdutojTextField;
     private javax.swing.JTextField valorDescontoFaturajTextField;
@@ -1294,16 +1373,16 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         produtojTable.setModel(modelProduto);
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(SwingConstants.RIGHT);
-        produtojTable.getColumnModel().getColumn(0).setPreferredWidth(20);
-        produtojTable.getColumnModel().getColumn(1).setPreferredWidth(100);
-        produtojTable.getColumnModel().getColumn(2).setPreferredWidth(20);
-        produtojTable.getColumnModel().getColumn(3).setPreferredWidth(20);
+        produtojTable.getColumnModel().getColumn(0).setPreferredWidth(30);
+        produtojTable.getColumnModel().getColumn(1).setPreferredWidth(250);
+        produtojTable.getColumnModel().getColumn(2).setPreferredWidth(30);
+        produtojTable.getColumnModel().getColumn(3).setPreferredWidth(30);
         produtojTable.getColumnModel().getColumn(4).setCellRenderer(renderer);
-        produtojTable.getColumnModel().getColumn(4).setPreferredWidth(30);
+        produtojTable.getColumnModel().getColumn(4).setPreferredWidth(50);
         produtojTable.getColumnModel().getColumn(5).setCellRenderer(renderer);
-        produtojTable.getColumnModel().getColumn(5).setPreferredWidth(30);
+        produtojTable.getColumnModel().getColumn(5).setPreferredWidth(50);
         produtojTable.getColumnModel().getColumn(6).setCellRenderer(renderer);
-        produtojTable.getColumnModel().getColumn(6).setPreferredWidth(30);
+        produtojTable.getColumnModel().getColumn(6).setPreferredWidth(50);
         produtojTable.repaint();
     }
 
@@ -1324,8 +1403,9 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     }
 
     public void consultarCliente(Cliente cliente) {
-        this.cliente = cliente;
         if (cliente!=null){
+            ClienteController clienteController = new ClienteController();
+            Clienteendereco clienteEndereco = clienteController.consultarClienteEndereco(cliente.getIdcliente());
             nomejTextField.setText(cliente.getNome());
             cpfjFormattedTextField.setText(cliente.getDocFederal());
             if (cliente.getTipo().equalsIgnoreCase("PJ")){
@@ -1335,20 +1415,36 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             }
             foneFixojFormattedTextField.setText(cliente.getFoneFixo());
             emailjTextField.setText(cliente.getEmail());
-            ClienteController clienteController = new ClienteController();
-            clienteEndereco = clienteController.consultarClienteEndereco(cliente.getIdcliente());
             logradourojTextFiel.setText(clienteEndereco.getTipoLogradouro() + " " + clienteEndereco.getLogradouro());
             numerojTextField.setText(clienteEndereco.getNumero());
             complementojTextField.setText(clienteEndereco.getComplemento());
             bairrojTextField.setText(clienteEndereco.getBairro());
             cidadejTextField.setText(clienteEndereco.getCidade());
             cepjFormattedTextField.setText(clienteEndereco.getCep());
-            estadojComboBox.setSelectedItem(clienteEndereco.getEstado());
+            estadojTextField.setText(clienteEndereco.getEstado());
             emailjTextField.setText(cliente.getEmail());
             if (emailjTextField.getText().length()==0){
                 JOptionPane.showMessageDialog(rootPane, "Email é obrigatório");
             }
+            notaSaidaBean.setCodigoCliente(cliente.getIdcliente());
+            String municipio = getCodigoMunicipio(clienteEndereco.getMunicipios());
+            notaSaidaBean.setCodigoMunicipio(municipio);
+            if (cliente.getTipo().equalsIgnoreCase("PF")){
+                contribuintejComboBox.setSelectedIndex(2);
+            }else if (cliente.getTipo().equalsIgnoreCase("PJ")){
+                contribuintejComboBox.setSelectedIndex(0);
+            }else if (cliente.getTipo().equalsIgnoreCase("CD")){
+                contribuintejComboBox.setSelectedIndex(1);
+            }
         }
+    }
+    
+    public String getCodigoMunicipio(int idMunicipio){
+        MunicipiosController municipiosController = new MunicipiosController();
+        Municipios municipios = municipiosController.getMunicipio(idMunicipio);
+        if (municipios!=null){
+            return municipios.getCodigo();
+        }else return "0";
     }
     
     public void carregarComboBoxCFOP(){
@@ -1379,7 +1475,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
    }
    
    public void lerArquivoSaidaAcbr() throws IOException{
-       File arqSaida = new File(this.config.getCaminhoAcbr() + "sainfe.txt");
+        File arqSaida = new File(this.config.getCaminhoAcbr() + "sainfe.txt");
         String xml = null;
         BufferedReader leitor = null;
         FileReader sainfe;
@@ -1403,6 +1499,9 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             }
         }else {
             JOptionPane.showMessageDialog(rootPane, "Erro oa gerar Nota Fiscal");
+            arqSaida = new File(this.config.getCaminhoAcbr() + "LOG.txt");
+            sainfe = new FileReader(arqSaida);
+            leitor = new BufferedReader(sainfe);
             gerarjButton.setText("Gerar NF-e");
             new FrmMostrarErroNotaSaida(leitor);
             leitor.close();
@@ -1411,8 +1510,8 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         leitor.close();
         
     }
-    
-    public void gerarArquivoNFe() throws IOException{
+   
+   public void gerarArquivoNFe() throws IOException{
         arquivo = new FileWriter(new File(this.config.getCaminhoNFe() + "cTexto.txt"));
         notaSaidaBean.setHoraSaida(Formatacao.foramtarHoraString());
         //Identificaoção
@@ -1435,7 +1534,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     }
     
     public void gerarDadosNotaFiscal() throws IOException{
-        arquivo.write("A|2.00||" + "\r\n");
+        arquivo.write("A|3.10||" + "\r\n");
         arquivo.write("B|"); //B01
         arquivo.write("42|");//Codigo do Estado SC=42 B02
         arquivo.write("|"); //B03
@@ -1452,11 +1551,19 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         arquivo.write("1|");//Formato de Impressao do Danfe //B21
         arquivo.write("1|");//Forma de Emissao da NF-e //B22
         arquivo.write("|");//Digito verificar do Chave de acesso na informar na importacao //B23
-        arquivo.write("1|");//Identificaocao do Hambiente  //B24
-        arquivo.write("1|");//finalidade da Emissao da NF-e 1 - Normal //B25
-        arquivo.write("0|");//Indica operacao consumidor final 0 - Nao   1-Cosumidor final //B25a
+        if (config.getAmbientenfe().equalsIgnoreCase("1")){
+            arquivo.write("1|");//Identificaocao do Hambiente produção  //B24
+        }else if (config.getAmbientenfe().equalsIgnoreCase("2")){
+            arquivo.write("2|");//Identificaocao do Hambiente Homologação  //B24
+        }
+        if (tipoOperacaojComboBox.getSelectedItem().toString().equalsIgnoreCase("Venda")){
+            arquivo.write("1|");//finalidade da Emissao da NF-e 1 - Normal //B25
+        }else arquivo.write("1|");//finalidade da Emissao da NF-e 4 - Devolução/Retorno //B25
+        if (tipoOperacaojComboBox.getSelectedItem().toString().equalsIgnoreCase("Venda")){
+            arquivo.write("1|");//Indica operacao consumidor final 0 - Nao   1-Cosumidor final //B25a
+        }else arquivo.write("0|");//Indica operacao consumidor final 0 - Nao   0-Não  //B25a
         arquivo.write("1|");//Indica de presença do comprador //B25b
-        arquivo.write("3|" + parametrosLocal.getVersaonfe());//Processo de emissao da NF-e B26 e B27
+        arquivo.write("0|" + parametrosLocal.getVersaonfe());//Processo de emissao da NF-e B26 e B27
         arquivo.write("|||");
         arquivo.write("\r\n");
     }
@@ -1473,46 +1580,52 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     
     public void gerarDadosEmitente() throws IOException{
         // Dados do Emitente
+        
         arquivo.write("C|");//Classe Dados do Emitente //C01
-        arquivo.write(validarTamanho(notaSaidaBean.getEmpresa().getRazaoSocial()) + "|");//RazaoSocial
-        arquivo.write(validarTamanho(notaSaidaBean.getEmpresa().getNomeFantasia()) + "|");//Nome Fantasia
-        arquivo.write(retirarPontos(notaSaidaBean.getEmpresa().getInscricaoEstadual() + "|"));//Inscricao Estadual
+        arquivo.write(validarTamanho(config.getEmpresa().getRazaoSocial()) + "|");//RazaoSocial
+        arquivo.write(validarTamanho(config.getEmpresa().getNomeFantasia()) + "|");//Nome Fantasia
+        arquivo.write(retirarPontos(config.getEmpresa().getInscricaoEstadual() + "|"));//Inscricao Estadual
         arquivo.write("|");//Inscricao Estadual ST
-        arquivo.write(notaSaidaBean.getEmpresa().getInscricaoMunicipal() + "|"); //Inscricao Municipal
-        arquivo.write(notaSaidaBean.getEmpresa().getCnae() + "|"); //Numero da Codigo Ativadade Economoca
-        arquivo.write(notaSaidaBean.getEmpresa().getCrt() + "|"); //Se a empresa e enquadrada ou nao no Simples
+        arquivo.write(config.getEmpresa().getInscricaoMunicipal() + "|"); //Inscricao Municipal
+        arquivo.write(config.getEmpresa().getCnae() + "|"); //Numero da Codigo Ativadade Economoca
+        arquivo.write(config.getEmpresa().getCrt() + "|"); //Se a empresa e enquadrada ou nao no Simples
         arquivo.write("\r\n");
         
         //Dados do CNPJ
         arquivo.write("C02|");
-        arquivo.write(retirarPontos(notaSaidaBean.getEmpresa().getCnpj()) + "|" + "\r\n");
+        arquivo.write(retirarPontos(config.getEmpresa().getCnpj()) + "|" + "\r\n");
         
         //Dados do Endereco
         arquivo.write("C05|");
-        arquivo.write(validarTamanho(notaSaidaBean.getEmpresa().getTipoLogradouro() + " " +  notaSaidaBean.getEmpresa().getLogradouro()) + "|");
-        arquivo.write(notaSaidaBean.getEmpresa().getNumero() + "|");
-        arquivo.write(validarTamanho(notaSaidaBean.getEmpresa().getComplemento()) + "|");
-        arquivo.write(validarTamanho(notaSaidaBean.getEmpresa().getBairro()) + "|");
-        arquivo.write(consultarCodgioMunicipio(notaSaidaBean.getEmpresa().getMunicipios()) + "|");
-        arquivo.write(validarTamanho(notaSaidaBean.getEmpresa().getCidade()) + "|");
-        arquivo.write(notaSaidaBean.getEmpresa().getUf() + "|");
-        arquivo.write(retirarPontos(notaSaidaBean.getEmpresa().getCep()) + "|");
+        arquivo.write(validarTamanho(config.getEmpresa().getTipoLogradouro() + " " +  config.getEmpresa().getLogradouro()) + "|");
+        arquivo.write(config.getEmpresa().getNumero() + "|");
+        arquivo.write(validarTamanho(config.getEmpresa().getComplemento()) + "|");
+        arquivo.write(validarTamanho(config.getEmpresa().getBairro()) + "|");
+        arquivo.write(consultarCodgioMunicipio(config.getEmpresa().getMunicipios()) + "|");
+        arquivo.write(validarTamanho(config.getEmpresa().getCidade()) + "|");
+        arquivo.write(config.getEmpresa().getUf() + "|");
+        arquivo.write(retirarPontos(config.getEmpresa().getCep()) + "|");
         arquivo.write("1058" + "|");//Codigo Pais
         arquivo.write("Brasil" + "|"); //Pais
-        arquivo.write(retirarPontos(notaSaidaBean.getEmpresa().getFoneComercial()) + "|");
+        arquivo.write(retirarPontos(config.getEmpresa().getFoneComercial()) + "|");
         arquivo.write("\r\n");
     }
     
     public void gerarDadosDestinatario() throws IOException{
         //Dados do Destinatario
         arquivo.write("E|");//E01
-        if (notaSaidaBean.getCliente().getTipo().equalsIgnoreCase("PF")){
+        arquivo.write(validarTamanho(nomejTextField.getText()) + "|"); //E04
+        arquivo.write(verificarClienteICMS()+ "|");//E16a
+        arquivo.write(retirarPontos(rgjTextField.getText())+ "|");//E17
+        arquivo.write("||");//E18 e E18a
+        arquivo.write(emailjTextField.getText() + "|");//E19
+        arquivo.write("\r\n");
+        if (cpfjFormattedTextField.getText().length()==14){
             arquivo.write("E03|"); //E03
-        }else {
+        }else if (cpfjFormattedTextField.getText().length()==18){
             arquivo.write("E02|"); //E02
         }
         arquivo.write(retirarPontos(cpfjFormattedTextField.getText()) + "|"); //E02 ou E03
-        arquivo.write(validarTamanho(nomejTextField.getText()) + "|"); //E04
         arquivo.write("\r\n");
         
         //Endereco do Destinatario
@@ -1521,18 +1634,25 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         arquivo.write(numerojTextField.getText() + "|");//E07
         arquivo.write(validarTamanho(complementojTextField.getText()) + "|");//E08
         arquivo.write(validarTamanho(bairrojTextField.getText()) + "|"); //E09
-        arquivo.write(consultarCodgioMunicipio(notaSaidaBean.getClienteEndereco().getMunicipios()) + "|");//E10
+        arquivo.write(notaSaidaBean.getCodigoMunicipio() + "|");//E10
         arquivo.write(validarTamanho(cidadejTextField.getText()) + "|");//E11
-        arquivo.write(estadojComboBox.getSelectedItem().toString() + "|");//E12
+        arquivo.write(estadojTextField.getText() + "|");//E12
         arquivo.write(retirarPontos(cepjFormattedTextField.getText()) + "|");//E12
         arquivo.write("1058" + "|");//E14
         arquivo.write("Brasil" + "|");//E15
-        arquivo.write(retirarPontos(notaSaidaBean.getCliente().getFoneFixo()) + "|");//E16
-        arquivo.write(verificarClienteICMS()+ "|");//E16a
-        arquivo.write(retirarPontos(rgjTextField.getText())+ "|");//E17
-        arquivo.write("||");//E18 e E18a
-        arquivo.write(emailjTextField.getText() + "|");//E19
+        arquivo.write(retirarPontos(foneFixojFormattedTextField.getText()) + "|");//E16
         arquivo.write("\r\n");
+    }
+    
+    public void gerarAutorizacaoDownloadXML() throws IOException{
+        arquivo.write("G50|");
+        if (cpfjFormattedTextField.getText().length()==14){
+            arquivo.write("G52|"); //G52
+        }else if (cpfjFormattedTextField.getText().length()==18){
+            arquivo.write("G51|"); //G51
+        }
+        arquivo.write(retirarPontos(cpfjFormattedTextField.getText()) + "|"); //E52 ou E51
+        
     }
     
     public void gerarDadosProduto() throws IOException{
@@ -1558,7 +1678,9 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(listaProdutoBean.get(i).getValorUnitario())) + "00000000" + "|");
             arquivo.write("|");
             arquivo.write("|");
-            arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(listaProdutoBean.get(i).getValorDesconto())) + "|");
+            if (listaProdutoBean.get(i).getValorDesconto()==0){
+                arquivo.write("|");
+            }else arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(listaProdutoBean.get(i).getValorDesconto())) + "|");
             arquivo.write("|");
             arquivo.write("1" + "|");
             arquivo.write("|");
@@ -1572,7 +1694,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             if (listaProdutoBean.get(i).getProduto().getAliquota()==6){
                 arquivo.write("N10g|0|500||||");
             }else {
-                arquivo.write("N10g|0|102||||");
+                arquivo.write("N10h|0|900||||");
             }
             arquivo.write("\r\n");
             gerarPisSimplesNacional();
@@ -1586,21 +1708,22 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         arquivo.write("W|");
         arquivo.write("\r\n");
         arquivo.write("W02|");
-        arquivo.write("0.00" + "|");
-        arquivo.write("0.00" + "|");
-        arquivo.write("0.00" + "|");
-        arquivo.write("0.00" + "|");
-        arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalValoProdutos())) + "|");
-        arquivo.write("0.00" + "|");
-        arquivo.write("0.00" + "|");
-        arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getValorDesconto())) + "|");
-        arquivo.write("0.00" + "|");
-        arquivo.write("0.00" + "|");
-        arquivo.write("0.00" + "|");
-        arquivo.write("0.00" + "|");
-        arquivo.write("0.00" + "|");
-        arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getValorNota())) + "|");
-        arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios())) + "|");
+        arquivo.write("0.00" + "|");//w03
+        arquivo.write("0.00" + "|");//w04
+        arquivo.write("0.00" + "|");//w04a
+        arquivo.write("0.00" + "|");//w05
+        arquivo.write("0.00" + "|");//w06
+        arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalValoProdutos())) + "|");//w07
+        arquivo.write("0.00" + "|");//w08
+        arquivo.write("0.00" + "|");//w09
+        arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getValorDesconto())) + "|");//w10
+        arquivo.write("0.00" + "|");//w11
+        arquivo.write("0.00" + "|");//w12
+        arquivo.write("0.00" + "|");//w13
+        arquivo.write("0.00" + "|");//w14
+        arquivo.write("0.00" + "|");//w15
+        arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getValorNota())) + "|");//w16
+        arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios())) + "|");//w16a
         arquivo.write("\r\n");
         arquivo.write("X|9|");
         arquivo.write("\r\n");
@@ -1649,7 +1772,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         for(int i=0;i<notaSaidaBean.getFatura().getListaDuplicata().size();i++){
             arquivo.write("Y07|");
             arquivo.write(notaSaidaBean.getFatura().getListaDuplicata().get(i).getNumero() + "|");
-        //    arquivo.write(Formatacao.ConvercaoDataNfe(notaSaidaBean.getFatura().getListaDuplicata().get(i).getDataVencimento()) + "|");
+            arquivo.write(Formatacao.ConvercaoDataDANFEDuplicata(notaSaidaBean.getFatura().getListaDuplicata().get(i).getDataVencimento()) + "|");
             arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarFloatString(notaSaidaBean.getFatura().getListaDuplicata().get(i).getValor()))+ "|");
             arquivo.write("\r\n");
         }   
@@ -1864,7 +1987,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
      
    public String validarDadosNFe(){
        String erro=null;
-       if (clienteEndereco.getMunicipios()==0){
+       if (notaSaidaBean.getCodigoMunicipio()=="0"){
            erro = "Falta código Municipio";
            return erro;
        }
@@ -1897,27 +2020,29 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
    }
    
    public void gravarNotaSaida(){
-       NotaSaida notaSaida = new NotaSaida();
-       notaSaida.setIdcliente(cliente.getIdcliente());
-       notaSaida.setIdfornecedor(0);
-       notaSaida.setTipo("V");
+       Notasaida notaSaida = new Notasaida();
+       notaSaida.setIdcliente(notaSaidaBean.getCodigoCliente());
+       notaSaida.setIdfornecedor(notaSaidaBean.getCodigoFornecedor());
+       if (tipoOperacaojComboBox.getSelectedItem().toString().equalsIgnoreCase("Venda")){
+           notaSaida.setTipo("V");
+       }else notaSaida.setTipo("D");
        notaSaida.setDataEmissao(notaSaidaBean.getDataEmissao());
        notaSaida.setEmpresa(this.config.getEmpresa().getIdempresa());
        notaSaida.setNumero(Integer.parseInt(notaSaidaBean.getNuemro()));
        notaSaida.setSerie(Integer.parseInt(notaSaidaBean.getSerie1()));
        notaSaida.setSituacao("AUTORIZADA");
        notaSaida.setNomeArquivoXML(this.arquivoXML.getName());
-       notaSaida.setUsuario(this.usuarioLogado.getUsuario().getIdusuarios());
+       notaSaida.setUsuarios(this.usuarioLogado.getUsuario().getIdusuarios());
        Double valor = notaSaidaBean.getValorNota();
        notaSaida.setValorNotaFiscal(valor.floatValue());
        valor = notaSaidaBean.getTotalValoProdutos();
        notaSaida.setValorProdutos(valor.floatValue());
         try {
             notaSaida.setXml(carregarXML());
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(FrmEmitirNotaSaida01.class.getName()).log(Level.SEVERE, null, ex);
         }
-        notaSaida.setCahveAutorizacao(chaveAutorizacao);
+        notaSaida.setChaveAutorizacao(chaveAutorizacao);
         NotaSaidaController notaSaidaController = new NotaSaidaController();
         notaSaida = notaSaidaController.salvarNotaSaida(notaSaida);
    }
@@ -2008,6 +2133,14 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     public void consultaFornecedor(Fornecedor fornecedor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public void setMunicipio(Municipios municipios) {
+        if (municipios!=null){
+            cidadejTextField.setText(municipios.getNomeMunicipio());
+            estadojTextField.setText(municipios.getEstado());
+            notaSaidaBean.setCodigoMunicipio(municipios.getCodigo());
+        }
+    }
     
     
     
@@ -2077,7 +2210,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     
     public void buscarContasFatura(String numeroFatura){
         ContasReceberController contasReceberController = new ContasReceberController();
-        String sql = "Select c from Contasreceber c where c.numeroFaturaGerada='" + numeroFatura + "' and c.cliente=" + cliente.getIdcliente();
+        String sql = "Select c from Contasreceber c where c.numeroFaturaGerada='" + numeroFatura + "' and c.cliente=" + notaSaidaBean.getCodigoCliente();
         List<Contasreceber> listaContasReceber = contasReceberController.listarContas(sql);
         if (listaContasReceber!=null){
             if (listaContasReceber.size()>0){
@@ -2206,7 +2339,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     
     public String verficiarOepracao(){
         String estEmpresa = config.getEmpresa().getUf();
-        String estDestinatario = estadojComboBox.getSelectedItem().toString();
+        String estDestinatario = estadojTextField.getText();
         if (estEmpresa.equalsIgnoreCase(estDestinatario)){
             return "1";
         }else return "2";

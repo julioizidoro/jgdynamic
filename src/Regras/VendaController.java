@@ -4,7 +4,6 @@
  */
 package Regras;
 
-import dao.VendaDao;
 import facade.VendaFacade;
 import java.sql.SQLException;
 import java.util.List;
@@ -13,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Saida;
 import model.Venda;
+import model.View.Viewvendasaidaproduto;
 
 /**
  *
@@ -108,6 +108,17 @@ public class VendaController {
         } catch (Exception ex) {
             Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Erro Listar Vednas " + ex);
+            return null;
+        }
+    }
+    
+    public List<Viewvendasaidaproduto> listarVendaSaidaProdutoNumeroECF(String numeroECF) {
+        VendaFacade vendaFacade = new VendaFacade();
+        try {
+            return vendaFacade.listarVendaSaidaProdutoNumeroECF(numeroECF);
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro Listar Vednas por NumeroECF " + ex);
             return null;
         }
     }

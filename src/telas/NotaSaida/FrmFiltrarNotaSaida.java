@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.List;
 import model.Cliente;
 import model.Fornecedor;
+import model.Municipios;
 import model.Terminalcliente;
 import telas.Cliente.FrmConsultaClientes;
 import telas.NotaSaida.Fatura.DuplicataBean;
@@ -292,6 +293,10 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
     }
 
     public void consultaFornecedor(Fornecedor fornecedor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setMunicipio(Municipios municipios) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -30,7 +30,7 @@ import org.xml.sax.SAXException;
  *
  * @author Woverine
  */
-public class LerXml {
+public class LerXml310 implements ILerNFe{
 
    private DocumentBuilderFactory dbf;
    private DocumentBuilder db;
@@ -43,7 +43,7 @@ public class LerXml {
    private Fornecedor fornecedor;
 
 
-    public LerXml(String arquivo, ItelaConsulta telaConsulta) throws ParserConfigurationException, SAXException, IOException {
+    public LerXml310(String arquivo, ItelaConsulta telaConsulta) throws ParserConfigurationException, SAXException, IOException {
 
         this.dbf = DocumentBuilderFactory.newInstance();
         this.db = this.dbf.newDocumentBuilder();
@@ -55,7 +55,9 @@ public class LerXml {
         this.fornecedor = new Fornecedor();
         this.telaConsulta = telaConsulta;
     }
-
+    
+   
+    
     public void lerNotaFiscal() throws ParseException {
 
         NodeList nf = raiz.getElementsByTagName("ide");
@@ -64,7 +66,7 @@ public class LerXml {
         Node node = nodeLista.item(0).getFirstChild();
         this.nota.setNumero(node.getNodeValue());
 
-        nodeLista = item.getElementsByTagName("dEmi");
+        nodeLista = item.getElementsByTagName("dhEmi");
         node = nodeLista.item(0).getFirstChild();
         String data = node.getNodeValue();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");

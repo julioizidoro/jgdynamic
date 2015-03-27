@@ -10,7 +10,9 @@ import Regras.EntradaProdutoController;
 import Regras.Formatacao;
 import Regras.FornecedorController;
 import Regras.ParametroLocalController;
-import beanController.LerXml;
+import beanController.ILerNFe;
+import beanController.LerXml200;
+import beanController.LerXml310;
 import beanController.NfDuplicatas;
 import beanController.NfProdutos;
 import beanController.NotaEletronica;
@@ -57,7 +59,7 @@ public class FrmDocEntrada extends javax.swing.JFrame implements ItelaConsulta{
     private Fornecedor fornecedor;
     private Nfentrada notaFiscal;
     private byte[] xmlNfe;
-     private LerXml nfe;
+    private ILerNFe nfe;
     private List<NfDuplicatas> listaDuplicata;
     private List<NfProdutos> listaProdutos;
     private NotaEletronica nota;
@@ -139,6 +141,8 @@ dataSaidajDateChooser = new com.toedter.calendar.JDateChooser(null, null, datePa
     limparjButton = new javax.swing.JButton();
     localizarjButton = new javax.swing.JButton();
     carregarjButton = new javax.swing.JButton();
+    jLabel16 = new javax.swing.JLabel();
+    versaoNFejComboBox = new javax.swing.JComboBox();
     jPanel5 = new javax.swing.JPanel();
     jPanel15 = new javax.swing.JPanel();
     confirmajButton = new javax.swing.JButton();
@@ -433,6 +437,12 @@ dataSaidajDateChooser = new com.toedter.calendar.JDateChooser(null, null, datePa
         }
     });
     xmljPanel.add(carregarjButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
+
+    jLabel16.setText("Versão NF-e");
+    xmljPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, -1, -1));
+
+    versaoNFejComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "3.10", "2.00" }));
+    xmljPanel.add(versaoNFejComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 50, 100, -1));
 
     jPanel2.add(xmljPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 960, 130));
 
@@ -733,7 +743,12 @@ dataSaidajDateChooser = new com.toedter.calendar.JDateChooser(null, null, datePa
             JOptionPane.showMessageDialog(null, "Selecione o arquivo.");
         } else {
             try {
-                this.nfe = new LerXml(caminhojTextField.getText(), this);
+                if (versaoNFejComboBox.getSelectedItem().toString().equalsIgnoreCase("2.00")){
+                    this.nfe = new LerXml200(caminhojTextField.getText(), this);
+                }else {
+                    this.nfe = new LerXml310(caminhojTextField.getText(), this);
+                }
+                
                 try {
                     this.nfe.lerNotaFiscal();
                 } catch (ParseException ex) {
@@ -789,6 +804,7 @@ dataSaidajDateChooser = new com.toedter.calendar.JDateChooser(null, null, datePa
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -813,6 +829,7 @@ dataSaidajDateChooser = new com.toedter.calendar.JDateChooser(null, null, datePa
     private javax.swing.JTextField valorEncargosjTextField;
     private javax.swing.JTextField valorProdutosjTextField;
     private javax.swing.JTextField valorTotaljTextField;
+    private javax.swing.JComboBox versaoNFejComboBox;
     private javax.swing.JPanel xmljPanel;
     // End of variables declaration//GEN-END:variables
 

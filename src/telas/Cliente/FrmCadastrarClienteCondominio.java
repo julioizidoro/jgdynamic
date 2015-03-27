@@ -1035,7 +1035,7 @@ cnpjjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
         formaPagamentojComboBox.setSelectedItem(clientefechamento.getFormaPagamento());
         emitirComprovantejComboBox.setSelectedItem(clientefechamento.getNotaFiscal());
         limiteCreditojTextField.setText(Formatacao.foramtarDoubleString(clientefechamento.getLimiteCredito()));
-        clienteDescontojComboBox.setSelectedItem(cliente.getPossuiDesconto());
+        clienteDescontojComboBox.setSelectedItem(cliente.getTemDesconto());
     }
     
     public void popularTelaEndereco(){
@@ -1093,7 +1093,7 @@ cnpjjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
         cliente.setSituacao(situacaojComboBox.getSelectedItem().toString());
         cliente.setTipo("CD");
         cliente.setOperacao(10);
-        cliente.setPossuiDesconto(clienteDescontojComboBox.getSelectedItem().toString());   
+        cliente.setTemDesconto(clienteDescontojComboBox.getSelectedItem().toString());   
     }
     
     public void popularEndereco(){

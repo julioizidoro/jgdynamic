@@ -25,7 +25,7 @@ import Regras.FornecedorController;
 import Regras.ListaProdutoEntrada;
 import Regras.ProdutoController;
 import Regras.VinculoController;
-import beanController.LerXml;
+import beanController.LerXml200;
 import beanController.NfDuplicatas;
 import beanController.NfProdutos;
 import beanController.NotaEletronica;
@@ -74,7 +74,7 @@ public class FrmNovaEntrada extends javax.swing.JFrame implements ItelaConsulta 
     private String datePattern;
     private String maskPattern;
     private char placeHolder;
-    private LerXml nfe;
+    private LerXml200 nfe;
     private List<NfDuplicatas> listaDuplicata;
     private List<NfProdutos> listaProdutos;
     private NotaEletronica nota;
@@ -2655,7 +2655,7 @@ private void codigojTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIR
             JOptionPane.showMessageDialog(null, "Selecione o arquivo.");
         } else {
             try {
-                this.nfe = new LerXml(caminhoNFe, this);
+                this.nfe = new LerXml200(caminhoNFe, this);
                 try {
                     this.nfe.lerNotaFiscal();
                 } catch (ParseException ex) {

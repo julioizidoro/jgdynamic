@@ -25,7 +25,7 @@ import Regras.ListaProdutoEntrada;
 import Regras.ParametroLocalController;
 import Regras.ProdutoController;
 import Regras.VinculoController;
-import beanController.LerXml;
+import beanController.LerXml200;
 import beanController.NfDuplicatas;
 import beanController.NfProdutos;
 import beanController.NotaEletronica;
@@ -77,7 +77,7 @@ public class FrmEntrada extends javax.swing.JFrame implements ItelaConsulta {
     private String datePattern;
     private String maskPattern;
     private char placeHolder;
-    private LerXml nfe;
+    private LerXml200 nfe;
     private List<NfDuplicatas> listaDuplicata;
     private List<NfProdutos> listaProdutos;
     private NotaEletronica nota;
@@ -1716,7 +1716,7 @@ entradajTabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
             JOptionPane.showMessageDialog(null, "Selecione o arquivo.");
         } else {
             try {
-                this.nfe = new LerXml(caminhojTextField.getText(), this);
+                this.nfe = new LerXml200(caminhojTextField.getText(), this);
                 try {
                     this.nfe.lerNotaFiscal();
                 } catch (ParseException ex) {

@@ -346,5 +346,4 @@ public class Empresa implements Serializable {
         this.timeZona = timeZona;
     }
 
-
 }

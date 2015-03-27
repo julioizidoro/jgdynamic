@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.NotaSaida;
+import model.Notasaida;
 
 /**
  *
@@ -28,7 +28,7 @@ import model.NotaSaida;
  */
 public class FrmGerarAquuivosContador extends javax.swing.JFrame {
     
-    private List<NotaSaida> listaNotaSaida;
+    private List<Notasaida> listaNotaSaida;
     private String datePattern;
     private String maskPattern;
     private char placeHolder;
@@ -218,7 +218,7 @@ dataInicialjDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         NotaSaidaController notaSaidaController = new NotaSaidaController();
         listaNotaSaida = notaSaidaController.consultarNotaSaida(dataInicial, dataFinal);
         if (listaNotaSaida==null){
-            listaNotaSaida = new ArrayList<NotaSaida>();
+            listaNotaSaida = new ArrayList<Notasaida>();
         }else {
             try {
                 salvarArquivos();

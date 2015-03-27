@@ -52,6 +52,8 @@ public class FrmRegistrarTransferencia extends javax.swing.JFrame implements Ite
     private int linhaAlterar;
     private consultaTransferenciaProduto ConTransferenciaProduto;
     private ITransferenciaEntrada telaConsultaTRansferenciaEntrada;
+    private Produto produto;
+    private Estoque estoque;
 
     /** Creates new form FrmRegistrarTransferencia */
     public FrmRegistrarTransferencia(Config config, ConsultaTransferencia listaConsultaTransferencias, ITransferenciaEntrada telaConsultaTRansferenciaEntrada) {
@@ -250,11 +252,14 @@ dataIniciojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
 
     jLabel6.setText("Valor Venda");
 
-    valorVendajTextField.setEditable(false);
     valorVendajTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-    valorCustojTextField.setEditable(false);
     valorCustojTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+    valorCustojTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            valorCustojTextFieldKeyPressed(evt);
+        }
+    });
 
     jLabel7.setText("Valor Custo");
 
@@ -456,9 +461,7 @@ dataIniciojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
 }//GEN-LAST:event_codigojTextFieldKeyPressed
 
 private void valorUnitariojTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valorUnitariojTextFieldKeyPressed
-    if (evt.getKeyCode() == evt.VK_ENTER) {
-        registrarProdutoTransferencia();
-    }
+    
 }//GEN-LAST:event_valorUnitariojTextFieldKeyPressed
 
 private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -523,6 +526,12 @@ private void dataFinaljDateChooserFocusGained(java.awt.event.FocusEvent evt) {//
 // TODO add your handling code here:
 }//GEN-LAST:event_dataFinaljDateChooserFocusGained
 
+    private void valorCustojTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valorCustojTextFieldKeyPressed
+       if (evt.getKeyCode() == evt.VK_ENTER) {
+         registrarProdutoTransferencia();
+       }
+    }//GEN-LAST:event_valorCustojTextFieldKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -579,7 +588,7 @@ private void dataFinaljDateChooserFocusGained(java.awt.event.FocusEvent evt) {//
     public void localizarProdoutoCodigo(String referencia) {
         this.ConTransferenciaProduto = new consultaTransferenciaProduto();
         ProdutoController produtoController = new ProdutoController();
-        Produto produto = produtoController.consultarProdutoReferencia(Integer.parseInt(referencia));
+        produto = produtoController.consultarProdutoReferencia(Integer.parseInt(referencia));
         if (produto != null) {
             if (produto.getIdProduto() != null) {
                 this.ConTransferenciaProduto.setProduto(produto);
@@ -647,8 +656,13 @@ private void dataFinaljDateChooserFocusGained(java.awt.event.FocusEvent evt) {//
         this.valorUnitariojTextField.setText("");
         quantidadejTextField.setText("");
         transferencia.getListaTransferenciaProduto().add(ConTransferenciaProduto);
+        Float valorVenda = Formatacao.ConvercaoMonetariaFloat(valorVendajTextField.getText());
+        Double custoCusto = Formatacao.ConvercaoMonetariaDouble(valorCustojTextField.getText());
+        salvarEstoque(valorVenda, custoCusto);
         calcilarTotais();
         gerarProdutoModel();
+        this.produto =null;
+        this.estoque = null;
         codigojTextField.requestFocus();
     }
 
@@ -760,12 +774,28 @@ private void dataFinaljDateChooserFocusGained(java.awt.event.FocusEvent evt) {//
     
     public void localizarEstoque(){
         EstoqueController estoqueController = new EstoqueController();
-        Estoque estoque = estoqueController.consultarEstoque(ConTransferenciaProduto.getProduto().getIdProduto(), config.getEmpresa().getIdempresa());
+        estoque = estoqueController.consultarEstoque(ConTransferenciaProduto.getProduto().getIdProduto(), config.getEmpresa().getIdempresa());
         if (estoque!=null){
             estoquejTextField.setText(Formatacao.foramtarDoubleString(estoque.getQuantidadeEstoque()));
             valorCustojTextField.setText(Formatacao.foramtarDoubleString(estoque.getValorCusto()));
             valorVendajTextField.setText(Formatacao.foramtarFloatString(estoque.getValorVenda()));
             ConTransferenciaProduto.setEstoque(estoque);
+        }
+    }
+    
+    public void salvarEstoque(Float valorVenda, Double valorCusto){
+        boolean salvarEstoque = false;
+        if (valorVenda> estoque.getValorVenda()){
+            estoque.setValorVenda(valorVenda);
+            salvarEstoque = true;
+        }
+        if (valorCusto> estoque.getValorCusto()){
+            estoque.setValorCusto(valorCusto);
+            salvarEstoque = true;
+        }
+        if (salvarEstoque){
+            EstoqueController estoqueController = new EstoqueController();
+            estoque = estoqueController.salvarEstoque(estoque);
         }
     }
 

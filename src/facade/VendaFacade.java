@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import model.Saida;
 import model.Venda;
+import model.View.Viewvendasaidaproduto;
 
 /**
  *
@@ -84,7 +85,11 @@ public class VendaFacade {
          return vendaDao.getVenda(sql);
      }
      
-    
+     public List<Viewvendasaidaproduto> listarVendaSaidaProdutoNumeroECF(String numeroECF) throws SQLException{
+         vendaDao = new VendaDao();
+         return vendaDao.listarVendaSaidaProdutoNumeroECF(numeroECF);
+             
+     }
 
 
 }

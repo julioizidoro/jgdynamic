@@ -1292,7 +1292,7 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
         formaPagamentojComboBox.setSelectedItem(clientefechamento.getFormaPagamento());
         emitirComprovantejComboBox.setSelectedItem(clientefechamento.getNotaFiscal());
         limiteCreditojTextField.setText(Formatacao.foramtarDoubleString(clientefechamento.getLimiteCredito()));
-        clienteDescontojComboBox.setSelectedItem(cliente.getPossuiDesconto());
+        clienteDescontojComboBox.setSelectedItem(cliente.getTemDesconto());
     }
     
     public void popularTelaEndereco(){
@@ -1358,7 +1358,7 @@ dataNascimentojDateChooser = new com.toedter.calendar.JDateChooser(null, null, d
         cliente.setSituacao(situacaojComboBox.getSelectedItem().toString());
         cliente.setTipo("PJ");
         cliente.setOperacao(10);
-        cliente.setPossuiDesconto(clienteDescontojComboBox.getSelectedItem().toString());
+        cliente.setTemDesconto(clienteDescontojComboBox.getSelectedItem().toString());
 
     }
     

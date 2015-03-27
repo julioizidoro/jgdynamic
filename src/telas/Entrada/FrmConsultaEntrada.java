@@ -399,7 +399,7 @@ AdicionarjButton1.addActionListener(new java.awt.event.ActionListener() {
 }//GEN-LAST:event_ImprimirjButtonActionPerformed
 
     private void RelatoriojButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RelatoriojButtonActionPerformed
-
+        //gerarVicnulos();
     }//GEN-LAST:event_RelatoriojButtonActionPerformed
 
     private void FecharrjButtonFecharAssociado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FecharrjButtonFecharAssociado
@@ -600,5 +600,30 @@ AdicionarjButton1.addActionListener(new java.awt.event.ActionListener() {
     public void setArquivo(File arquivo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    public void gerarVicnulos(){
+        EntradaProdutoController entradaController = new EntradaProdutoController();
+        VinculoController vinculoController = new VinculoController();
+        for (int i = 0; i < listaEntrada.size(); i++) {
+            listaEntradaProduto = entradaController.listarProdutoEntrada(this.listaEntrada.get(i));
+            if (this.listaEntradaProduto != null) {
+                for (int p = 0; p < listaEntradaProduto.size(); p++) {
+                    Vinculo vinculo = vinculoController.consultarVinculo(listaEntradaProduto.get(p).getProduto(), config.getEmpresa().getIdempresa(), listaEntrada.get(i).getFornecedor());
+                    if (vinculo == null) {
+                        vinculo = new Vinculo();
+                        vinculo.setCodigoFabricante("0");
+                        vinculo.setDataCompra(listaEntrada.get(i).getDataEntrada());
+                        vinculo.setEmbalagem(Long.valueOf("0"));
+                        vinculo.setEmpresa(config.getEmpresa().getIdempresa());
+                        vinculo.setFornecedor(listaEntrada.get(i).getFornecedor());
+                        vinculo.setPedido("NAO");
+                        vinculo.setProduto(listaEntradaProduto.get(p).getProduto());
+                        vinculo.setValorCompra(listaEntradaProduto.get(p).getValorCusto());
+                        vinculoController.salvarVinculo(vinculo);
+                    }
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(rootPane, "Terminou");
+    }
 }

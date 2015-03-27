@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import model.NotaSaida;
+import model.Notasaida;
 
 /**
  *
@@ -20,10 +20,10 @@ public class NotaSaidaDao {
     
     private EntityManager manager;
     
-    public List<NotaSaida> consultarNotaSaida(String data) throws Exception{
+    public List<Notasaida> consultarNotaSaida(String data) throws Exception{
         manager = ConexaoSingleton.getConexao();
-        List<NotaSaida> listaNotaSaida = new ArrayList<NotaSaida>();
-        Query q = manager.createQuery("select n from NotaSaida n where n.dataEmissao>='" + data + "'  order by n.dataEmissao");
+        List<Notasaida> listaNotaSaida = new ArrayList<Notasaida>();
+        Query q = manager.createQuery("select n from Notasaida n where n.dataEmissao>='" + data + "'  order by n.dataEmissao");
         if (q.getResultList().size()>0){
             listaNotaSaida = q.getResultList();
         }
@@ -31,7 +31,7 @@ public class NotaSaidaDao {
         return listaNotaSaida;
     }
     
-    public NotaSaida salvarNotaSaida(NotaSaida notaSaida) throws Exception{
+    public Notasaida salvarNotaSaida(Notasaida notaSaida) throws Exception{
          manager = ConexaoSingleton.getConexao();
         //abrindo uma transação
         manager.getTransaction().begin();
@@ -42,10 +42,10 @@ public class NotaSaidaDao {
         return notaSaida;
     }
     
-    public List<NotaSaida> consultarNotaSaida(String dataInicial, String dataFinal) throws Exception{
+    public List<Notasaida> consultarNotaSaida(String dataInicial, String dataFinal) throws Exception{
         manager = ConexaoSingleton.getConexao();
-        List<NotaSaida> listaNotaSaida = new ArrayList<NotaSaida>();
-        Query q = manager.createQuery("select n from NotaSaida n where n.dataEmissao>='" + dataInicial + "' and n.dataEmissao<='" + dataFinal + "'  order by n.dataEmissao");
+        List<Notasaida> listaNotaSaida = new ArrayList<Notasaida>();
+        Query q = manager.createQuery("select n from Notasaida n where n.dataEmissao>='" + dataInicial + "' and n.dataEmissao<='" + dataFinal + "'  order by n.dataEmissao");
         listaNotaSaida = q.getResultList();
         manager.close();
         return listaNotaSaida;
@@ -53,17 +53,17 @@ public class NotaSaidaDao {
     
     public int consultarUltimaNotaEmitida() throws SQLException{
         manager = ConexaoSingleton.getConexao();
-        List<NotaSaida> listaNotaSaida = new ArrayList<NotaSaida>();
-        Query q = manager.createNativeQuery("Select MAX(numero) as numeroNfe from notaSaida");
+        List<Notasaida> listaNotasaida = new ArrayList<Notasaida>();
+        Query q = manager.createNativeQuery("Select MAX(numero) as numeroNfe from notasaida");
         int i = (Integer) q.getSingleResult();
         manager.close();
         return i;
     }
     
-    public List<NotaSaida> filtrarNotaSaida(String sql) throws SQLException{
+    public List<Notasaida> filtrarNotaSaida(String sql) throws SQLException{
         manager = ConexaoSingleton.getConexao();
         Query q = manager.createQuery(sql);
-        List<NotaSaida> lista = q.getResultList();
+        List<Notasaida> lista = q.getResultList();
         manager.close();
         return lista;
     }

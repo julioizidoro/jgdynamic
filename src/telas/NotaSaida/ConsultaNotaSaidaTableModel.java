@@ -12,7 +12,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.Cliente;
 import model.Fornecedor;
-import model.NotaSaida;
+import model.Notasaida;
 
 /**
  *
@@ -20,10 +20,10 @@ import model.NotaSaida;
  */
 public class ConsultaNotaSaidaTableModel extends AbstractTableModel{
     
-    private List<NotaSaida> listaNotaSaida;
+    private List<Notasaida> listaNotaSaida;
     private String[] colunas ={"Cliente", "No. NF-e", "Data Emissão", "Valor Produtos", "Valor Nota", "Situação"};
 
-    public ConsultaNotaSaidaTableModel(List<NotaSaida> listaNotaSaida) {
+    public ConsultaNotaSaidaTableModel(List<Notasaida> listaNotaSaida) {
         this.listaNotaSaida = listaNotaSaida;
     }
 

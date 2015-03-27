@@ -8,6 +8,7 @@ import java.io.File;
 import java.util.List;
 import model.Cliente;
 import model.Fornecedor;
+import model.Municipios;
 import model.Terminalcliente;
 import telas.NotaSaida.Fatura.DuplicataBean;
 import telas.NotaSaida.Fatura.FaturaBean;
@@ -27,4 +28,5 @@ public interface INotaSaidaBean {
     void setModel();
     void filtrarNotaSaida(String sql);
     void consultaFornecedor(Fornecedor fornecedor);
+    void setMunicipio(Municipios municipios);
 }

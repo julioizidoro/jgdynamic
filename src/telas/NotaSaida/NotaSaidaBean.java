@@ -30,10 +30,6 @@ public class NotaSaidaBean {
     private String tipo;
     private String formaPagamento;
     private String finalidade;
-    private Empresa empresa;
-    private Cliente cliente;
-    private Clienteendereco clienteEndereco;
-    private Fornecedor fornecedor;
     private List<NotaSaidaProdutoBean> listaProdutos;
     private double totalBaseICMS;
     private double totalValorICMS;
@@ -48,6 +44,16 @@ public class NotaSaidaBean {
     private double totalTributios;
     private FaturaBean fatura;
     private double percentualDesconto;
+    private String codigoMunicipio;
+    private int codigoCliente;
+    private int codigoFornecedor;
+    
+
+    public NotaSaidaBean() {
+        this.codigoCliente=0;
+        this.codigoFornecedor=0;
+        this.codigoMunicipio = "0";
+    }
    
     public String getNaturezaOperacao() {
         return naturezaOperacao;
@@ -69,20 +75,20 @@ public class NotaSaidaBean {
         return serie1;
     }
 
+    public String getCodigoMunicipio() {
+        return codigoMunicipio;
+    }
+
+    public void setCodigoMunicipio(String codigoMunicipio) {
+        this.codigoMunicipio = codigoMunicipio;
+    }
+
     public void setSerie1(String serie1) {
         this.serie1 = serie1;
     }
 
     public String getCodigo() {
         return codigo;
-    }
-
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
     }
 
     public void setCodigo(String codigo) {
@@ -210,30 +216,23 @@ public class NotaSaidaBean {
         this.finalidade = finalidade;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
+    public int getCodigoCliente() {
+        return codigoCliente;
     }
 
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
+    public void setCodigoCliente(int codigoCliente) {
+        this.codigoCliente = codigoCliente;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public int getCodigoFornecedor() {
+        return codigoFornecedor;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCodigoFornecedor(int codigoFornecedor) {
+        this.codigoFornecedor = codigoFornecedor;
     }
 
-    public Clienteendereco getClienteEndereco() {
-        return clienteEndereco;
-    }
-
-    public void setClienteEndereco(Clienteendereco clienteEndereco) {
-        this.clienteEndereco = clienteEndereco;
-    }
-
+    
     public List<NotaSaidaProdutoBean> getListaProdutos() {
         return listaProdutos;
     }

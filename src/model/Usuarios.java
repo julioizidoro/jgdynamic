@@ -15,8 +15,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "usuarios")
 public class Usuarios implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarios")
-    private List<Fechacaixa> fechacaixaList;
     @Column(name = "idFechaCaixa")
     private Integer idFechaCaixa;
     private static final long serialVersionUID = 1L;
@@ -103,14 +101,4 @@ public class Usuarios implements Serializable {
     public void setIdFechaCaixa(Integer idFechaCaixa) {
         this.idFechaCaixa = idFechaCaixa;
     }
-
-    public List<Fechacaixa> getFechacaixaList() {
-        return fechacaixaList;
-    }
-
-    public void setFechacaixaList(List<Fechacaixa> fechacaixaList) {
-        this.fechacaixaList = fechacaixaList;
-    }
-
-   
 }

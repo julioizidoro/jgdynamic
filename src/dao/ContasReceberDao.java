@@ -80,8 +80,7 @@ public class ContasReceberDao {
         manager.getTransaction().begin();
         Query q = manager.createQuery(sql);
         listaContasReceber = q.getResultList();
-        manager.getTransaction().commit(); 
-        manager.close();
+        manager.getTransaction().commit();
         return listaContasReceber;
     }
     
@@ -91,8 +90,7 @@ public class ContasReceberDao {
         manager.getTransaction().begin();
         Query q = manager.createQuery(sql);
         listaFaturasReceber = q.getResultList();
-        manager.getTransaction().commit(); 
-        manager.close();
+        manager.getTransaction().commit();
         return listaFaturasReceber;
     }
     

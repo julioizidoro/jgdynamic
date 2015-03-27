@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import model.Saida;
 import model.Venda;
+import model.View.Viewvendasaidaproduto;
 
 /**
  *
@@ -165,6 +166,14 @@ public class VendaDao {
         }
         manager.close();
         return valorVenda;
+    }
+    
+    public List<Viewvendasaidaproduto> listarVendaSaidaProdutoNumeroECF(String numeroECF) throws SQLException{
+        manager = ConexaoSingleton.getConexao();
+        Query q = manager.createQuery("Select v From Viewvendasaidaproduto v where v.numeroECF='" + numeroECF + "'" );
+        List<Viewvendasaidaproduto> listavenda = q.getResultList();
+        manager.close();
+        return listavenda;
     }
     
         

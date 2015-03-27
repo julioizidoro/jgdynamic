@@ -65,7 +65,7 @@
     <class>model.Movimentocaixa</class>
     <class>model.Municipios</class>
     <class>model.Nfentrada</class>
-    <class>model.NotaSaida</class>
+    <class>model.Notasaida</class>
     <class>model.Pagamentocontaspagar</class>
     <class>model.ParametrosLocal</class>
     <class>model.Parcelacartao</class>
@@ -86,6 +86,12 @@
     <class>model.Usuarios</class>
     <class>model.Venda</class>
     <class>model.Vendedor</class>
+    <class>model.View.Viewconsultaprodutogrupo</class>
+    <class>model.View.Viewcontaspagar</class>
+    <class>model.View.Viewentradaproduto</class>
+    <class>model.View.Viewrelatoriocreditotodas</class>
+    <class>model.View.Viewrelcontasrecebertodas</class>
+    <class>model.View.Viewvendasaidaproduto</class>
     <class>model.Vinculo</class>
     <class>modeloParametros.Parametros</class>
     <class>telas.RelatoriosGerenciais.Relentradasaida</class>

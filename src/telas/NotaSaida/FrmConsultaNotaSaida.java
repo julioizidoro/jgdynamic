@@ -33,7 +33,8 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.Cliente;
 import model.Fornecedor;
-import model.NotaSaida;
+import model.Municipios;
+import model.Notasaida;
 import model.Terminalcliente;
 import telas.NotaSaida.Fatura.DuplicataBean;
 import telas.NotaSaida.Fatura.FaturaBean;
@@ -44,12 +45,13 @@ import telas.NotaSaida.Fatura.FaturaBean;
  */
 public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSaidaBean{
     
-    private List<NotaSaida> listaNotaSaida;
+    private List<Notasaida> listaNotaSaida;
     private Config config;
     private UsuarioLogado usuarioLogado;
     private ConsultaNotaSaidaTableModel model;
     private int linha;
     private File arquivoXML;
+    private String cJustificativa;
 
     /**
      * Creates new form FrmConsultaNotaSaida
@@ -360,7 +362,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
     }//GEN-LAST:event_RelatoriojButton1ActionPerformed
 
     private void AdicionarjButton1AdicionarAssociado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdicionarjButton1AdicionarAssociado
-        new FrmEmitirNotaSaidaDevolucao(config, usuarioLogado, this);
+//        new FrmEmitirNotaSaidaDevolucao(config, usuarioLogado, this);
     }//GEN-LAST:event_AdicionarjButton1AdicionarAssociado
 
     /**
@@ -393,7 +395,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         }
         listaNotaSaida = notaSaidaController.consultarNotaSaida(data);
         if (listaNotaSaida==null){
-            listaNotaSaida = new ArrayList<NotaSaida>();
+            listaNotaSaida = new ArrayList<Notasaida>();
         }
         carregarModelNotaSaida();
     }
@@ -469,8 +471,9 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
     }
     
     public void cancelarNFe(int linha){
-        String cChaveNFe = listaNotaSaida.get(linha).getCahveAutorizacao();
-        String cJustificativa = JOptionPane.showInputDialog("Informe o Motivo do Cancelamento");
+        String cChaveNFe = "";
+        cChaveNFe = listaNotaSaida.get(linha).getChaveAutorizacao();
+        cJustificativa = JOptionPane.showInputDialog("Informe o Motivo do Cancelamento");
         String texto = "NFe.CancelarNFe("+ cChaveNFe + "," + cJustificativa + ")";
         gerarArquivoAcbr(texto);
         Timer timer = new Timer();
@@ -497,8 +500,9 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         if (file != null) {
             File arquivoXML = file;
             try {
-                listaNotaSaida.get(linha).setXml(carregarXML());
+                listaNotaSaida.get(linha).setArquivocancelamento(carregarXML());
                 listaNotaSaida.get(linha).setSituacao("CANCELADA");
+                listaNotaSaida.get(linha).setMotivocancelamento(cJustificativa);
                 NotaSaidaController notaSaidaController = new NotaSaidaController();
                 notaSaidaController.salvarNotaSaida(listaNotaSaida.get(linha));
             } catch (IOException ex) {
@@ -522,12 +526,16 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         NotaSaidaController notaSaidaController = new NotaSaidaController();
         listaNotaSaida = notaSaidaController.filtrarNotaSaida(sql);
         if (listaNotaSaida==null){
-            listaNotaSaida = new ArrayList<NotaSaida>();
+            listaNotaSaida = new ArrayList<Notasaida>();
         }
         carregarModelNotaSaida();
     }
 
     public void consultaFornecedor(Fornecedor fornecedor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setMunicipio(Municipios municipios) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

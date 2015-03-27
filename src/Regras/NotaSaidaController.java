@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.NotaSaida;
+import model.Notasaida;
 
 /**
  *
@@ -20,7 +20,7 @@ public class NotaSaidaController {
     
     NotaSaidaFacade notaSaidaFacade;
     
-    public List<NotaSaida> consultarNotaSaida(String data) {
+    public List<Notasaida> consultarNotaSaida(String data) {
         notaSaidaFacade = new NotaSaidaFacade();
         try {
             return notaSaidaFacade.consultarNotaSaida(data);
@@ -31,7 +31,7 @@ public class NotaSaidaController {
         }
     }
     
-    public NotaSaida salvarNotaSaida(NotaSaida notaSaida) {
+    public Notasaida salvarNotaSaida(Notasaida notaSaida) {
         notaSaidaFacade = new NotaSaidaFacade();
         try {
             return notaSaidaFacade.salvarNotaSaida(notaSaida);
@@ -53,7 +53,7 @@ public class NotaSaidaController {
         }
     }
     
-    public List<NotaSaida> consultarNotaSaida(String dataInicial, String dataFinal) {
+    public List<Notasaida> consultarNotaSaida(String dataInicial, String dataFinal) {
         notaSaidaFacade = new NotaSaidaFacade();
         try {
             return notaSaidaFacade.consultarNotaSaida(dataInicial, dataFinal);
@@ -64,7 +64,7 @@ public class NotaSaidaController {
         }
     }
     
-    public List<NotaSaida> filtrarNotaSaida(String sql) {
+    public List<Notasaida> filtrarNotaSaida(String sql) {
         notaSaidaFacade = new NotaSaidaFacade();
         try {
             return notaSaidaFacade.filtrarNotaSaida(sql);

@@ -47,7 +47,7 @@ public class IbptDao {
         Query q = manager.createQuery("select i from Ibpt i where i.ncm = '" + ncm + "' order by i.descricao" );
         Ibpt ibpt = null;
         if (q.getResultList().size()>0){
-            ibpt =  (Ibpt) q.getSingleResult();
+            ibpt =  (Ibpt) q.getResultList().get(0);
         }
         manager.close();
         return ibpt;
