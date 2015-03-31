@@ -1713,7 +1713,7 @@ try{
                 listaCreditoBean.add(creditoBean);
             }
         }
-        new FrmConsultaCreditosReceber(listaCreditoBean,1, null);
+        new FrmConsultaCreditosReceber(listaCreditoBean, 1);
     }
     
     public void excluirContasReceber() {

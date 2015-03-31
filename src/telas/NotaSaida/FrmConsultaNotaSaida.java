@@ -36,6 +36,7 @@ import model.Fornecedor;
 import model.Municipios;
 import model.Notasaida;
 import model.Terminalcliente;
+import telas.ContasReceber.CreditoBean;
 import telas.NotaSaida.Fatura.DuplicataBean;
 import telas.NotaSaida.Fatura.FaturaBean;
 
@@ -305,7 +306,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         } catch (IOException ex) {
             Logger.getLogger(FrmConsultaNotaSaida.class.getName()).log(Level.SEVERE, null, ex);
         }
-        new FrmEmitirNotaSaida01(config, usuarioLogado, this);
+        new FrmEmitirNotaCliente(config, usuarioLogado, this);
     }//GEN-LAST:event_AdicionarjButtonAdicionarAssociado
 
     private void PesquisarjButtonPesquisarAssociado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarjButtonPesquisarAssociado
@@ -362,7 +363,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
     }//GEN-LAST:event_RelatoriojButton1ActionPerformed
 
     private void AdicionarjButton1AdicionarAssociado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdicionarjButton1AdicionarAssociado
-//        new FrmEmitirNotaSaidaDevolucao(config, usuarioLogado, this);
+        new FrmEmitirNotaFornecedor(config, usuarioLogado, this);
     }//GEN-LAST:event_AdicionarjButton1AdicionarAssociado
 
     /**
@@ -405,7 +406,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(SwingConstants.RIGHT);   
         notaSaidajTable.setModel(model);
-        notaSaidajTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+        notaSaidajTable.getColumnModel().getColumn(0).setPreferredWidth(400);
         notaSaidajTable.getColumnModel().getColumn(1).setPreferredWidth(20);
         notaSaidajTable.getColumnModel().getColumn(2).setPreferredWidth(40);
         notaSaidajTable.getColumnModel().getColumn(3).setCellRenderer(renderer);
@@ -451,7 +452,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
             acbr.write(texto);
             acbr.close();
         } catch (IOException ex) {
-            Logger.getLogger(FrmEmitirNotaSaida01.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmEmitirNotaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
        
    }
@@ -536,6 +537,10 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
     }
 
     public void setMunicipio(Municipios municipios) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void utilizarCreditos(List<CreditoBean> listaCreditos) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

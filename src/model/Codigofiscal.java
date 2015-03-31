@@ -36,6 +36,13 @@ public class Codigofiscal implements Serializable {
     private String descricao;
     @Column(name = "tipo")
     private String tipo;
+    @Column(name = "tipoemissao")
+    private String tipoemissao;
+    @Column(name = "estadopadrao")
+    private String estadopadrao;
+    
+    
+            
 
     public Codigofiscal() {
     }
@@ -50,6 +57,22 @@ public class Codigofiscal implements Serializable {
 
     public void setIdcodigoFiscal(Integer idcodigoFiscal) {
         this.idcodigoFiscal = idcodigoFiscal;
+    }
+
+    public String getTipoemissao() {
+        return tipoemissao;
+    }
+
+    public void setTipoemissao(String tipoemissao) {
+        this.tipoemissao = tipoemissao;
+    }
+
+    public String getEstadopadrao() {
+        return estadopadrao;
+    }
+
+    public void setEstadopadrao(String estadopadrao) {
+        this.estadopadrao = estadopadrao;
     }
 
     public String getCfop() {
@@ -98,7 +121,11 @@ public class Codigofiscal implements Serializable {
 
     @Override
     public String toString() {
-        return getCfop() + " - " + getDescricao();
+        String desc = getDescricao();
+        if (desc.length()>130){
+            return getCfop() + " - " + getDescricao().substring(0, 130);
+        }else return getCfop() + " - " + getDescricao();
+        
     }
     
 }

@@ -17,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.Creditoreceberprodutos;
+import telas.NotaSaida.INotaSaidaBean;
 
 /**
  *
@@ -31,6 +32,7 @@ public class FrmConsultaCreditosReceber extends javax.swing.JFrame {
     private ConsultaCreditosTableModel modelCreditos;
     private DefaultTableCellRenderer rendererCor;
     private IGerarFatura telaFatura;
+    private INotaSaidaBean telaNFe;
 
     /**
      * Creates new form FrmConsultaCreditosReceber
@@ -38,6 +40,74 @@ public class FrmConsultaCreditosReceber extends javax.swing.JFrame {
     public FrmConsultaCreditosReceber(List<CreditoBean> listaCreditos, int tipo, IGerarFatura telaFatura) {
         this.listaCreditos = listaCreditos;
         this.telaFatura = telaFatura;
+        initComponents();
+        URL url = this.getClass().getResource("/imagens/logo_mini.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
+        this.setLocationRelativeTo(null);
+        this.rendererCor = new DefaultTableCellRenderer(){
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                        boolean isSelected, boolean hasFocus, int row, int column) {
+                    Component comp = super.getTableCellRendererComponent(table, value,
+                            isSelected, hasFocus, row, column);
+                    if (value.equals("SIM")){
+                        comp.setBackground(Color.red);
+                    }else {
+                        comp.setBackground(Color.white);
+                    }
+                    return comp;
+                }
+        };
+        carregarModelCreditos();
+        if (listaCreditos.size()>0){
+            carregarModelProdutos(listaCreditos.get(0).getCredito().getIdcreditosReceber());
+        }
+        if (tipo==1){
+            confirmarjButton.setEnabled(false);
+            marcarjButton.setEnabled(false);
+            desmarcarjButton.setEnabled(false);
+        }
+        this.setVisible(true);
+    }
+    
+    public FrmConsultaCreditosReceber(List<CreditoBean> listaCreditos, int tipo) {
+        this.listaCreditos = listaCreditos;
+        this.telaFatura = telaFatura;
+        initComponents();
+        URL url = this.getClass().getResource("/imagens/logo_mini.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
+        this.setLocationRelativeTo(null);
+        this.rendererCor = new DefaultTableCellRenderer(){
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                        boolean isSelected, boolean hasFocus, int row, int column) {
+                    Component comp = super.getTableCellRendererComponent(table, value,
+                            isSelected, hasFocus, row, column);
+                    if (value.equals("SIM")){
+                        comp.setBackground(Color.red);
+                    }else {
+                        comp.setBackground(Color.white);
+                    }
+                    return comp;
+                }
+        };
+        carregarModelCreditos();
+        if (listaCreditos.size()>0){
+            carregarModelProdutos(listaCreditos.get(0).getCredito().getIdcreditosReceber());
+        }
+        if (tipo==1){
+            confirmarjButton.setEnabled(false);
+            marcarjButton.setEnabled(false);
+            desmarcarjButton.setEnabled(false);
+        }
+        this.setVisible(true);
+    }
+    
+    public FrmConsultaCreditosReceber(List<CreditoBean> listaCreditos, int tipo, INotaSaidaBean telaNFe) {
+        this.listaCreditos = listaCreditos;
+        this.telaNFe = telaNFe;
         initComponents();
         URL url = this.getClass().getResource("/imagens/logo_mini.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
@@ -300,7 +370,11 @@ public class FrmConsultaCreditosReceber extends javax.swing.JFrame {
 
     private void confirmarjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarjButtonActionPerformed
         if (listaCreditos.size()>0){
-            telaFatura.utilizarCreditos(listaCreditos);
+            if (telaFatura!=null){
+                telaFatura.utilizarCreditos(listaCreditos);
+            }else if (telaNFe!=null){
+                telaNFe.utilizarCreditos(listaCreditos);
+            }
             this.dispose();
         }
     }//GEN-LAST:event_confirmarjButtonActionPerformed

@@ -8,6 +8,7 @@ import Regras.AliquotaController;
 import Regras.ClienteController;
 import Regras.CodigoFiscalController;
 import Regras.ContasReceberController;
+import Regras.EstoqueController;
 import Regras.Formatacao;
 import Regras.IbptController;
 import Regras.MunicipiosController;
@@ -24,6 +25,8 @@ import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -47,6 +50,7 @@ import model.Clienteendereco;
 import model.Codigofiscal;
 import model.Contasreceber;
 import model.Contasreceberprodutos;
+import model.Estoque;
 import model.Fornecedor;
 import model.Ibpt;
 import model.Municipios;
@@ -56,8 +60,8 @@ import model.Produto;
 import model.Saida;
 import model.Terminalcliente;
 import model.Terminalproduto;
-import model.View.Viewvendasaidaproduto;
 import telas.Cliente.FrmConsultaClientes;
+import telas.ContasReceber.CreditoBean;
 import telas.Municipios.FrmConsultaMunicipios;
 import telas.NotaSaida.Fatura.DuplicataBean;
 import telas.NotaSaida.Fatura.DuplicataTableModel;
@@ -68,7 +72,7 @@ import telas.NotaSaida.Fatura.FrmConsultaFatura;
  *
  * @author wolverine
  */
-public class FrmEmitirNotaSaida01 extends javax.swing.JFrame implements INotaSaidaBean{
+public class FrmEmitirNotaFornecedor extends javax.swing.JFrame implements INotaSaidaBean{
     
     private String datePattern;
     private String maskPattern;
@@ -91,7 +95,7 @@ public class FrmEmitirNotaSaida01 extends javax.swing.JFrame implements INotaSai
     /**
      * Creates new form FrmEmitirNotaSaida
      */
-    public FrmEmitirNotaSaida01(Config config, UsuarioLogado usuarioLogado, INotaSaidaBean telaConsulta) {
+    public FrmEmitirNotaFornecedor(Config config, UsuarioLogado usuarioLogado, INotaSaidaBean telaConsulta) {
         notaSaidaBean = new NotaSaidaBean();
         this.telaConsulta = telaConsulta;
         this.notaCarregarda = false;
@@ -147,7 +151,6 @@ public class FrmEmitirNotaSaida01 extends javax.swing.JFrame implements INotaSai
     jLabel9 = new javax.swing.JLabel();
     totalNotajTextField = new javax.swing.JTextField();
     jButton1 = new javax.swing.JButton();
-    observacaojTextField = new javax.swing.JTextField();
     jLabel23 = new javax.swing.JLabel();
     jPanel4 = new javax.swing.JPanel();
     gerarjButton = new javax.swing.JButton();
@@ -157,6 +160,8 @@ public class FrmEmitirNotaSaida01 extends javax.swing.JFrame implements INotaSai
     valorTributosjTextField = new javax.swing.JTextField();
     tipoOperacaojComboBox = new javax.swing.JComboBox();
     jLabel22 = new javax.swing.JLabel();
+    jScrollPane2 = new javax.swing.JScrollPane();
+    infojTextArea = new javax.swing.JTextArea();
     jPanel2 = new javax.swing.JPanel();
     jLabel10 = new javax.swing.JLabel();
     nomejTextField = new javax.swing.JTextField();
@@ -188,12 +193,9 @@ public class FrmEmitirNotaSaida01 extends javax.swing.JFrame implements INotaSai
     jPanel3 = new javax.swing.JPanel();
     jScrollPane1 = new javax.swing.JScrollPane();
     produtojTable = new javax.swing.JTable();
-    jButton2 = new javax.swing.JButton();
     jButton3 = new javax.swing.JButton();
     jButton4 = new javax.swing.JButton();
     jButton5 = new javax.swing.JButton();
-    jButton8 = new javax.swing.JButton();
-    jButton9 = new javax.swing.JButton();
     jPanel5 = new javax.swing.JPanel();
     jLabel14 = new javax.swing.JLabel();
     formaPagamentojComboBox = new javax.swing.JComboBox();
@@ -271,12 +273,6 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         }
     });
 
-    observacaojTextField.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            observacaojTextFieldActionPerformed(evt);
-        }
-    });
-
     jLabel23.setText("Informações Adcionais");
 
     jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -317,9 +313,13 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     valorTributosjTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
     valorTributosjTextField.setText("0");
 
-    tipoOperacaojComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Venda", "Devolução" }));
+    tipoOperacaojComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Devolução", "Venda" }));
 
     jLabel22.setText("Tipo de Operação");
+
+    infojTextArea.setColumns(1);
+    infojTextArea.setRows(5);
+    jScrollPane2.setViewportView(infojTextArea);
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
@@ -380,9 +380,9 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel22)
                                 .addComponent(tipoOperacaojComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(semSTjComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(observacaojTextField))
-                    .addGap(6, 6, 6)))
+                        .addComponent(semSTjComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(6, 6, 6))
+                .addComponent(jScrollPane2))
             .addContainerGap(36, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
@@ -437,11 +437,11 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
                         .addComponent(totalNotajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGap(18, 18, 18)
             .addComponent(jLabel23)
-            .addGap(4, 4, 4)
-            .addComponent(observacaojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGap(3, 3, 3)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(93, 93, 93))
+            .addContainerGap())
     );
 
     jTabbedPane1.addTab("Dados da NF-e", jPanel1);
@@ -489,7 +489,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
 
     jLabel30.setText("Estado");
 
-    jButton7.setText("Consultar Cliente");
+    jButton7.setText("Consultar Fornecedor");
     jButton7.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton7ActionPerformed(evt);
@@ -662,13 +662,6 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         produtojTable.getColumnModel().getColumn(6).setResizable(false);
     }
 
-    jButton2.setText("Incluir Produtos Contas");
-    jButton2.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton2ActionPerformed(evt);
-        }
-    });
-
     jButton3.setText("Incluir Produtos Venda");
     jButton3.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -690,20 +683,6 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         }
     });
 
-    jButton8.setText("Incluir Fatura");
-    jButton8.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton8ActionPerformed(evt);
-        }
-    });
-
-    jButton9.setText("Incluir ECF");
-    jButton9.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton9ActionPerformed(evt);
-        }
-    });
-
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
     jPanel3Layout.setHorizontalGroup(
@@ -713,16 +692,11 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addComponent(jButton2)
-                    .addGap(18, 18, 18)
+                    .addGap(99, 99, 99)
                     .addComponent(jButton3)
-                    .addGap(37, 37, 37)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(31, 31, 31)
-                    .addComponent(jButton8)
-                    .addGap(18, 18, 18)
+                    .addGap(84, 84, 84)
                     .addComponent(jButton4)
-                    .addGap(18, 18, 18)
+                    .addGap(109, 109, 109)
                     .addComponent(jButton5)))
             .addContainerGap(23, Short.MAX_VALUE))
     );
@@ -733,12 +707,9 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jButton2)
                 .addComponent(jButton3)
                 .addComponent(jButton4)
-                .addComponent(jButton5)
-                .addComponent(jButton8)
-                .addComponent(jButton9))
+                .addComponent(jButton5))
             .addContainerGap())
     );
 
@@ -1096,19 +1067,9 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (notaSaidaBean.getCodigoCliente()>0){
-            new FrmConsultaProdutoConta(config, notaSaidaBean.getCodigoCliente(), this);
-        }else JOptionPane.showMessageDialog(rootPane, "Cliente não selecionado");
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         new FrmConsultaClientes(config, usuarioLogado, this);
     }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void observacaojTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_observacaojTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_observacaojTextFieldActionPerformed
 
     private void cidadejTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidadejTextFieldActionPerformed
         // TODO add your handling code here:
@@ -1148,16 +1109,18 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
                 Timer timer = new Timer();
                 timer.schedule(new RemindTask(), 20 * 1000);
             } catch (IOException ex) {
-                Logger.getLogger(FrmEmitirNotaSaida01.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FrmEmitirNotaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_gerarjButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-            new FrmSelecionarClienteTerminal(this);
-        } catch (Exception ex) {
-            Logger.getLogger(FrmEmitirNotaSaida01.class.getName()).log(Level.SEVERE, null, ex);
+        if (verificarCFOP()) {
+            try {
+                new FrmSelecionarClienteTerminal(this);
+            } catch (Exception ex) {
+                Logger.getLogger(FrmEmitirNotaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -1166,10 +1129,6 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             JOptionPane.showMessageDialog(rootPane, "Erro Código Municipio");
         }else calcularTotaisNotaFiscal();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        String numeroFatura = JOptionPane.showInputDialog("Informe o número da fatura");
-    }//GEN-LAST:event_jButton8ActionPerformed
 
     private void dataVencimentoDuplicatajDateChooserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dataVencimentoDuplicatajDateChooserFocusGained
         // TODO add your handling code here:
@@ -1230,38 +1189,6 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         new FrmConsultaMunicipios(this);
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        String numeroECF = JOptionPane.showInputDialog("Informe Nº do Cupom Fiscal");
-        VendaController vendaController = new VendaController();
-        List<Viewvendasaidaproduto> listaVenda;
-        if (numeroECF.length()>2){
-            listaVenda = vendaController.listarVendaSaidaProdutoNumeroECF(numeroECF);
-            if (listaVenda==null){
-                listaVenda = new ArrayList<Viewvendasaidaproduto>();
-            }
-            for (int i = 0; i < listaVenda.size(); i++) {
-                NotaSaidaProdutoBean notaSaidaProdutoBean = new NotaSaidaProdutoBean();
-                ProdutoController produtoController = new ProdutoController();
-                Produto produto = produtoController.consultarProdutoid(listaVenda.get(i).getIdproduto());
-                notaSaidaProdutoBean.setProduto(produto);
-                notaSaidaProdutoBean.setQuantidade(listaVenda.get(i).getQuantidade());
-                notaSaidaProdutoBean.setValorDesconto(listaVenda.get(i).getValorDesconto());
-                notaSaidaProdutoBean.setValorUnitario(listaVenda.get(i).getValorVenda() / listaVenda.get(i).getQuantidade());
-                notaSaidaProdutoBean.setValortotal(listaVenda.get(i).getValorVenda());
-                String aliquota = pesquisarAliquota(notaSaidaProdutoBean.getProduto().getAliquota());
-                if (aliquota.equalsIgnoreCase("ST")) {
-                    Codigofiscal cf = (Codigofiscal) comSTjComboBox.getSelectedItem();
-                    notaSaidaProdutoBean.setCfop(cf.getCfop());
-                } else {
-                    Codigofiscal cf = (Codigofiscal) semSTjComboBox.getSelectedItem();
-                    notaSaidaProdutoBean.setCfop(cf.getCfop());
-                }
-                listaProdutoBean.add(notaSaidaProdutoBean);
-            }
-            setModelProduto();
-        }
-    }//GEN-LAST:event_jButton9ActionPerformed
-
     /**
      * @param ags the command line arguments
      */
@@ -1283,19 +1210,17 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     private javax.swing.JFormattedTextField foneFixojFormattedTextField;
     private javax.swing.JComboBox formaPagamentojComboBox;
     private javax.swing.JButton gerarjButton;
+    private javax.swing.JTextArea infojTextArea;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1339,6 +1264,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -1349,7 +1275,6 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     private javax.swing.JTextField numeroFaturajTextField;
     private javax.swing.JTextField numeroNFejTextField;
     private javax.swing.JTextField numerojTextField;
-    private javax.swing.JTextField observacaojTextField;
     private javax.swing.JTable produtojTable;
     private javax.swing.JTextField rgjTextField;
     private javax.swing.JComboBox semSTjComboBox;
@@ -1469,7 +1394,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             acbr.write(texto);
             acbr.close();
         } catch (IOException ex) {
-            Logger.getLogger(FrmEmitirNotaSaida01.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmEmitirNotaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
        
    }
@@ -1728,7 +1653,8 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         arquivo.write("X|9|");
         arquivo.write("\r\n");
         arquivo.write("Z||" + notaSaidaBean.getInfoTexto() + " - VALOR APROXIMADO DOS TRIBUTOS R$ " +
-                Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios()) + "|");
+                Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios()) + 
+                infojTextArea.getText() + "|");
     }
     
     public void gerarPisSimplesNacional() throws IOException{
@@ -1862,43 +1788,46 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     public void finalizarBuscaTerminalCliente(Terminalcliente terminalCliente) {
         
         TerminalVendasFacade terminalVendasFacade = new TerminalVendasFacade();
-        List<Terminalproduto>  listaTerminalProduto = null;
+        List<Terminalproduto> listaTerminalProduto = null;
         try {
             listaTerminalProduto = terminalVendasFacade.consultaTerminalProduto(terminalCliente);
         } catch (SQLException ex) {
-            Logger.getLogger(FrmEmitirNotaSaida01.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmEmitirNotaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (int i=0;i<listaTerminalProduto.size();i++){
+        ProdutoController produtoController = new ProdutoController();
+        EstoqueController estoqueController = new EstoqueController();
+        for (int i = 0; i < listaTerminalProduto.size(); i++) {
             Terminalproduto terminalProduto = listaTerminalProduto.get(i);
             NotaSaidaProdutoBean notaSaidaProdutoBean = new NotaSaidaProdutoBean();
             Produto produto = new Produto();
-            ProdutoController produtoController = new ProdutoController();
-            produto= produtoController.consultarProdutoid(terminalProduto.getProduto());
-            if (produto!=null){
-                notaSaidaProdutoBean.setProduto(produto);
-                notaSaidaProdutoBean.setQuantidade(terminalProduto.getQuantidade());
-                notaSaidaProdutoBean.setValorDesconto(0.0f);
-                notaSaidaProdutoBean.setValorUnitario(terminalProduto.getValorUnitario());
-                notaSaidaProdutoBean.setValortotal(terminalProduto.getValorUnitario() * terminalProduto.getQuantidade());
-                String aliquota = pesquisarAliquota(notaSaidaProdutoBean.getProduto().getAliquota());
-                if (aliquota.equalsIgnoreCase("ST")){
-                    Codigofiscal cf = (Codigofiscal) comSTjComboBox.getSelectedItem();
-                    notaSaidaProdutoBean.setCfop(cf.getCfop());
-                }else{
-                    Codigofiscal cf = (Codigofiscal) semSTjComboBox.getSelectedItem();
-                    notaSaidaProdutoBean.setCfop(cf.getCfop());
+            produto = produtoController.consultarProdutoid(terminalProduto.getProduto());
+            if (produto != null) {
+                Estoque estoque = estoqueController.consultarEstoque(produto.getIdProduto(), config.getEmpresa().getIdempresa());
+                if (estoque != null) {
+                    notaSaidaProdutoBean.setProduto(produto);
+                    notaSaidaProdutoBean.setQuantidade(terminalProduto.getQuantidade());
+                    notaSaidaProdutoBean.setValorDesconto(0.0f);
+                    notaSaidaProdutoBean.setValorUnitario(estoque.getValorCompra());
+                    notaSaidaProdutoBean.setValortotal(notaSaidaProdutoBean.getQuantidade() * notaSaidaProdutoBean.getValorUnitario());
+                    String aliquota = pesquisarAliquota(notaSaidaProdutoBean.getProduto().getAliquota());
+                    if (aliquota.equalsIgnoreCase("ST")) {
+                        Codigofiscal cf = (Codigofiscal) comSTjComboBox.getSelectedItem();
+                        notaSaidaProdutoBean.setCfop(cf.getCfop());
+                    } else {
+                        Codigofiscal cf = (Codigofiscal) semSTjComboBox.getSelectedItem();
+                        notaSaidaProdutoBean.setCfop(cf.getCfop());
+                    }
+                    listaProdutoBean.add(notaSaidaProdutoBean);
                 }
-                listaProdutoBean.add(notaSaidaProdutoBean);
             }
         }
-            
         try {
             terminalVendasFacade.excluirTerminalCliente(terminalCliente);
         } catch (SQLException ex) {
-            Logger.getLogger(FrmEmitirNotaSaida01.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmEmitirNotaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
         setModelProduto();
-    }
+}
     
     public void inlcluirProdutoContas(Object objeto) {
         List<NotaSaidaProdutoBean> lista = (List<NotaSaidaProdutoBean>) objeto;
@@ -1970,7 +1899,10 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
                 if (totalDesconto> notaSaidaBean.getValorDesconto()){
                     valorDesconto = notaSaidaBean.getValorDesconto() - (totalDesconto - valorDesconto);
                 }
-                listaProdutoBean.get(i).setValorDesconto(valorDesconto);
+                if (valorDesconto>0){
+                    listaProdutoBean.get(i).setValorDesconto(valorDesconto);
+                }else listaProdutoBean.get(i).setValorDesconto(0);
+                
                 valorCalcualdo = valorCalcualdo + listaProdutoBean.get(i).getValorDesconto();
             }
         }
@@ -2019,7 +1951,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
        return erro;
    }
    
-   public void gravarNotaSaida(){
+   public Notasaida gravarNotaSaida(){
        Notasaida notaSaida = new Notasaida();
        notaSaida.setIdcliente(notaSaidaBean.getCodigoCliente());
        notaSaida.setIdfornecedor(notaSaidaBean.getCodigoFornecedor());
@@ -2040,11 +1972,12 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         try {
             notaSaida.setXml(carregarXML());
         } catch (Exception ex) {
-            Logger.getLogger(FrmEmitirNotaSaida01.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmEmitirNotaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
         notaSaida.setChaveAutorizacao(chaveAutorizacao);
         NotaSaidaController notaSaidaController = new NotaSaidaController();
         notaSaida = notaSaidaController.salvarNotaSaida(notaSaida);
+        return notaSaida;
    }
    
     public byte[] carregarXML() throws IOException {
@@ -2065,28 +1998,41 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             this.arquivoXML = file;
             this.notaCarregarda = true;
             if (notaCarregarda) {
-                gravarNotaSaida();
-                enviarEmailNFeCliente();
+                Notasaida notasaida = gravarNotaSaida();
+                try {
+                    enviarEmailNFeCliente(notasaida);
+                    Thread.sleep(5000);
+                } catch (IOException ex) {
+                    Logger.getLogger(FrmEmitirNotaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(rootPane, "Erro Enviar E-mail NF-e " + ex);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(FrmEmitirNotaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 imprimirDANFE();
             }
             this.telaConsulta.setModel();
             this.dispose();
-            
+
         } else {
             JOptionPane.showMessageDialog(rootPane, "Erro carregar Arquivo XML");
             this.notaCarregarda = false;
         }
     }
     
-    public void enviarEmailNFeCliente(){
+    public void enviarEmailNFeCliente(Notasaida notaSaida) throws FileNotFoundException, IOException{
+        String caminho = this.config.getCaminhoNFe() + notaSaida.getNomeArquivoXML();
+        File file = new File(caminho);
+        FileOutputStream in = new FileOutputStream(file) ;
+        in.write(notaSaida.getXml());
+        in.close();
         String cEmailDestino = emailjTextField.getText();
         String cArqXML = this.config.getCaminhoNFe() + this.arquivoXML.getName();
         String cEnviaPDF = "1";
         String cAssunto = "Segue em Anexo NF-e da empresa " + this.config.getEmpresa().getRazaoSocial();
-        String cEmailsCopias = "angelacLenz@ig.com.br;jizidoro@globo.com";
-        String texto = "NFe.EnviarEmail(" + cEmailDestino+ "," + 
+        String cEmailsCopias = "jizidoro@globo.com";
+        String texto = "NFe.EnviarEmail(" + cEmailDestino+ "," +
                 cArqXML + "," + cEnviaPDF + "," + cAssunto + "," +
-                        cEmailsCopias+")";
+                        cEmailsCopias + ")";
         gerarArquivoAcbr(texto);
     }
     
@@ -2131,7 +2077,26 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     }
 
     public void consultaFornecedor(Fornecedor fornecedor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (fornecedor!=null){
+            notaSaidaBean.setCodigoFornecedor(fornecedor.getIdfornecedor());
+            nomejTextField.setText(fornecedor.getRazaoSocial());
+            cpfjFormattedTextField.setText(fornecedor.getCnpj());
+            rgjTextField.setText(fornecedor.getIe());
+            foneFixojFormattedTextField.setText(fornecedor.getTelefone());
+            logradourojTextFiel.setText(fornecedor.getEndereco());
+            complementojTextField.setText(fornecedor.getComplemento());
+            bairrojTextField.setText(fornecedor.getBairro());
+            cidadejTextField.setText(fornecedor.getCidade());
+            cepjFormattedTextField.setText(fornecedor.getCep());
+            estadojTextField.setText(fornecedor.getUf());
+            emailjTextField.setText(fornecedor.getEmail());
+            if (emailjTextField.getText().length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Email é obrigatório");
+            }
+            String municipio = getCodigoMunicipio(fornecedor.getMunicipios());
+            notaSaidaBean.setCodigoMunicipio(municipio);
+            contribuintejComboBox.setSelectedIndex(0);
+        }
     }
 
     public void setMunicipio(Municipios municipios) {
@@ -2140,6 +2105,10 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             estadojTextField.setText(municipios.getEstado());
             notaSaidaBean.setCodigoMunicipio(municipios.getCodigo());
         }
+    }
+
+    public void utilizarCreditos(List<CreditoBean> listaCreditos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
@@ -2150,7 +2119,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             try {
                 lerArquivoSaidaAcbr();
             } catch (IOException ex) {
-                Logger.getLogger(FrmEmitirNotaSaida01.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FrmEmitirNotaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -2166,7 +2135,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
                     i=5000;
                 }
             } catch (IOException ex) {
-                Logger.getLogger(FrmEmitirNotaSaida01.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FrmEmitirNotaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
             }
           
         }
@@ -2202,7 +2171,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
                     }
                 }
             } catch (IOException ex) {
-                Logger.getLogger(FrmEmitirNotaSaida01.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FrmEmitirNotaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return false;
@@ -2361,5 +2330,59 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         String sHora = fmtHora.format(data);   // isto faz com que mostre do jeito que você quer  
         String sData = fmtData.format(data);   
         return sData + "T" + sHora+"-03:00";
+    }
+    
+    public boolean verificarCFOP(){
+        Codigofiscal cfopST = (Codigofiscal) comSTjComboBox.getSelectedItem();
+        if (estadojTextField.getText().equalsIgnoreCase("SC")){
+            if (!cfopST.getEstadopadrao().equalsIgnoreCase("SC")){
+                JOptionPane.showMessageDialog(rootPane, "CFOP c/ST não é para SC");
+                return false;
+            }
+        }else {
+            if (cfopST.getEstadopadrao().equalsIgnoreCase("SC")){
+               JOptionPane.showMessageDialog(rootPane, "CFOP c/ST é para SC");
+               return false;
+            }
+        }
+        if (cfopST.getTipoemissao().equalsIgnoreCase("S")){
+            if (!tipoNFejComboBox.getSelectedItem().toString().equalsIgnoreCase("Saida")){
+                JOptionPane.showMessageDialog(rootPane, "CFOP c/ST não é para Saída");
+                return false;
+            }
+        }else {
+            if (cfopST.getTipoemissao().equalsIgnoreCase("E")){
+                if (tipoNFejComboBox.getSelectedItem().toString().equalsIgnoreCase("Saida")){
+                    JOptionPane.showMessageDialog(rootPane, "CFOP c/ST nõa é para Entrada");
+                    return false;
+                }
+            }
+        }
+        Codigofiscal cfop = (Codigofiscal) semSTjComboBox.getSelectedItem();
+        if (estadojTextField.getText().equalsIgnoreCase("SC")){
+            if (!cfop.getEstadopadrao().equalsIgnoreCase("SC")){
+                JOptionPane.showMessageDialog(rootPane, "CFOP s/ST não é para SC");
+                return false;
+            }
+        }else {
+            if (cfop.getEstadopadrao().equalsIgnoreCase("SC")){
+               JOptionPane.showMessageDialog(rootPane, "CFOP s/ST é para SC");
+               return false;
+            }
+        }
+        if (cfop.getTipoemissao().equalsIgnoreCase("S")){
+            if (!tipoNFejComboBox.getSelectedItem().toString().equalsIgnoreCase("Saida")){
+                JOptionPane.showMessageDialog(rootPane, "CFOP c/ST não é para Saída");
+                return false;
+            }
+        }else {
+            if (cfop.getTipoemissao().equalsIgnoreCase("E")){
+                if (tipoNFejComboBox.getSelectedItem().toString().equalsIgnoreCase("Saida")){
+                    JOptionPane.showMessageDialog(rootPane, "CFOP c/ST nõa é para Entrada");
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

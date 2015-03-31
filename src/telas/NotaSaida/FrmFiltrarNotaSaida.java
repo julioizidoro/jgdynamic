@@ -20,6 +20,7 @@ import model.Fornecedor;
 import model.Municipios;
 import model.Terminalcliente;
 import telas.Cliente.FrmConsultaClientes;
+import telas.ContasReceber.CreditoBean;
 import telas.NotaSaida.Fatura.DuplicataBean;
 import telas.NotaSaida.Fatura.FaturaBean;
 
@@ -297,6 +298,10 @@ jButton1.addActionListener(new java.awt.event.ActionListener() {
     }
 
     public void setMunicipio(Municipios municipios) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void utilizarCreditos(List<CreditoBean> listaCreditos) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

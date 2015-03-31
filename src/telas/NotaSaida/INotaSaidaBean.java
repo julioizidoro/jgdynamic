@@ -10,6 +10,7 @@ import model.Cliente;
 import model.Fornecedor;
 import model.Municipios;
 import model.Terminalcliente;
+import telas.ContasReceber.CreditoBean;
 import telas.NotaSaida.Fatura.DuplicataBean;
 import telas.NotaSaida.Fatura.FaturaBean;
 
@@ -29,4 +30,5 @@ public interface INotaSaidaBean {
     void filtrarNotaSaida(String sql);
     void consultaFornecedor(Fornecedor fornecedor);
     void setMunicipio(Municipios municipios);
+    void utilizarCreditos(List<CreditoBean> listaCreditos);
 }
