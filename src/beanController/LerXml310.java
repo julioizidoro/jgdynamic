@@ -6,6 +6,7 @@
 package beanController;
 
 import Interfaces.ItelaConsulta;
+import Regras.FornecedorController;
 import controler.Sigap;
 import facade.FornecedorFacade;
 import java.io.IOException;
@@ -203,8 +204,8 @@ public class LerXml310 implements ILerNFe{
                 + cnpj.substring(8, 12) + "-" + cnpj.substring(12, 14);
 
         fornecedor = fornecedorFacade.consultarCNPJ(fcnpj);
-        if (fornecedor == null) {
-            JOptionPane.showMessageDialog(null, "Favor Cadastrar Fornecedor");
+        if ((fornecedor == null) || (this.fornecedor.getIdfornecedor() == null)) {
+            JOptionPane.showMessageDialog(null, "Favor Cadastrar Fornecedor com CNPJ nº " + fcnpj);
             fornecedor = new Fornecedor();
             fornecedor.setCnpj(fcnpj);
             nodeLista = item.getElementsByTagName("xNome");
@@ -273,8 +274,6 @@ public class LerXml310 implements ILerNFe{
                 node = nodeLista.item(0).getFirstChild();
                 fornecedor.setIe(node.getNodeValue());
             }
-
-
         }
     }
 

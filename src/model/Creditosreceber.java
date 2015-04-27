@@ -6,7 +6,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -38,6 +37,8 @@ public class Creditosreceber implements Serializable {
     private int empresa;
     @Column(name = "cliente_idCliente")
     private int cliente;
+    @Column(name = "numerofatura")
+    private String numerofatura;
 
     public Creditosreceber() {
     }
@@ -57,6 +58,16 @@ public class Creditosreceber implements Serializable {
     public Date getDataLancamento() {
         return dataLancamento;
     }
+
+    public String getNumerofatura() {
+        return numerofatura;
+    }
+
+    public void setNumerofatura(String numerofatura) {
+        this.numerofatura = numerofatura;
+    }
+
+   
 
     public void setDataLancamento(Date dataLancamento) {
         this.dataLancamento = dataLancamento;

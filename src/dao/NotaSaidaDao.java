@@ -23,7 +23,7 @@ public class NotaSaidaDao {
     public List<Notasaida> consultarNotaSaida(String data) throws Exception{
         manager = ConexaoSingleton.getConexao();
         List<Notasaida> listaNotaSaida = new ArrayList<Notasaida>();
-        Query q = manager.createQuery("select n from Notasaida n where n.dataEmissao>='" + data + "'  order by n.dataEmissao");
+        Query q = manager.createQuery("select n from Notasaida n where n.dataEmissao>='" + data + "'  order by n.numero");
         if (q.getResultList().size()>0){
             listaNotaSaida = q.getResultList();
         }

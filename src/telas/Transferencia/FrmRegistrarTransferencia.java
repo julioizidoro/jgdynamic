@@ -649,6 +649,9 @@ private void dataFinaljDateChooserFocusGained(java.awt.event.FocusEvent evt) {//
         tranfereciaproduto.setValorTotal(quantidade.floatValue() *  tranfereciaproduto.getValorUnitario());
         tranfereciaproduto.setProduto(this.ConTransferenciaProduto.getProduto().getIdProduto());
         ConTransferenciaProduto.setTransTrasferenciaproduto(tranfereciaproduto);
+        Float valorVenda = Formatacao.ConvercaoMonetariaFloat(valorVendajTextField.getText());
+        Double custoCusto = Formatacao.ConvercaoMonetariaDouble(valorCustojTextField.getText());
+        salvarEstoque(valorVenda, custoCusto);
         codigojTextField.setText("");
         descricaojTextField.setText("");
         estoquejTextField.setText("");
@@ -656,9 +659,6 @@ private void dataFinaljDateChooserFocusGained(java.awt.event.FocusEvent evt) {//
         this.valorUnitariojTextField.setText("");
         quantidadejTextField.setText("");
         transferencia.getListaTransferenciaProduto().add(ConTransferenciaProduto);
-        Float valorVenda = Formatacao.ConvercaoMonetariaFloat(valorVendajTextField.getText());
-        Double custoCusto = Formatacao.ConvercaoMonetariaDouble(valorCustojTextField.getText());
-        salvarEstoque(valorVenda, custoCusto);
         calcilarTotais();
         gerarProdutoModel();
         this.produto =null;

@@ -1076,6 +1076,11 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     }//GEN-LAST:event_cidadejTextFieldActionPerformed
 
     private void gerarjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarjButtonActionPerformed
+        try {
+            apagarArquivoSaidaAcbr();
+        } catch (IOException ex) {
+            Logger.getLogger(FrmEmitirNotaCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         gerarjButton.setText("Aguarde Gerando NF-e");
         String erro = validarDadosNFe();
         if (erro != null) {
@@ -1309,6 +1314,13 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         produtojTable.getColumnModel().getColumn(6).setCellRenderer(renderer);
         produtojTable.getColumnModel().getColumn(6).setPreferredWidth(50);
         produtojTable.repaint();
+        String msg = verificarNCM();
+        if (msg.length()>5){
+            JOptionPane.showMessageDialog(renderer, msg);
+        }
+        if (valorTributosjTextField.getText().equalsIgnoreCase("0")){
+            calcularTotaisNotaFiscal();
+        }
     }
 
     
@@ -1415,25 +1427,32 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         xml = leitor.readLine();
 
         String linha = xml.substring(0, 2);
+        if (arqSaida.exists()){
+            arqSaida.delete();
+        }
         if (linha.equalsIgnoreCase("OK")) {
             if (verificarRetornoNFe(leitor)){
                 JOptionPane.showMessageDialog(rootPane, "Nota Fiscal Gerada com Sucesso");
                 gerarjButton.setText("Gerar NF-e");
+                gerarjButton.setEnabled(false);
                 carregarCahveAutorizacao(leitor);
                 new FrmLocalizarArquivoNFe(this, this.config.getCaminhoNFe());
             }
         }else {
             JOptionPane.showMessageDialog(rootPane, "Erro oa gerar Nota Fiscal");
             arqSaida = new File(this.config.getCaminhoAcbr() + "LOG.txt");
+            if (arqSaida.exists()){
+                System.out.println("ok");
+            }
             sainfe = new FileReader(arqSaida);
             leitor = new BufferedReader(sainfe);
             gerarjButton.setText("Gerar NF-e");
             new FrmMostrarErroNotaSaida(leitor);
             leitor.close();
+            arqSaida.delete();
             apagarArquivoSaidaAcbr();
         }
         leitor.close();
-        
     }
    
    public void gerarArquivoNFe() throws IOException{
@@ -1483,7 +1502,7 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         }
         if (tipoOperacaojComboBox.getSelectedItem().toString().equalsIgnoreCase("Venda")){
             arquivo.write("1|");//finalidade da Emissao da NF-e 1 - Normal //B25
-        }else arquivo.write("1|");//finalidade da Emissao da NF-e 4 - Devolução/Retorno //B25
+        }else arquivo.write("4|");//finalidade da Emissao da NF-e 4 - Devolução/Retorno //B25
         if (tipoOperacaojComboBox.getSelectedItem().toString().equalsIgnoreCase("Venda")){
             arquivo.write("1|");//Indica operacao consumidor final 0 - Nao   1-Cosumidor final //B25a
         }else arquivo.write("0|");//Indica operacao consumidor final 0 - Nao   0-Não  //B25a
@@ -1874,11 +1893,15 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
     
     
      public void calcularTotaisNotaFiscal(){
-         notaSaidaBean.setValorDesconto(Formatacao.ConvercaoMonetariaDouble(valorDescontojTextField.getText()));
+        notaSaidaBean.setValorDesconto(Formatacao.ConvercaoMonetariaDouble(valorDescontojTextField.getText()));
         calcularRateioDesconto();
-        double valorTotalProdutos=0; 
+        double valorTotalProdutos=0;
         double valorTributos=0;
         double totalDesconto=0;
+        double novoValorDesconto=0;
+        if (notaSaidaBean.getPercentualDesconto()<=0){
+            novoValorDesconto= Formatacao.formatarStringDouble(valorDescontojTextField.getText());
+        }
         double valorCalcualdo=0;
         IbptController ibptController = new IbptController();
         for(int i=0;i<listaProdutoBean.size();i++){
@@ -1891,10 +1914,14 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             }else {
                 valor = listaProdutoBean.get(i).getValortotal()*(26.75/100);
             }
+            String novoValor = Formatacao.foramtarDoubleString(valor);
+            valor = Formatacao.formatarStringDouble(novoValor);
             listaProdutoBean.get(i).setValorTributo(valor);
             valorTributos+=listaProdutoBean.get(i).getValorTributo();
             if (notaSaidaBean.getPercentualDesconto()>0){
                 double valorDesconto =  (listaProdutoBean.get(i).getValortotal() * notaSaidaBean.getPercentualDesconto());
+                String vd = Formatacao.foramtarDoubleString(valorDesconto);
+                valorDesconto = Formatacao.formatarStringDouble(vd);
                 totalDesconto = totalDesconto + valorDesconto;
                 if (totalDesconto> notaSaidaBean.getValorDesconto()){
                     valorDesconto = notaSaidaBean.getValorDesconto() - (totalDesconto - valorDesconto);
@@ -1902,8 +1929,16 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
                 if (valorDesconto>0){
                     listaProdutoBean.get(i).setValorDesconto(valorDesconto);
                 }else listaProdutoBean.get(i).setValorDesconto(0);
-                
                 valorCalcualdo = valorCalcualdo + listaProdutoBean.get(i).getValorDesconto();
+            }else {
+                if (novoValorDesconto>0){
+                    if (listaProdutoBean.get(i).getValortotal()>novoValorDesconto){
+                        listaProdutoBean.get(i).setValorDesconto(novoValorDesconto);
+                        notaSaidaBean.setValorDesconto(novoValorDesconto);
+                        totalDesconto=novoValorDesconto;
+                        novoValorDesconto=0;
+                    }
+                }
             }
         }
         notaSaidaBean.setTotalValoProdutos(valorTotalProdutos);
@@ -1912,8 +1947,9 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
         notaSaidaBean.setTotalValorICMS(0);
         notaSaidaBean.setTotalTributios(valorTributos);
         totalProdutojTextField.setText(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalValoProdutos()));
-        totalNotajTextField.setText(Formatacao.foramtarDoubleString(notaSaidaBean.getValorNota())); 
+        totalNotajTextField.setText(Formatacao.foramtarDoubleString(notaSaidaBean.getValorNota()));
         valorTributosjTextField.setText(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios()));
+        gerarjButton.setEnabled(true);
     }
      
      
@@ -1969,6 +2005,17 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
        notaSaida.setValorNotaFiscal(valor.floatValue());
        valor = notaSaidaBean.getTotalValoProdutos();
        notaSaida.setValorProdutos(valor.floatValue());
+       notaSaida.setNome(nomejTextField.getText());
+        notaSaida.setCnpj(cpfjFormattedTextField.getText());
+        notaSaida.setIe(rgjTextField.getText());
+        notaSaida.setFonefixo(foneFixojFormattedTextField.getText());
+        notaSaida.setEmail(emailjTextField.getText());
+        notaSaida.setLogradouro(logradourojTextFiel.getText());
+        notaSaida.setComplemento(complementojTextField.getText());
+        notaSaida.setBairro(bairrojTextField.getText());
+        notaSaida.setCidade(cidadejTextField.getText());
+        notaSaida.setCep(cepjFormattedTextField.getText());
+        notaSaida.setEstado(estadojTextField.getText());
         try {
             notaSaida.setXml(carregarXML());
         } catch (Exception ex) {
@@ -2384,5 +2431,16 @@ dataEmissaojDateChooser.addFocusListener(new java.awt.event.FocusAdapter() {
             }
         }
         return true;
+    }
+    
+    public String verificarNCM(){
+        String msg="";
+        for(int i=0;i<listaProdutoBean.size();i++){
+            if (listaProdutoBean.get(i).getProduto().getNcm().length()!=8){
+                listaProdutoBean.get(i).setSituacao("ERRO");
+                msg = "Existem produtos com problemas de NCM";
+            }
+        }
+        return msg;
     }
 }

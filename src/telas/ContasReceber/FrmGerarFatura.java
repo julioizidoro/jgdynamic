@@ -819,6 +819,7 @@ dataParcela04jDateChooser = new com.toedter.calendar.JDateChooser(null, null, da
                 for (int i = 0; i < listaCreditos.size(); i++) {
                     Creditosreceber credito = listaCreditos.get(i).getCredito();
                     credito.setContasreceberpagamento(2);
+                    credito.setNumerofatura(fatura.getFatura().getNumeroFatura());
                     credito.setUtilizado("SIM");
                     creditoReceberController.salvar(credito);
                 }
@@ -939,6 +940,7 @@ dataParcela04jDateChooser = new com.toedter.calendar.JDateChooser(null, null, da
                 Contasreceber contaReceber = fatura.getListaContas().get(i);
                 if (contaReceber!=null){
                     contaReceber.setNumeroFaturaGerada(fatura.getFatura().getNumeroFatura());
+                    contaReceber.setNumeroFatura(0);
                     contaReceber.setContasreceberpagamento(contasreceberpagamento);
                     contasReceberController.salvarContasReceber(contaReceber);
                 }
@@ -956,6 +958,7 @@ dataParcela04jDateChooser = new com.toedter.calendar.JDateChooser(null, null, da
         parcela.setContasreceberpagamento(contasreceberpagamento);
         parcela.setDataLancamento(fatura.getFatura().getDataLancamento());
         parcela.setNumeroFatura(fatura.getFatura().getIdFaturasReceber());
+        parcela.setNumeroFaturaGerada("0");
         parcela.setDataVencimento(dataVencimento);
         parcela.setNumeroDocumento(numeroDocumento);
         parcela.setNumeroParcelas(numeroParcela);

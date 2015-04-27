@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class ListaProdutoSaidaBeanTableModel extends AbstractTableModel{
     
     private List<NotaSaidaProdutoBean> listaProdutoBean;
-    private String[] colunas ={"Código", "Descrição", "Unidade", "NCM", "Quantidade", "Valor Unitário", "Valor Total"};
+    private String[] colunas ={"Código", "Descrição", "Unidade", "NCM", "Quantidade", "Valor Unitário", "Valor Total", "Valor Desconto", "Situação"};
 
     public ListaProdutoSaidaBeanTableModel(List<NotaSaidaProdutoBean> listaProdutoBean) {
         this.listaProdutoBean = listaProdutoBean;
@@ -42,7 +42,11 @@ public class ListaProdutoSaidaBeanTableModel extends AbstractTableModel{
             return Formatacao.foramtarQuantidade(listaProdutoBean.get(rowIndex).getQuantidade());
         }else if (columnIndex==5){
             return Formatacao.foramtarDoubleString(listaProdutoBean.get(rowIndex).getValorUnitario());
-        }else return Formatacao.foramtarDoubleString(listaProdutoBean.get(rowIndex).getValortotal());
+        }else if (columnIndex==6){
+            return Formatacao.foramtarDoubleString(listaProdutoBean.get(rowIndex).getValortotal());
+        }else if (columnIndex==7){
+            return Formatacao.foramtarDoubleString(listaProdutoBean.get(rowIndex).getValorDesconto());
+        }else return listaProdutoBean.get(rowIndex).getSituacao();
     }
     
     @Override
@@ -64,9 +68,10 @@ public class ListaProdutoSaidaBeanTableModel extends AbstractTableModel{
              return String.class;
          }else if (columnIndex==5){
              return String.class;
+         }else if (columnIndex==6){
+             return String.class;
+         }else if (columnIndex==7){
+             return String.class;
          }else return String.class;
     }
-    
-    
-    
 }

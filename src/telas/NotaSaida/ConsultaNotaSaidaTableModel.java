@@ -37,9 +37,9 @@ public class ConsultaNotaSaidaTableModel extends AbstractTableModel{
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         if (columnIndex==0){
-            if (listaNotaSaida.get(rowIndex).getIdcliente()>0){
-                return getClienteNome(listaNotaSaida.get(rowIndex).getIdcliente());
-            }else return getFornecedorNome(listaNotaSaida.get(rowIndex).getIdfornecedor());
+            if (listaNotaSaida.get(rowIndex).getIdfornecedor()>0){
+                return getFornecedorNome(listaNotaSaida.get(rowIndex).getIdfornecedor());
+            }else return getClienteNome(listaNotaSaida.get(rowIndex));
         }else if (columnIndex==1){
             return listaNotaSaida.get(rowIndex).getNumero();
         }else if (columnIndex==2){
@@ -72,14 +72,20 @@ public class ConsultaNotaSaidaTableModel extends AbstractTableModel{
     }
     
     
-    public String getClienteNome(int idcliente){
-        ClienteController clienteController = new ClienteController();
-        Cliente cliente = clienteController.consultarClienteId(idcliente);
-        if(cliente!=null){
-            return cliente.getNome();
-        }else {
-            return "cliente não localizado";
-        } 
+    public String getClienteNome(Notasaida nota){
+        if (nota.getNome() != null) {
+            return nota.getNome();
+        } else {
+            if (nota.getIdcliente() > 0) {
+                ClienteController clienteController = new ClienteController();
+                Cliente cliente = clienteController.consultarClienteId(nota.getIdcliente());
+                if (cliente != null) {
+                    return cliente.getNome();
+                } else {
+                    return "Cliente não localizado";
+                }
+            }else return "Cliente não localizado";
+        }
     }
     
     public String getFornecedorNome(int idfornecedor){
@@ -91,6 +97,8 @@ public class ConsultaNotaSaidaTableModel extends AbstractTableModel{
             return "Fornecedor não localizado";
         } 
     }
+    
+    
     
     
     

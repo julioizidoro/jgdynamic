@@ -15,7 +15,6 @@ import Regras.Formatacao;
 import Interfaces.ItelaConsulta;
 import Regras.FornecedorController;
 import Regras.MunicipiosController;
-import facadeRemoto.FornecedorRemotoFacade;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
@@ -500,6 +499,9 @@ public class FrmCadastrarFornecedor extends javax.swing.JFrame implements IForne
             fornecedor.setPrazo(prazoPagtojTextField.getText());
             fornecedor.setFormaPagamento(formaPagtojTextField.getText());
             fornecedor.setFrete(fretejTextField.getText());
+            if (descontojFormattedTextField.getText().length()==0){
+                fornecedor.setDesconto(Long.valueOf("0"));
+            }else fornecedor.setDesconto(Long.valueOf(descontojFormattedTextField.getText()));
 //            FornecedorRemotoFacade fornecedorRemotoFacade = new FornecedorRemotoFacade();
 //            try {
 //                fornecedorRemotoFacade.salvarFronecedor(fornecedor);

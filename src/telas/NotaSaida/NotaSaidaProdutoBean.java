@@ -18,9 +18,11 @@ public class NotaSaidaProdutoBean {
     private double valorUnitario;
     private double valortotal;
     private double  valorDesconto;
+    private double percDesconto;
     private String cst;
     private double valorTributo;
     private double percentualTributo;
+    private String situacao;
 
     public Produto getProduto() {
         return produto;
@@ -58,6 +60,14 @@ public class NotaSaidaProdutoBean {
         return percentualTributo;
     }
 
+    public double getPercDesconto() {
+        return percDesconto;
+    }
+
+    public void setPercDesconto(double percDesconto) {
+        this.percDesconto = percDesconto;
+    }
+
     public void setPercentualTributo(double percentualTributo) {
         this.percentualTributo = percentualTributo;
     }
@@ -92,6 +102,14 @@ public class NotaSaidaProdutoBean {
 
     public void setCst(String cst) {
         this.cst = cst;
+    }
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
     }
     
     

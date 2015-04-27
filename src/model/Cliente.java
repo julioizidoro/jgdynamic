@@ -6,7 +6,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -82,6 +81,14 @@ public class Cliente implements Serializable {
 
     public String getOperadora() {
         return operadora;
+    }
+
+    public String getTemDesconto() {
+        return temDesconto;
+    }
+
+    public void setTemDesconto(String temDesconto) {
+        this.temDesconto = temDesconto;
     }
 
     public void setOperadora(String operadora) {
@@ -224,16 +231,6 @@ public class Cliente implements Serializable {
     public void setOperacao(Integer operacao) {
         this.operacao = operacao;
     }
-
-    public String getTemDesconto() {
-        return temDesconto;
-    }
-
-    public void setTemDesconto(String temDesconto) {
-        this.temDesconto = temDesconto;
-    }
-
-
 
     public Integer getCodigoAntigo() {
         return codigoAntigo;

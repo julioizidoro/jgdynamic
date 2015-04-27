@@ -23,6 +23,8 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -44,6 +46,7 @@ import org.xml.sax.SAXException;
 import telas.Entrada.FrmLocalizarArquivo;
 import telas.Fornecedor.FrmCadastrarFornecedor;
 import telas.Fornecedor.FrmConsultaFornecedor;
+import telas.NotaSaida.FrmEmitirNotaCliente;
 
 /**
  *
@@ -963,6 +966,18 @@ dataSaidajDateChooser = new com.toedter.calendar.JDateChooser(null, null, datePa
         }
 
 
+    }
+    
+    public String retirarPontos(String dado){
+        String formatado ="";
+        char c = ' ';
+        for(int i=0;i<dado.length();i++){
+            c = dado.charAt(i);
+            if ((c!='.') && (c!=',') && (c!='-') && (c!='/') && (c!='(') && (c!=')')){
+               formatado+= c;
+            }
+        }
+        return formatado;
     }
 
 

@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.Contasreceber;
@@ -227,16 +228,18 @@ jButton2.addActionListener(new java.awt.event.ActionListener() {
         }
     });
     jScrollPane1.setViewportView(pagamentojTable);
-    pagamentojTable.getColumnModel().getColumn(0).setResizable(false);
-    pagamentojTable.getColumnModel().getColumn(0).setPreferredWidth(40);
-    pagamentojTable.getColumnModel().getColumn(1).setResizable(false);
-    pagamentojTable.getColumnModel().getColumn(1).setPreferredWidth(40);
-    pagamentojTable.getColumnModel().getColumn(2).setResizable(false);
-    pagamentojTable.getColumnModel().getColumn(2).setPreferredWidth(40);
-    pagamentojTable.getColumnModel().getColumn(2).setHeaderValue("Valor Descontos");
-    pagamentojTable.getColumnModel().getColumn(3).setResizable(false);
-    pagamentojTable.getColumnModel().getColumn(3).setPreferredWidth(40);
-    pagamentojTable.getColumnModel().getColumn(3).setHeaderValue("Valor Recebido");
+    if (pagamentojTable.getColumnModel().getColumnCount() > 0) {
+        pagamentojTable.getColumnModel().getColumn(0).setResizable(false);
+        pagamentojTable.getColumnModel().getColumn(0).setPreferredWidth(40);
+        pagamentojTable.getColumnModel().getColumn(1).setResizable(false);
+        pagamentojTable.getColumnModel().getColumn(1).setPreferredWidth(40);
+        pagamentojTable.getColumnModel().getColumn(2).setResizable(false);
+        pagamentojTable.getColumnModel().getColumn(2).setPreferredWidth(40);
+        pagamentojTable.getColumnModel().getColumn(2).setHeaderValue("Valor Descontos");
+        pagamentojTable.getColumnModel().getColumn(3).setResizable(false);
+        pagamentojTable.getColumnModel().getColumn(3).setPreferredWidth(40);
+        pagamentojTable.getColumnModel().getColumn(3).setHeaderValue("Valor Recebido");
+    }
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
@@ -274,6 +277,11 @@ jButton2.addActionListener(new java.awt.event.ActionListener() {
     contasjTable.getColumnModel().getColumn(2).setPreferredWidth(300);
     contasjTable.getColumnModel().getColumn(3).setPreferredWidth(30);
     contasjTable.getColumnModel().getColumn(4).setPreferredWidth(30);
+    contasjTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            contasjTableMouseClicked(evt);
+        }
+    });
     vencidasjScrollPane.setViewportView(contasjTable);
 
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -315,10 +323,12 @@ jButton2.addActionListener(new java.awt.event.ActionListener() {
         }
     });
     jScrollPane2.setViewportView(formajTable);
-    formajTable.getColumnModel().getColumn(0).setResizable(false);
-    formajTable.getColumnModel().getColumn(0).setPreferredWidth(40);
-    formajTable.getColumnModel().getColumn(1).setResizable(false);
-    formajTable.getColumnModel().getColumn(1).setPreferredWidth(40);
+    if (formajTable.getColumnModel().getColumnCount() > 0) {
+        formajTable.getColumnModel().getColumn(0).setResizable(false);
+        formajTable.getColumnModel().getColumn(0).setPreferredWidth(40);
+        formajTable.getColumnModel().getColumn(1).setResizable(false);
+        formajTable.getColumnModel().getColumn(1).setPreferredWidth(40);
+    }
 
     javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
     jPanel4.setLayout(jPanel4Layout);
@@ -407,6 +417,15 @@ jButton2.addActionListener(new java.awt.event.ActionListener() {
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void contasjTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contasjTableMouseClicked
+        int linha = contasjTable.getSelectedRow();
+        if (linha>=0){
+            if (listaContas.get(linha).getTipo().equalsIgnoreCase("P")){
+                new FrmConusltaContasFatura(listaContas.get(linha).getNumeroFaturaGerada());
+            }else JOptionPane.showMessageDialog(rootPane, "Conta a receber não é parela de Fatura");
+        }
+    }//GEN-LAST:event_contasjTableMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -489,11 +508,13 @@ jButton2.addActionListener(new java.awt.event.ActionListener() {
         modelContas = new ConsultaContasReceberTableModel(listaContas);
         contasjTable.setModel(modelContas);
         contasjTable.getColumnModel().getColumn(0).setPreferredWidth(20);
-        contasjTable.getColumnModel().getColumn(1).setPreferredWidth(300);
+        contasjTable.getColumnModel().getColumn(1).setPreferredWidth(250);
         contasjTable.getColumnModel().getColumn(2).setPreferredWidth(40);
         contasjTable.getColumnModel().getColumn(3).setPreferredWidth(40);
-        contasjTable.getColumnModel().getColumn(4).setCellRenderer(renderer);
         contasjTable.getColumnModel().getColumn(4).setPreferredWidth(40);
+        contasjTable.getColumnModel().getColumn(5).setCellRenderer(renderer);
+        contasjTable.getColumnModel().getColumn(5).setPreferredWidth(80);
+        contasjTable.getColumnModel().getColumn(6).setPreferredWidth(80);
         contasjTable.repaint();
     }
     

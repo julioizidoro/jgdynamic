@@ -17,7 +17,7 @@ import model.Contasreceber;
 public class ConsultaContasReceberTableModel extends AbstractTableModel{
     
     private List<Contasreceber> listaContasReceber;
-    private String[] colunas ={"Nº Documento", "Nome Cliente", "Nº Parcela", "Data Lançamento", "Data Vencimento", "Valor Receber"};
+    private String[] colunas ={"Nº Documento", "Nome Cliente", "Nº Parcela", "Data Lançamento", "Data Vencimento", "Valor Receber", "Tipo"};
 
     public ConsultaContasReceberTableModel(List<Contasreceber> listaContasReceber) {
         this.listaContasReceber = listaContasReceber;
@@ -42,7 +42,9 @@ public class ConsultaContasReceberTableModel extends AbstractTableModel{
            return listaContasReceber.get(rowIndex).getDataLancamento();
         }else if (columnIndex==4){
             return listaContasReceber.get(rowIndex).getDataVencimento();
-        }else return Formatacao.foramtarDoubleString(listaContasReceber.get(rowIndex).getValorConta());
+        }else if (columnIndex==5) {
+            return Formatacao.foramtarDoubleString(listaContasReceber.get(rowIndex).getValorConta());
+        }else return listaContasReceber.get(rowIndex).getTipo();
     }
     @Override
     public String getColumnName(int column) {

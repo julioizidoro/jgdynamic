@@ -114,8 +114,17 @@ public class Notasaida implements Serializable {
     @Column(name = "motivocancelamento")
     private String motivocancelamento;
     @Lob
-    @Column(name = "arquivocancelamento")
-    private byte[] arquivocancelamento;
+    @Column(name = "xmlcarta")
+    private byte[] xmlcarta;
+    @Lob
+    @Column(name = "xmlcancelada")
+    private byte[] xmlcancelada;
+    @Size(max = 200)
+    @Column(name = "nomearquivocancelada")
+    private String nomearquivocancelada;
+    @Size(max = 200)
+    @Column(name = "nomearquivocarta")
+    private String nomearquivocarta;
 
     public Notasaida() {
     }
@@ -136,6 +145,24 @@ public class Notasaida implements Serializable {
         return dataEmissao;
     }
 
+    public String getNomearquivocancelada() {
+        return nomearquivocancelada;
+    }
+
+    public void setNomearquivocancelada(String nomearquivocancelada) {
+        this.nomearquivocancelada = nomearquivocancelada;
+    }
+
+    public String getNomearquivocarta() {
+        return nomearquivocarta;
+    }
+
+    public void setNomearquivocarta(String nomearquivocarta) {
+        this.nomearquivocarta = nomearquivocarta;
+    }
+
+    
+
     public void setDataEmissao(Date dataEmissao) {
         this.dataEmissao = dataEmissao;
     }
@@ -152,14 +179,6 @@ public class Notasaida implements Serializable {
         this.motivocancelamento = motivocancelamento;
     }
 
-    public byte[] getArquivocancelamento() {
-        return arquivocancelamento;
-    }
-
-    public void setArquivocancelamento(byte[] arquivocancelamento) {
-        this.arquivocancelamento = arquivocancelamento;
-    }
-
     public void setEmpresa(int empresa) {
         this.empresa = empresa;
     }
@@ -174,6 +193,22 @@ public class Notasaida implements Serializable {
 
     public Integer getNumero() {
         return numero;
+    }
+
+    public byte[] getXmlcarta() {
+        return xmlcarta;
+    }
+
+    public void setXmlcarta(byte[] xmlcarta) {
+        this.xmlcarta = xmlcarta;
+    }
+
+    public byte[] getXmlcancelada() {
+        return xmlcancelada;
+    }
+
+    public void setXmlcancelada(byte[] xmlcancelada) {
+        this.xmlcancelada = xmlcancelada;
     }
 
     public void setNumero(Integer numero) {

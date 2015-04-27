@@ -1024,10 +1024,6 @@ try{
         new FrmContasReceberFormaPagamento(this.config);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
-    private void dataInicialjDateChooserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dataInicialjDateChooserFocusGained
-
-    }//GEN-LAST:event_dataInicialjDateChooserFocusGained
-
     private void dataFinaljDateChooser1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dataFinaljDateChooser1FocusGained
 
     }//GEN-LAST:event_dataFinaljDateChooser1FocusGained
@@ -1175,6 +1171,10 @@ try{
         }
     }//GEN-LAST:event_jMenu5MouseClicked
 
+    private void dataInicialjDateChooserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dataInicialjDateChooserFocusGained
+
+    }//GEN-LAST:event_dataInicialjDateChooserFocusGained
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AssociadosjPanel;
     private javax.swing.JToolBar BarradeTarefasjToolBar;
@@ -1260,6 +1260,9 @@ try{
 
     public void carregarModel()  {
         String dataAtual = Formatacao.ConvercaoDataSql(new Date());
+        if (dataFinaljDateChooser1.getDate()!=null){
+            dataAtual = Formatacao.ConvercaoDataSql(dataFinaljDateChooser1.getDate());
+        }
         String data180=null;
         try {
             data180 = Formatacao.SubtarirDatas(new Date(), 180, "yyyy/MM/dd");
@@ -1277,7 +1280,7 @@ try{
         
         
         String sqlCredito= null;
-        
+        sqlContaVencendo = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.dataVencimento='" + dataAtual + "' and c.empresa.idempresa="+ this.config.getEmpresa().getIdempresa() + " order by c.dataVencimento";
         
         if (this.cliente==null) {
             sqlContaVencendo = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.dataVencimento='" + dataAtual + "' and c.empresa.idempresa="+ this.config.getEmpresa().getIdempresa() + " order by c.dataVencimento";
@@ -1286,8 +1289,7 @@ try{
             sqlConta180dias = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.dataVencimento<'" + data180 + "' and c.empresa.idempresa="+ this.config.getEmpresa().getIdempresa() + " order by c.dataVencimento";
             sqlFatura = "select f from Faturasreceber f where f.contasreceberpagamento=1 and f.empresa=" + config.getEmpresa().getIdempresa() + " order by f.dataVencimento";
             sqlCredito = " select c from Creditosreceber c where c.contasreceberpagamento=1 and c.empresa=" + this.config.getEmpresa().getIdempresa(); 
-        }else {
-            
+        }else { 
             sqlContaVencendo = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.dataVencimento='" + dataAtual + "' and c.cliente.idcliente="  + cliente.getIdcliente() +  " and c.empresa.idempresa=" + this.config.getEmpresa().getIdempresa() + " order by c.dataVencimento";
             sqlContaVencer = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.dataVencimento>'" + dataAtual + "' and c.cliente.idcliente="  + cliente.getIdcliente() +  " and c.empresa.idempresa=" + this.config.getEmpresa().getIdempresa() + " order by c.dataVencimento";
             sqlContaVencidas = "select c from Contasreceber c where c.contasreceberpagamento=1  and c.dataVencimento>'" + data180 + "' and c.dataVencimento<'" + dataAtual + "' and c.cliente.idcliente="  + cliente.getIdcliente() +  " and c.empresa.idempresa=" + this.config.getEmpresa().getIdempresa() + " order by c.dataVencimento";

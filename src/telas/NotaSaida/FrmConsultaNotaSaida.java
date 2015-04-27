@@ -53,6 +53,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
     private int linha;
     private File arquivoXML;
     private String cJustificativa;
+    private String email;
 
     /**
      * Creates new form FrmConsultaNotaSaida
@@ -60,6 +61,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
     public FrmConsultaNotaSaida(Config config, UsuarioLogado usuarioLogado) {
         this.config = config;
         this.usuarioLogado = usuarioLogado;
+        email = "";
         initComponents();
         URL url = this.getClass().getResource("/imagens/logo_mini.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
@@ -85,6 +87,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         AdicionarjButton = new javax.swing.JButton();
         PesquisarjButton = new javax.swing.JButton();
         AdicionarjButton1 = new javax.swing.JButton();
+        PesquisarjButton1 = new javax.swing.JButton();
         SeparadordeTarefasjSeparator = new javax.swing.JToolBar.Separator();
         ImprimirjButton = new javax.swing.JButton();
         VisualizarjButton = new javax.swing.JButton();
@@ -93,6 +96,8 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         FecharrjButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         notaSaidajTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        nomejTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consulta NF-e de Saída");
@@ -149,6 +154,22 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
             }
         });
         BarradeTarefasjToolBar.add(AdicionarjButton1);
+
+        PesquisarjButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/processomenos.png"))); // NOI18N
+        PesquisarjButton1.setText("Correção");
+        PesquisarjButton1.setToolTipText("Pesquisar Associado");
+        PesquisarjButton1.setFocusable(false);
+        PesquisarjButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        PesquisarjButton1.setMaximumSize(new java.awt.Dimension(80, 90));
+        PesquisarjButton1.setMinimumSize(new java.awt.Dimension(80, 90));
+        PesquisarjButton1.setPreferredSize(new java.awt.Dimension(80, 90));
+        PesquisarjButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        PesquisarjButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarjButton1PesquisarAssociado(evt);
+            }
+        });
+        BarradeTarefasjToolBar.add(PesquisarjButton1);
         BarradeTarefasjToolBar.add(SeparadordeTarefasjSeparator);
 
         ImprimirjButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/impressao.png"))); // NOI18N
@@ -257,24 +278,47 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
             notaSaidajTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
+        jLabel1.setText("Nome do Cliente");
+
+        nomejTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nomejTextFieldKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(168, 168, 168)
+                                .addComponent(BarradeTarefasjToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(BarradeTarefasjToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(nomejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nomejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BarradeTarefasjToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -366,6 +410,19 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         new FrmEmitirNotaFornecedor(config, usuarioLogado, this);
     }//GEN-LAST:event_AdicionarjButton1AdicionarAssociado
 
+    private void nomejTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomejTextFieldKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            carregarModelConsultaNotaSaidaCliente(nomejTextField.getText());
+        }
+    }//GEN-LAST:event_nomejTextFieldKeyPressed
+
+    private void PesquisarjButton1PesquisarAssociado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarjButton1PesquisarAssociado
+        int linha = notaSaidajTable.getSelectedRow();
+        if (linha>=0){
+            new FrmCartaoCorrecao(listaNotaSaida.get(linha), config);
+        }else JOptionPane.showMessageDialog(rootPane, "Selecione uma NF-e");
+    }//GEN-LAST:event_PesquisarjButton1PesquisarAssociado
+
     /**
      * @param args the command line arguments
      */
@@ -377,12 +434,15 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
     private javax.swing.JButton FecharrjButton1;
     private javax.swing.JButton ImprimirjButton;
     private javax.swing.JButton PesquisarjButton;
+    private javax.swing.JButton PesquisarjButton1;
     private javax.swing.JButton RelatoriojButton;
     private javax.swing.JButton RelatoriojButton1;
     private javax.swing.JToolBar.Separator SeparadordeTarefasjSeparator;
     private javax.swing.JButton VisualizarjButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField nomejTextField;
     private javax.swing.JTable notaSaidajTable;
     // End of variables declaration//GEN-END:variables
     
@@ -390,11 +450,21 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         NotaSaidaController notaSaidaController = new NotaSaidaController();
         String data = null;
         try {
-            data = Formatacao.SubtarirDatas(new Date(), 90, "yyyy-MM-dd");
+            data = Formatacao.SubtarirDatas(new Date(), 60, "yyyy-MM-dd");
         } catch (Exception ex) {
             Logger.getLogger(FrmConsultaNotaSaida.class.getName()).log(Level.SEVERE, null, ex);
         }
         listaNotaSaida = notaSaidaController.consultarNotaSaida(data);
+        if (listaNotaSaida==null){
+            listaNotaSaida = new ArrayList<Notasaida>();
+        }
+        carregarModelNotaSaida();
+    }
+    
+    public void carregarModelConsultaNotaSaidaCliente(String nomeCliente) {
+        NotaSaidaController notaSaidaController = new NotaSaidaController();
+        String sql = "select n from Notasaida n where n.nome like '" + nomeCliente + "%' order by n.numero"; ;
+        listaNotaSaida = notaSaidaController.filtrarNotaSaida(sql);
         if (listaNotaSaida==null){
             listaNotaSaida = new ArrayList<Notasaida>();
         }
@@ -418,7 +488,11 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
     }
     
     public void apagarArquivoSaidaAcbr() throws IOException {
-        File arqSaida = new File(this.config.getCaminhoAcbr() + "sainfe.txt");
+       File arqSaida = new File(this.config.getCaminhoAcbr() + "sainfe.txt");
+        if (arqSaida.exists()) {
+            arqSaida.delete();
+        }
+        arqSaida = new File(this.config.getCaminhoAcbr() + "LOG.txt");
         if (arqSaida.exists()) {
             arqSaida.delete();
         }
@@ -432,6 +506,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
     }
     
     public void enviarEmailNFeCliente(int linha){
+        email = JOptionPane.showInputDialog("Adicionar CCO separar por ;");
         Cliente cliente = new Cliente();
         ClienteController clienteController = new ClienteController();
         cliente = clienteController.consultarClienteId(listaNotaSaida.get(linha).getIdcliente());
@@ -439,11 +514,15 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         String cArqXML = this.config.getCaminhoNFe() + listaNotaSaida.get(linha).getNomeArquivoXML();
         String cEnviaPDF = "1";
         String cAssunto = "Segue em Anexo NF-e da empresa " + this.config.getEmpresa().getRazaoSocial();
-        String cEmailsCopias = "angelacLenz@ig.com.br;jizidoro@globo.com";
+        String cEmailsCopias = "jizidoro@globo.com";
+        if ((email!=null)){
+            cEmailsCopias = cEmailsCopias + ";" + email;
+        }
         String texto = "NFe.EnviarEmail(" + cEmailDestino+ "," + 
                 cArqXML + "," + cEnviaPDF + "," + cAssunto + "," +
                         cEmailsCopias+")";
         gerarArquivoAcbr(texto);
+        email=null;
     }
     
     public void gerarArquivoAcbr(String texto) {
@@ -501,11 +580,12 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         if (file != null) {
             File arquivoXML = file;
             try {
-                listaNotaSaida.get(linha).setArquivocancelamento(carregarXML());
+                listaNotaSaida.get(linha).setXmlcancelada(carregarXML());
                 listaNotaSaida.get(linha).setSituacao("CANCELADA");
                 listaNotaSaida.get(linha).setMotivocancelamento(cJustificativa);
                 NotaSaidaController notaSaidaController = new NotaSaidaController();
                 notaSaidaController.salvarNotaSaida(listaNotaSaida.get(linha));
+                imprimirEventoCancelamento();
             } catch (IOException ex) {
                 Logger.getLogger(FrmConsultaNotaSaida.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -590,11 +670,14 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
                 && (numRead = is.read(xml, offset, xml.length - offset)) >= 0) {
             offset += numRead;
         }
+     
         return xml;
     }
     
-    
-
-   
-    
+    public void imprimirEventoCancelamento(){
+        String texto = "NFe.ImprimirEvento(";
+        String chave = arquivoXML.getAbsolutePath();
+        texto = texto + "\"" + chave + "\"" + ")";
+        gerarArquivoAcbr(texto);
+    }
 }
