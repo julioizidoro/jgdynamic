@@ -1947,12 +1947,14 @@ jPanel7Layout.setHorizontalGroup(
     }
 
     public String retirarPontos(String dado){
-        String formatado ="";
+        String formatado = "";
         char c = ' ';
-        for(int i=0;i<dado.length();i++){
-            c = dado.charAt(i);
-            if ((c!='.') && (c!=',') && (c!='-') && (c!='/') && (c!='(') && (c!=')')){
-               formatado+= c;
+        if (dado != null) {
+            for (int i = 0; i < dado.length(); i++) {
+                c = dado.charAt(i);
+                if ((c != '.') && (c != ',') && (c != '-') && (c != '/') && (c != '(') && (c != ')')) {
+                    formatado += c;
+                }
             }
         }
         return formatado;

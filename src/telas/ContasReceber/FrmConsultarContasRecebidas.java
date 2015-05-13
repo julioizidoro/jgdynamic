@@ -421,7 +421,7 @@ jButton2.addActionListener(new java.awt.event.ActionListener() {
         int linha = contasjTable.getSelectedRow();
         if (linha>=0){
             if (listaContas.get(linha).getTipo().equalsIgnoreCase("P")){
-                new FrmConusltaContasFatura(listaContas.get(linha).getNumeroFaturaGerada());
+                new FrmConusltaContasFatura(String.valueOf(listaContas.get(linha).getNumeroFatura()));
             }else JOptionPane.showMessageDialog(rootPane, "Conta a receber não é parela de Fatura");
         }
     }//GEN-LAST:event_contasjTableMouseClicked

@@ -578,7 +578,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
 
     public void carregarArquivoXMLLocalizado(File file) {
         if (file != null) {
-            File arquivoXML = file;
+            arquivoXML = file;
             try {
                 listaNotaSaida.get(linha).setXmlcancelada(carregarXML());
                 listaNotaSaida.get(linha).setSituacao("CANCELADA");

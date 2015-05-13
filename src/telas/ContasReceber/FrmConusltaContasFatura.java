@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.Contasreceber;
+import model.Faturasreceber;
 
 /**
  *
@@ -164,10 +165,15 @@ public class FrmConusltaContasFatura extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void carregarModelContas(String numeroFatura){
-        listaContas = new ArrayList<Contasreceber>();
-        String sql= "select c from Contasreceber c where c.numeroFaturaGerada='" + numeroFatura + "' and c.tipo='C' order by c.numeroDocumento";
         ContasReceberController contasReceberController = new ContasReceberController();
-        listaContas = contasReceberController.listarContas(sql);
+        String sql = "Select f from Faturasreceber f where idFaturasReceber=" + Integer.valueOf(numeroFatura);
+        List<Faturasreceber> listaFatura = contasReceberController.listarFaturas(sql);
+        if ((listaFatura!=null) && (listaFatura.size()>0)){
+            listaContas = new ArrayList<Contasreceber>();
+            sql= "select c from Contasreceber c where c.numeroFaturaGerada='" + listaFatura.get(0).getNumeroFatura()+ "' and c.tipo='C' order by c.numeroDocumento";
+            listaContas = contasReceberController.listarContas(sql);
+        }
+        
         
        
         

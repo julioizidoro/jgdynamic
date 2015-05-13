@@ -5,6 +5,7 @@
 package telas.NotaSaida;
 
 import Regras.ContasReceberController;
+import Regras.Formatacao;
 import Regras.ProdutoController;
 import Regras.VendaController;
 import controler.Config;
@@ -321,12 +322,15 @@ public class FrmConsultaProdutoConta extends javax.swing.JFrame {
         Produto produto = new Produto();
         ProdutoController produtoController = new ProdutoController();
         produto= produtoController.consultarProdutoid(saida.getProduto());
+        String stvalor ="0";
         if (produto!=null){
             notaSaidaProdutoBean.setProduto(produto);
             notaSaidaProdutoBean.setQuantidade(saida.getQuantidade());
             notaSaidaProdutoBean.setValorDesconto(0.0f);
-            notaSaidaProdutoBean.setValorUnitario(saida.getValorVenda()/saida.getQuantidade());
-            notaSaidaProdutoBean.setValortotal(saida.getValorVenda());
+            stvalor = Formatacao.foramtarFloatString(saida.getValorVenda()/saida.getQuantidade().floatValue());
+            notaSaidaProdutoBean.setValorUnitario(Formatacao.formatarStringfloat(stvalor));
+            stvalor = Formatacao.foramtarDoubleString( notaSaidaProdutoBean.getValorUnitario() * notaSaidaProdutoBean.getQuantidade());
+            notaSaidaProdutoBean.setValortotal(Formatacao.formatarStringfloat(stvalor));
             listaProdutoBean.add(notaSaidaProdutoBean);
         }
         listaNFejLabel.setText("Lista Produtos NF-e=" + String.valueOf(listaProdutoBean.size()));   
