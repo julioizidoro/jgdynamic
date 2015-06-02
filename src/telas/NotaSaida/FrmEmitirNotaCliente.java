@@ -52,6 +52,7 @@ import model.Contasreceber;
 import model.Contasreceberprodutos;
 import model.Creditoreceberprodutos;
 import model.Creditosreceber;
+import model.Docentrada;
 import model.Fornecedor;
 import model.Ibpt;
 import model.Municipios;
@@ -2387,6 +2388,10 @@ jPanel7Layout.setHorizontalGroup(
             estadojTextField.setText(municipios.getEstado());
             notaSaidaBean.setCodigoMunicipio(municipios.getCodigo());
         }
+    }
+
+    public void setDocEntrada(Docentrada docEntrada) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

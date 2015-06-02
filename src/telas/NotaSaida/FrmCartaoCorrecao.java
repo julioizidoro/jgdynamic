@@ -28,6 +28,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Cliente;
+import model.Docentrada;
 import model.Fornecedor;
 import model.Municipios;
 import model.Notasaida;
@@ -287,6 +288,10 @@ public class FrmCartaoCorrecao extends javax.swing.JFrame implements INotaSaidaB
     }
 
     public void utilizarCreditos(List<CreditoBean> listaCreditos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setDocEntrada(Docentrada docEntrada) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

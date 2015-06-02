@@ -7,6 +7,7 @@ package telas.NotaSaida;
 import java.io.File;
 import java.util.List;
 import model.Cliente;
+import model.Docentrada;
 import model.Fornecedor;
 import model.Municipios;
 import model.Terminalcliente;
@@ -31,4 +32,5 @@ public interface INotaSaidaBean {
     void consultaFornecedor(Fornecedor fornecedor);
     void setMunicipio(Municipios municipios);
     void utilizarCreditos(List<CreditoBean> listaCreditos);
+    void setDocEntrada(Docentrada docEntrada);
 }

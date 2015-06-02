@@ -32,6 +32,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.Cliente;
+import model.Docentrada;
 import model.Fornecedor;
 import model.Municipios;
 import model.Notasaida;
@@ -621,6 +622,10 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
     }
 
     public void utilizarCreditos(List<CreditoBean> listaCreditos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setDocEntrada(Docentrada docEntrada) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -16,10 +16,10 @@ import java.io.File;
 import java.net.URL;
 import java.util.List;
 import model.Cliente;
+import model.Docentrada;
 import model.Fornecedor;
 import model.Municipios;
 import model.Terminalcliente;
-import telas.Cliente.FrmConsultaClientes;
 import telas.ContasReceber.CreditoBean;
 import telas.NotaSaida.Fatura.DuplicataBean;
 import telas.NotaSaida.Fatura.FaturaBean;
@@ -258,6 +258,10 @@ jPanel1Layout.setHorizontalGroup(
     }
 
     public void consultarCliente(Cliente cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setDocEntrada(Docentrada docEntrada) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

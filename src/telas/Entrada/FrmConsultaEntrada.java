@@ -30,6 +30,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import model.*;
 import telas.Entrada.nova.FrmDocEntrada;
 import telas.Fornecedor.FrmConsultaFornecedor;
+import telas.NotaSaida.INotaSaidaBean;
 
 /**
  *
@@ -48,6 +49,7 @@ public class FrmConsultaEntrada extends javax.swing.JFrame implements ItelaConsu
     private Config config;
     private List<Entradaproduto> listaEntradaProduto;
     private Fornecedor fornecedor;
+    private INotaSaidaBean telaNotaSaida;
     
 
     /** Creates new form FrmConsultaEntrada */
@@ -56,6 +58,25 @@ public class FrmConsultaEntrada extends javax.swing.JFrame implements ItelaConsu
         datePattern = "dd/MM/yyyy";
         maskPattern = "##/##/##";
         placeHolder = '_';
+        initComponents();
+        URL url = this.getClass().getResource("/imagens/logo_mini.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
+        this.setLocationRelativeTo(null);
+        dataInicialjDateChooser.setDate(Formatacao.SomarDiasData(new Date(), -30));
+        dataFinaljDateChooser.setDate(new Date());
+        setData(null);
+        if (!(listaEntrada==null)){
+            setModelProduto(null, null);
+        }
+        setVisible(true);
+    }
+    public FrmConsultaEntrada(Config config, INotaSaidaBean telaNotaSaida) {
+        this.config = config;
+        datePattern = "dd/MM/yyyy";
+        maskPattern = "##/##/##";
+        placeHolder = '_';
+        this.telaNotaSaida = telaNotaSaida;
         initComponents();
         URL url = this.getClass().getResource("/imagens/logo_mini.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
@@ -410,6 +431,14 @@ AdicionarjButton1.addActionListener(new java.awt.event.ActionListener() {
         if (evt.getClickCount()==1){
             setModelProduto(null, null);
             ExcluirjButton.setEnabled(true);
+        }
+        if (evt.getClickCount()==2){
+            if (telaNotaSaida!=null){
+                int linha = EntradajTable.getSelectedRow();
+                if (linha>=0){
+                    telaNotaSaida.setDocEntrada(listaEntrada.get(linha));
+                }
+            }
         }
     }//GEN-LAST:event_EntradajTableMouseClicked
 
