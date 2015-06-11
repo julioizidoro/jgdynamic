@@ -985,7 +985,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_imprimirjButton2ActionPerformed
 
     private void imprimirjButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirjButton3ActionPerformed
-        new FrmConsultaVendedor(config);
+        if (usuarioLogado.getAcesso().getCadvendedor()==1){
+            new FrmConsultaVendedor(config);
+        }else JOptionPane.showMessageDialog(cadastrojPanel, "Acesso Negado");
+        
     }//GEN-LAST:event_imprimirjButton3ActionPerformed
 
     private void imprimirjButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirjButton5ActionPerformed

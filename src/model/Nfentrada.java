@@ -56,7 +56,9 @@ public class Nfentrada implements Serializable {
     @Lob
     @Column(name = "arquivonfe")
     private byte[] arquivonfe;
-
+    @Column(name = "chave")
+    private String chave;
+    
 
     public Nfentrada() {
     }
@@ -115,6 +117,14 @@ public class Nfentrada implements Serializable {
 
     public Float getValorProdutos() {
         return valorProdutos;
+    }
+
+    public String getChave() {
+        return chave;
+    }
+
+    public void setChave(String chave) {
+        this.chave = chave;
     }
 
     public void setValorProdutos(Float valorProdutos) {

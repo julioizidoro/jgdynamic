@@ -60,7 +60,7 @@ public class LerXml310 implements ILerNFe{
    
     
     public void lerNotaFiscal() throws ParseException {
-
+        
         NodeList nf = raiz.getElementsByTagName("ide");
         Element item = (Element) nf.item(0);
         NodeList nodeLista = item.getElementsByTagName("nNF");

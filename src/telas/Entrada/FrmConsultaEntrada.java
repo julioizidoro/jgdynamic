@@ -437,6 +437,7 @@ AdicionarjButton1.addActionListener(new java.awt.event.ActionListener() {
                 int linha = EntradajTable.getSelectedRow();
                 if (linha>=0){
                     telaNotaSaida.setDocEntrada(listaEntrada.get(linha));
+                    this.dispose();
                 }
             }
         }

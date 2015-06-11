@@ -87,28 +87,7 @@
                                   <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="tipoNFejComboBox" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="numeroNFejTextField" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                              <Component id="seriejTextField" min="-2" pref="91" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="680" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
@@ -117,27 +96,58 @@
                                       <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="dataEmissaojDateChooser" min="-2" pref="120" max="-2" attributes="0"/>
-                                              <Component id="jLabel7" min="-2" pref="72" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="totalProdutojTextField" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="valorDescontojTextField" min="-2" pref="73" max="-2" attributes="0"/>
-                                              <Component id="jLabel16" min="-2" pref="91" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                               <Group type="102" alignment="1" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="dataEmissaojDateChooser" min="-2" pref="120" max="-2" attributes="0"/>
+                                                      <Component id="jLabel7" min="-2" pref="72" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="totalProdutojTextField" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="tipoNFejComboBox" alignment="0" max="32767" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                                  <Component id="numeroNFejTextField" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                                              </Group>
+                                                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                                                  <Component id="seriejTextField" min="-2" pref="91" max="-2" attributes="0"/>
+                                                              </Group>
+                                                          </Group>
+                                                      </Group>
+                                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel42" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="valorDescontojTextField" min="-2" pref="73" max="-2" attributes="0"/>
+                                                      <Component id="jLabel16" min="-2" pref="91" max="-2" attributes="0"/>
+                                                  </Group>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                       <Component id="jLabel31" pref="84" max="32767" attributes="0"/>
                                                       <Component id="valorDescontoCalculadojTextField" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <EmptySpace pref="33" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="fretejComboBox" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace pref="33" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="valorTributosjTextField" min="-2" pref="105" max="-2" attributes="0"/>
                                                       <Component id="jLabel17" min="-2" pref="115" max="-2" attributes="0"/>
@@ -155,23 +165,18 @@
                                                       </Group>
                                                   </Group>
                                               </Group>
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="naturezaOperacaojTextField" min="-2" pref="338" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                                          <Group type="102" attributes="0">
-                                                              <Component id="tipoOperacaojComboBox" max="32767" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Group type="102" alignment="1" attributes="0">
-                                                              <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
+                                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="naturezaOperacaojTextField" min="-2" pref="338" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="tipoOperacaojComboBox" max="32767" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -199,11 +204,13 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel42" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="tipoNFejComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tipoOperacaojComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fretejComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -504,6 +511,23 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton16ActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel42">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Frete"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="fretejComboBox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="0 - Por conta do Emitente"/>
+                    <StringItem index="1" value="1 - Por conta do destinatario"/>
+                    <StringItem index="2" value="3 - Por conta de terceiros"/>
+                    <StringItem index="3" value="9 - Sem frete"/>
+                  </StringArray>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

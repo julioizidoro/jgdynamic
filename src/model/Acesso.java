@@ -84,6 +84,9 @@ public class Acesso implements Serializable {
     private Integer crExcluirConta;
     @Column(name = "liberarCliente")
     private Integer liberarCliente;
+    @Column(name = "cadvendedor")
+    private Integer cadvendedor;
+    
     
     
     @Column(name = "usuario_idusuario")
@@ -146,6 +149,14 @@ public class Acesso implements Serializable {
 
     public void setvValores(Integer vValores) {
         this.vValores = vValores;
+    }
+
+    public Integer getCadvendedor() {
+        return cadvendedor;
+    }
+
+    public void setCadvendedor(Integer cadvendedor) {
+        this.cadvendedor = cadvendedor;
     }
 
     public Integer getvOperacao() {

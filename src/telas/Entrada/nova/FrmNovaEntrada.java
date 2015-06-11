@@ -981,7 +981,7 @@ public class FrmNovaEntrada extends javax.swing.JFrame implements ItelaConsulta 
             .addContainerGap()
             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1522, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
             .addGap(18, 18, 18)
             .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
@@ -1030,7 +1030,7 @@ public class FrmNovaEntrada extends javax.swing.JFrame implements ItelaConsulta 
         jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel11Layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1775, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
             .addContainerGap())
     );
 
@@ -2282,12 +2282,20 @@ private void codigojTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIR
             AliquotaController aliquotaController = new AliquotaController();
             aliquota = aliquotaController.buscarAliquotaid(produto.getAliquota());
             icmsjTextField.setText(aliquota.getDescricao());
-            if (estoque!=null){
-                    ultimaComprajTextField1.setText(Formatacao.foramtarDoubleString(estoque.getValorCusto()));
-                    estoqueAtualjTextField.setText(Formatacao.foramtarQuantidade(estoque.getQuantidadeEstoque()));
-                    valorVendajTextField.setText(Formatacao.foramtarFloatString(estoque.getValorVenda()));
-                    percentualVendajTextField.setText(Formatacao.foramtarDoubleString(estoque.getPercentualVendas()));
+            if (vinculo != null) {
+                codigoFabricantejTextField.setText(vinculo.getCodigoFabricante());
+                embalagemjTextField.setText(String.valueOf(vinculo.getEmbalagem()));
+                if (vinculo.getDataCompra() != null) {
+                    dataComprajTextField.setText(Formatacao.ConvercaoDataPadrao(vinculo.getDataCompra()));
+                }
             }
+            if (estoque != null) {
+                ultimaComprajTextField1.setText(Formatacao.foramtarDoubleString(estoque.getValorCusto()));
+                estoqueAtualjTextField.setText(Formatacao.foramtarQuantidade(estoque.getQuantidadeEstoque()));
+                valorVendajTextField.setText(Formatacao.foramtarFloatString(estoque.getValorVenda()));
+                percentualVendajTextField.setText(Formatacao.foramtarDoubleString(estoque.getPercentualVendas()));
+            }
+
             if (embalagemjTextField.getText().equalsIgnoreCase("0")) {
                embalagemjTextField.setEditable(true);
             }
