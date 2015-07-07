@@ -1105,7 +1105,7 @@ cnpjjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
         clienteendereco.setClienteIdcliente(this.cliente.getIdcliente());
         clienteendereco.setComplemento(complementojTextField.getText());
         clienteendereco.setEstado(estadojTextField.getText());
-        clienteendereco.setLogradouro(logradouroSindicojTextField.getText());
+        clienteendereco.setLogradouro(logradourojTextField.getText());
         clienteendereco.setNumero(numerojTextField.getText());
         clienteendereco.setCidade(cidadejTextField.getText());
        if (tipoLogradourojComboBox.getSelectedItem()!=null){

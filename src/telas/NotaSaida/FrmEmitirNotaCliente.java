@@ -95,6 +95,7 @@ public class FrmEmitirNotaCliente extends javax.swing.JFrame implements INotaSai
     private DuplicataTableModel modelDuplicata;
     private INotaSaidaBean telaConsulta;
     private String numeroECFVenda;
+    private int numeroNFE;
 
     /**
      * Creates new form FrmEmitirNotaSaida
@@ -265,6 +266,12 @@ jPanel7Layout.setHorizontalGroup(
     jLabel4.setText("No. da NF-e");
 
     jLabel5.setText("Série");
+
+    numeroNFejTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            numeroNFejTextFieldFocusLost(evt);
+        }
+    });
 
     seriejTextField.setEditable(false);
 
@@ -1409,6 +1416,13 @@ jPanel7Layout.setHorizontalGroup(
         somarValoresNFe();
     }//GEN-LAST:event_jButton16ActionPerformed
 
+    private void numeroNFejTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numeroNFejTextFieldFocusLost
+        int numeroAtual = Integer.parseInt(numeroNFejTextField.getText());
+        if (numeroAtual!=numeroNFE){
+            JOptionPane.showMessageDialog(rootPane, "Número da NF-e fora da sequência");
+        }
+    }//GEN-LAST:event_numeroNFejTextFieldFocusLost
+
     /**
      * @param ags the command line arguments
      */
@@ -2092,10 +2106,10 @@ jPanel7Layout.setHorizontalGroup(
         //Empresa emp = new Empresa();
         //emp = this.config.getEmpresa();
         NotaSaidaController notaSaidaController = new NotaSaidaController();
-        int numeroNFe = notaSaidaController.consultarUltimaNotaEmitida();//emp.getNumeroNFe();
-        if (numeroNFe>0){
-            numeroNFe = numeroNFe + 1;
-            numeroNFejTextField.setText(String.valueOf(numeroNFe));
+        numeroNFE = notaSaidaController.consultarUltimaNotaEmitida();//emp.getNumeroNFe();
+        if (numeroNFE>0){
+            numeroNFE = numeroNFE + 1;
+            numeroNFejTextField.setText(String.valueOf(numeroNFE));
             seriejTextField.setText(String.valueOf(this.config.getEmpresa().getSerieNFe()));
         }else {
             JOptionPane.showMessageDialog(rootPane, "Erro Gerar Numero Nota Fiscal");

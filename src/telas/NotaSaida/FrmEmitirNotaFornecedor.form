@@ -319,6 +319,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="numeroNFejTextField">
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="numeroNFejTextFieldFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="seriejTextField">
               <Properties>
@@ -1570,7 +1573,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel34">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="M&#xea;s / Ano"/>
+                    <Property name="text" type="java.lang.String" value="AAMM"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel35">

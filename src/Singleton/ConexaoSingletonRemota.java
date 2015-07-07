@@ -7,7 +7,6 @@ package Singleton;
 
 import controler.ConfiguracaoSistema;
 import controler.Sigap;
-import java.net.ConnectException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.EntityManager;
