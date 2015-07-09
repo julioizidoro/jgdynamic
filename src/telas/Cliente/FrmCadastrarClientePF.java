@@ -798,11 +798,11 @@ cpfjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
                 .addComponent(tipoFechamentojComboBox, 0, 202, Short.MAX_VALUE)
                 .addComponent(jLabel45)
                 .addComponent(emitirComprovantejComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addComponent(jLabel46)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
                     .addComponent(jLabel47)
                     .addGap(157, 157, 157))
                 .addGroup(jPanel6Layout.createSequentialGroup()
@@ -880,11 +880,11 @@ cpfjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
         .addGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(151, 151, 151)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(106, 106, 106)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
@@ -1303,7 +1303,9 @@ cpfjFormattedTextField.addFocusListener(new java.awt.event.FocusAdapter() {
         if (this.municipios==null){
             return "Municipio e Estado campo obrigatório";
         }
-
+        if (operadorajComboBox.getSelectedItem()==null){
+            return "Campo Operadora de telefonia não selecionado";
+        }
         if (nomejTextField.getText()==null){
             return "Razão Social campo obrigatório";
         }
