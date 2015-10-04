@@ -29,11 +29,11 @@ public class ConexaoSingletonParametros {
         //ConfiguracaoSistema configura = new ConfiguracaoSistema();
         //configura = (ConfiguracaoSistema) utilitario.deserializarConfiguracao();
         Map mapa = new HashMap();
-        mapa.put("hibernate.connection.url", "jdbc:mysql://" +  "mysql.activetour.com.br" + ":" + "3306" + "/" +
-                "activ2br2");
+        mapa.put("hibernate.connection.url", "jdbc:mysql://" +  "200.175.61.147" + ":" + "8082" + "/" +
+                "parametros");
         mapa.put("hibernate.connection.driver_class","com.mysql.jdbc.Driver");
-        mapa.put("hibernate.connection.password","30Tour03");
-        mapa.put("hibernate.connection.username", "activ2br2");
+        mapa.put("hibernate.connection.password","jfhmaster123");
+        mapa.put("hibernate.connection.username", "root");
         mapa.put("hibernate.cache.provider_class","org.hibernate.cache.NoCacheProvider");
         mapa.put("hibernate.show_sql","true");
         mapa.put("hibernate.dialect","org.hibernate.dialect.MySQLDialect");
