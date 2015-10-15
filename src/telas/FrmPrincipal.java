@@ -31,6 +31,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import model.Empresa;
 import model.Estoque;
 import model.ParametrosLocal;
 import model.Produto;
@@ -98,6 +99,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         usuariologadojLabel.setText("Usuário Logado : " + this.usuarioLogado.getUsuario().getNome());
         nomeFantasiajLabel.setText(config.getEmpresa().getNomeFantasia());
         razaoSocialjLabel.setText(config.getEmpresa().getRazaoSocial());
+        Empresa empresa = config.getEmpresa();
+        empresa.setRazaoSocial("JUlio TEste");
         this.setVisible(true);
     }
     

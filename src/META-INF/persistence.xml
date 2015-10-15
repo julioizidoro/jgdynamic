@@ -107,8 +107,8 @@
     <properties>
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-      <property name="hibernate.connection.password" value="simples"/>
-      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:8082/cisne?zeroDateTimeBehavior=convertToNull"/>
+      <property name="hibernate.connection.password" value=""/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/jgdynamic?zeroDateTimeBehavior=convertToNull"/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
     </properties>
   </persistence-unit>
