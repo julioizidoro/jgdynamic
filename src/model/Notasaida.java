@@ -44,6 +44,8 @@ public class Notasaida implements Serializable {
     private Float valorProdutos;
     @Column(name = "valorNotaFiscal")
     private Float valorNotaFiscal;
+    @Column(name = "despesasacessorias")
+    private Float despesasacessorias;
     @Lob
     @Column(name = "xml")
     private byte[] xml;
@@ -179,6 +181,14 @@ public class Notasaida implements Serializable {
 
     public void setEmpresa(int empresa) {
         this.empresa = empresa;
+    }
+
+    public Float getDespesasacessorias() {
+        return despesasacessorias;
+    }
+
+    public void setDespesasacessorias(Float despesasacessorias) {
+        this.despesasacessorias = despesasacessorias;
     }
 
     public int getUsuarios() {

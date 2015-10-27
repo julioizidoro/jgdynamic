@@ -47,6 +47,7 @@ public class NotaSaidaBean {
     private String codigoMunicipio;
     private int codigoCliente;
     private int codigoFornecedor;
+    private double despesasacessorias;
     
 
     public NotaSaidaBean() {
@@ -287,6 +288,14 @@ public class NotaSaidaBean {
 
     public void setInfoTexto(String infoTexto) {
         this.infoTexto = infoTexto;
+    }
+
+    public double getDespesasacessorias() {
+        return despesasacessorias;
+    }
+
+    public void setDespesasacessorias(double despesasacessorias) {
+        this.despesasacessorias = despesasacessorias;
     }
     
     
