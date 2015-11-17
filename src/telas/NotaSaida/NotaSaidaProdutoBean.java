@@ -23,6 +23,7 @@ public class NotaSaidaProdutoBean {
     private double valorTributo;
     private double percentualTributo;
     private String situacao;
+    private double valoracessorios;
 
     public Produto getProduto() {
         return produto;
@@ -110,6 +111,14 @@ public class NotaSaidaProdutoBean {
 
     public void setSituacao(String situacao) {
         this.situacao = situacao;
+    }
+
+    public double getValoracessorios() {
+        return valoracessorios;
+    }
+
+    public void setValoracessorios(double valoracessorios) {
+        this.valoracessorios = valoracessorios;
     }
     
     

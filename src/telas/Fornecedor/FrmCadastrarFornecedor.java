@@ -15,6 +15,7 @@ import Regras.Formatacao;
 import Interfaces.ItelaConsulta;
 import Regras.FornecedorController;
 import Regras.MunicipiosController;
+import facadeRemoto.FornecedorRemotoFacade;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
@@ -183,7 +184,7 @@ public class FrmCadastrarFornecedor extends javax.swing.JFrame implements IForne
         });
         jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 470, 50));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 470, 50));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -510,6 +511,7 @@ public class FrmCadastrarFornecedor extends javax.swing.JFrame implements IForne
 //            }
             FornecedorController fornecedorController = new FornecedorController();
             this.fornecedor = fornecedorController.salvarFronecedor(fornecedor);
+            salvarFornecedorRemoto(fornecedor);
             telaConsulta.setModelProduto(null, null);
             this.dispose();
         } else {
@@ -612,6 +614,21 @@ public class FrmCadastrarFornecedor extends javax.swing.JFrame implements IForne
         this.municipios=null;
         cidadejTextField.setText("");
         estadojTextField.setText("");
+    }
+    
+    public void salvarFornecedorRemoto(Fornecedor fornecedor){
+        fornecedor.setIdfornecedor(null);
+        FornecedorRemotoFacade fornecedorRemotoFacade = new FornecedorRemotoFacade();
+        Fornecedor fornecedorPesquisa = fornecedorRemotoFacade.consultarCNPJ(fornecedor.getCnpj());
+        if (fornecedorPesquisa==null){
+            try {
+                fornecedorRemotoFacade.salvarFronecedor(fornecedor);
+            } catch (Exception ex) {
+                Logger.getLogger(FrmCadastrarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else {
+            JOptionPane.showMessageDialog(rootPane, "Fornecedor não salvo na outra loja");
+        }
     }
      
    

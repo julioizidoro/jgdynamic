@@ -69,9 +69,6 @@ public class GerarRelEntradaSaida {
                 for(int i=0;i<listaSaida.size();i++){
                     Viewprodutosaida saida = new Viewprodutosaida();
                     saida = listaSaida.get(i);
-                    if (saida.getProdutoIdproduto()==1936){
-                        System.out.println("teste");
-                    }
                     salvarProdutoSaida(saida);
                 }
             }
@@ -122,9 +119,6 @@ public class GerarRelEntradaSaida {
             produto.setQuantidadeSaida(saida.getQuantidade());
             produto.setValorSaida(saida.getValorVenda().doubleValue());
             produto.setValorCustoSaida(saida.getValorCompra().doubleValue());
-            if (produto.getIdProduto()==1936){
-                System.out.println("TEste");
-            }
             if (produto.getValorEntrada()==null){
                 produto.setValorEntrada(0.0);
             }
@@ -132,9 +126,6 @@ public class GerarRelEntradaSaida {
                 produto.setQuantidadeEntrada(0.0);
             }
         }else {
-            if (produto.getIdProduto()==1936){
-                System.out.println("teste");
-            }
             produto.setQuantidadeSaida(saida.getQuantidade() + produto.getQuantidadeSaida());
             produto.setValorSaida(saida.getValorVenda() + produto.getValorSaida());
             produto.setValorCustoSaida(produto.getValorCustoSaida() + saida.getValorCompra());

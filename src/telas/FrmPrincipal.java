@@ -99,8 +99,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         usuariologadojLabel.setText("Usuário Logado : " + this.usuarioLogado.getUsuario().getNome());
         nomeFantasiajLabel.setText(config.getEmpresa().getNomeFantasia());
         razaoSocialjLabel.setText(config.getEmpresa().getRazaoSocial());
-        Empresa empresa = config.getEmpresa();
-        empresa.setRazaoSocial("JUlio TEste");
         this.setVisible(true);
     }
     
