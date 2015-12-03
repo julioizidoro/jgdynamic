@@ -345,5 +345,4 @@ public class Empresa implements Serializable {
     public void setTimeZona(String timeZona) {
         this.timeZona = timeZona;
     }
-
 }

@@ -362,7 +362,7 @@ public class FrmCartaoCorrecao extends javax.swing.JFrame implements INotaSaidaB
         String cArqNFe = this.arquivoNFe.getAbsolutePath();
         String cEnviaPDF = "1";
         String cAssunto = "Carta de Correção da NF-e em anexo";
-        String cEmailcopia = "jizidoro@globo.com";
+        String cEmailcopia = "";
         String texto = "NFe.EnviarEmailEvento(";
         texto = texto + "\"" + cdestino + "\""  + ","
                 + "\"" + cArqEvento + "\"" + "," 

@@ -515,7 +515,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         String cArqXML = this.config.getCaminhoNFe() + listaNotaSaida.get(linha).getNomeArquivoXML();
         String cEnviaPDF = "1";
         String cAssunto = "Segue em Anexo NF-e da empresa " + this.config.getEmpresa().getRazaoSocial();
-        String cEmailsCopias = "jizidoro@globo.com";
+        String cEmailsCopias = "";
         if ((email!=null)){
             cEmailsCopias = cEmailsCopias + ";" + email;
         }

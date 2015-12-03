@@ -15,6 +15,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "subgrupoproduto")
 public class Subgrupoproduto implements Serializable {
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +24,12 @@ public class Subgrupoproduto implements Serializable {
     private Integer idsubGrupoProduto;
     @Column(name = "descricao")
     private String descricao;
-    @Column(name = "percentualComissao")
-    private double percentualComissao;
     @Column(name = "grupoproduto_idgrupoProduto")
     private int grupoproduto;
-
+    @Column(name = "percentualComissao")
+    private Double percentualComissao;
+    
+    
     public Subgrupoproduto() {
     }
 
@@ -43,13 +45,6 @@ public class Subgrupoproduto implements Serializable {
         this.idsubGrupoProduto = idsubGrupoProduto;
     }
 
-    public double getPercentualComissao() {
-        return percentualComissao;
-    }
-
-    public void setPercentualComissao(double percentualComissao) {
-        this.percentualComissao = percentualComissao;
-    }
 
     public String getDescricao() {
         return descricao;
@@ -94,5 +89,11 @@ public class Subgrupoproduto implements Serializable {
         return getIdsubGrupoProduto() + " - " + getDescricao();
     }
 
+    public Double getPercentualComissao() {
+        return percentualComissao;
+    }
 
+    public void setPercentualComissao(Double percentualComissao) {
+        this.percentualComissao = percentualComissao;
+    }
 }

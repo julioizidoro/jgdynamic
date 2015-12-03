@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,6 +23,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "aliquota")
 public class Aliquota implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "aliquota")
+    private List<Produto> produtoList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -89,6 +92,14 @@ public class Aliquota implements Serializable {
     @Override
     public String toString() {
         return getDescricao();
+    }
+
+    public List<Produto> getProdutoList() {
+        return produtoList;
+    }
+
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
     }
 
     

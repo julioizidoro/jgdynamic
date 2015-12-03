@@ -240,6 +240,32 @@ jLabel38 = new javax.swing.JLabel();
 valorDuplicatajTextField = new javax.swing.JTextField();
 jButton14 = new javax.swing.JButton();
 jButton15 = new javax.swing.JButton();
+jPanel8 = new javax.swing.JPanel();
+jLabel44 = new javax.swing.JLabel();
+jLabel45 = new javax.swing.JLabel();
+modalidadefretejComboBox = new javax.swing.JComboBox();
+nomeTransportadorajTextField = new javax.swing.JTextField();
+jLabel46 = new javax.swing.JLabel();
+jLabel47 = new javax.swing.JLabel();
+jLabel48 = new javax.swing.JLabel();
+uftransportadorajTextField = new javax.swing.JTextField();
+ietransportadorajTextField = new javax.swing.JTextField();
+cnpjtransportadorajTextField = new javax.swing.JTextField();
+jLabel49 = new javax.swing.JLabel();
+enderecotransportadorajTextField = new javax.swing.JTextField();
+ciadetransportadorajTextField = new javax.swing.JTextField();
+jLabel50 = new javax.swing.JLabel();
+pesoliquidojTextField = new javax.swing.JTextField();
+jLabel54 = new javax.swing.JLabel();
+pesobrutojTextField = new javax.swing.JTextField();
+jLabel53 = new javax.swing.JLabel();
+evolumesjTextField = new javax.swing.JTextField();
+jLabel52 = new javax.swing.JLabel();
+nvolumesjTextField = new javax.swing.JTextField();
+jLabel51 = new javax.swing.JLabel();
+jLabel55 = new javax.swing.JLabel();
+jLabel56 = new javax.swing.JLabel();
+jLabel57 = new javax.swing.JLabel();
 
 javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
 jPanel7.setLayout(jPanel7Layout);
@@ -403,7 +429,7 @@ jPanel7Layout.setHorizontalGroup(
                                     .addComponent(jLabel5)
                                     .addComponent(seriejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addContainerGap(680, Short.MAX_VALUE))
+                    .addContainerGap(703, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -412,7 +438,7 @@ jPanel7Layout.setHorizontalGroup(
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(dataEmissaojDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
@@ -1136,6 +1162,159 @@ jPanel7Layout.setHorizontalGroup(
 
     jTabbedPane1.addTab("Dados de Cobrança", jPanel5);
 
+    jLabel44.setText("Nome / Razão Social");
+
+    jLabel45.setText("Frete pro conta");
+
+    modalidadefretejComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 - Por conta do Emitente", "1 - Por conta do destinatário/remetente", "2 - Por conta de terceiros", "9 - Sem frete" }));
+
+    jLabel46.setText("CNPJ Transportadora");
+
+    jLabel47.setText("Inscrição Estadual");
+
+    jLabel48.setText("Sigla Estado");
+
+    jLabel49.setText("Endereço Completo");
+
+    jLabel50.setText("Cidade");
+
+    pesoliquidojTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+    pesoliquidojTextField.setToolTipText("");
+
+    jLabel54.setText("Peso Líquido");
+
+    pesobrutojTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+    pesobrutojTextField.setToolTipText("");
+
+    jLabel53.setText("Peso Bruto");
+
+    evolumesjTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+    evolumesjTextField.setToolTipText("");
+
+    jLabel52.setText("Espécie");
+
+    nvolumesjTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+    nvolumesjTextField.setToolTipText("");
+
+    jLabel51.setText("Quantiade Volumes");
+
+    jLabel55.setForeground(new java.awt.Color(0, 51, 255));
+    jLabel55.setText(" 1 - Isncrição estadual informar somente números");
+
+    jLabel56.setForeground(new java.awt.Color(0, 51, 255));
+    jLabel56.setText("2 - Se for isento de inscricção estadual informar a palavra ISENTO");
+
+    jLabel57.setForeground(new java.awt.Color(0, 51, 255));
+    jLabel57.setText("3 - Se possuir inscrição estadual informar a sigla do Estado");
+
+    javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+    jPanel8.setLayout(jPanel8Layout);
+    jPanel8Layout.setHorizontalGroup(
+        jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel8Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addGap(4, 4, 4)
+                            .addComponent(jLabel51))
+                        .addComponent(nvolumesjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(27, 27, 27)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(evolumesjTextField)
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addComponent(jLabel52)
+                            .addGap(0, 67, Short.MAX_VALUE)))
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(pesobrutojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel53))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel54)
+                        .addComponent(pesoliquidojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(enderecotransportadorajTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nomeTransportadorajTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel44, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cnpjtransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel46))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel47)
+                                    .addComponent(ietransportadorajTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))))
+                        .addComponent(jLabel49))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel50)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel45)
+                            .addComponent(modalidadefretejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(uftransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel48)
+                            .addComponent(ciadetransportadorajTextField))))
+                .addComponent(jLabel55)
+                .addComponent(jLabel56)
+                .addComponent(jLabel57))
+            .addContainerGap(295, Short.MAX_VALUE))
+    );
+    jPanel8Layout.setVerticalGroup(
+        jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel8Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel44)
+                .addComponent(jLabel45))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(nomeTransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(modalidadefretejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel46)
+                .addComponent(jLabel47)
+                .addComponent(jLabel48))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(cnpjtransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ietransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(uftransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel49)
+                .addComponent(jLabel50))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(enderecotransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ciadetransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel51)
+                .addComponent(jLabel52)
+                .addComponent(jLabel53)
+                .addComponent(jLabel54))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(nvolumesjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(evolumesjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pesobrutojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pesoliquidojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(44, 44, 44)
+            .addComponent(jLabel55)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jLabel56)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jLabel57)
+            .addContainerGap(183, Short.MAX_VALUE))
+    );
+
+    jTabbedPane1.addTab("Transporte", jPanel8);
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
@@ -1430,7 +1609,9 @@ jPanel7Layout.setHorizontalGroup(
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bairrojTextField;
     private javax.swing.JFormattedTextField cepjFormattedTextField;
+    private javax.swing.JTextField ciadetransportadorajTextField;
     private javax.swing.JTextField cidadejTextField;
+    private javax.swing.JTextField cnpjtransportadorajTextField;
     private javax.swing.JComboBox comSTjComboBox;
     private javax.swing.JTextField complementojTextField;
     private javax.swing.JComboBox contribuintejComboBox;
@@ -1440,10 +1621,13 @@ jPanel7Layout.setHorizontalGroup(
     private javax.swing.JTable duplicatajTable;
     private javax.swing.JTable duplicatajTable1;
     private javax.swing.JTextField emailjTextField;
+    private javax.swing.JTextField enderecotransportadorajTextField;
     private javax.swing.JTextField estadojTextField;
+    private javax.swing.JTextField evolumesjTextField;
     private javax.swing.JFormattedTextField foneFixojFormattedTextField;
     private javax.swing.JComboBox formaPagamentojComboBox;
     private javax.swing.JButton gerarjButton;
+    private javax.swing.JTextField ietransportadorajTextField;
     private javax.swing.JTextArea infojTextArea;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -1490,7 +1674,21 @@ jPanel7Layout.setHorizontalGroup(
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1505,18 +1703,24 @@ jPanel7Layout.setHorizontalGroup(
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField logradourojTextFiel;
+    private javax.swing.JComboBox modalidadefretejComboBox;
     private javax.swing.JTextField naturezaOperacaojTextField;
+    private javax.swing.JTextField nomeTransportadorajTextField;
     private javax.swing.JTextField nomejTextField;
     private javax.swing.JTextField numeroDuplicatajTextField;
     private javax.swing.JTextField numeroFaturajTextField;
     private javax.swing.JTextField numeroNFejTextField;
     private javax.swing.JTextField numerojTextField;
+    private javax.swing.JTextField nvolumesjTextField;
+    private javax.swing.JTextField pesobrutojTextField;
+    private javax.swing.JTextField pesoliquidojTextField;
     private javax.swing.JTable produtojTable;
     private javax.swing.JTextField rgjTextField;
     private javax.swing.JComboBox semSTjComboBox;
@@ -1525,6 +1729,7 @@ jPanel7Layout.setHorizontalGroup(
     private javax.swing.JComboBox tipoOperacaojComboBox;
     private javax.swing.JTextField totalNotajTextField;
     private javax.swing.JTextField totalProdutojTextField;
+    private javax.swing.JTextField uftransportadorajTextField;
     private javax.swing.JTextField valorDescontoCalculadojTextField;
     private javax.swing.JTextField valorDescontoFaturajTextField;
     private javax.swing.JTextField valorDescontojTextField;
@@ -1704,6 +1909,7 @@ jPanel7Layout.setHorizontalGroup(
         gerarDadosDestinatario();
         gerarDadosProduto();
         gerarTotaisSimplesNacional();
+        gerarTrasnporte();
         if (notaSaidaBean.getFormaPagamento().equalsIgnoreCase("A PRAZO")){
             if (notaSaidaBean.getFatura()!=null){
                 gerarFatura();
@@ -1907,11 +2113,50 @@ jPanel7Layout.setHorizontalGroup(
         arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getValorNota())) + "|");//w16
         arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios())) + "|");//w16a
         arquivo.write("\r\n");
-        arquivo.write("X|9|");
+    }
+    
+    public void gerarTrasnporte() throws IOException{
+        String modalidade = modalidadeFrete();
+        arquivo.write("X|");
+        arquivo.write(modalidade + "|");
+        arquivo.write(retirarPontos(cnpjtransportadorajTextField.getText()) + "|");
         arquivo.write("\r\n");
-        arquivo.write("Z||" + notaSaidaBean.getInfoTexto() + " - VALOR APROXIMADO DOS TRIBUTOS R$ " +
-                Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios()) + 
-                infojTextArea.getText() + "|");
+        if (nomeTransportadorajTextField.getText().length()>0) {
+            arquivo.write("X03" + "|");
+            if (ietransportadorajTextField.getText().length() > 0) {
+                arquivo.write(retirarPontos(ietransportadorajTextField.getText()) + "|");
+            }
+            arquivo.write(enderecotransportadorajTextField.getText() + "|");
+            arquivo.write(ciadetransportadorajTextField.getText() + "|");
+            arquivo.write(uftransportadorajTextField.getText() + "|");
+            arquivo.write("\r\n");
+        }
+        arquivo.write("X26" + "|");
+        arquivo.write(nvolumesjTextField.getText() + "|");
+        arquivo.write(evolumesjTextField.getText() + "|");
+        arquivo.write(pesobrutojTextField.getText() + "|");
+        arquivo.write(pesoliquidojTextField.getText() + "|");
+        
+         arquivo.write("\r\n");
+        arquivo.write("Z||" + notaSaidaBean.getInfoTexto() + " - VALOR APROXIMADO DOS TRIBUTOS R$ "
+                + Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios())
+                + infojTextArea.getText() + "|");
+        
+    }
+    
+    public String modalidadeFrete(){
+        if (modalidadefretejComboBox.getSelectedItem().toString().equalsIgnoreCase("0 - Por conta do Emitente")){
+            return "0";
+        }else if (modalidadefretejComboBox.getSelectedItem().toString().equalsIgnoreCase("1 - Por conta do destinatário/remetente")){
+            return "1";
+        }
+        if (modalidadefretejComboBox.getSelectedItem().toString().equalsIgnoreCase("2 - Por conta de terceiros")){
+            return "2";
+        }
+        if (modalidadefretejComboBox.getSelectedItem().toString().equalsIgnoreCase("9 - Sem frete")){
+            return "9";
+        }
+        return "9";
     }
 
     public void gerarPisSimplesNacional() throws IOException{
@@ -2343,7 +2588,7 @@ jPanel7Layout.setHorizontalGroup(
         String cArqXML = this.config.getCaminhoNFe() + this.arquivoXML.getName();
         String cEnviaPDF = "1";
         String cAssunto = "Segue em Anexo NF-e da empresa " + this.config.getEmpresa().getRazaoSocial();
-        String cEmailsCopias = "jizidoro@globo.com";
+        String cEmailsCopias = "";
         String texto = "NFe.EnviarEmail(" + cEmailDestino+ "," +
                 cArqXML + "," + cEnviaPDF + "," + cAssunto + "," +
                         cEmailsCopias + ")";

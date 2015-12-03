@@ -12,6 +12,7 @@ package telas.Fornecedor;
 
 import Interfaces.IforPedido;
 import Interfaces.ItelaConsulta;
+import Singleton.ConexaoSingletonRemota;
 import beanController.NfDuplicatas;
 import beanController.NfProdutos;
 import beanController.NotaEletronica;
@@ -25,6 +26,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 import model.Banco;
 import model.Estoque;
@@ -444,7 +446,10 @@ public final class FrmConsultaFornecedor extends javax.swing.JFrame implements I
     }// </editor-fold>//GEN-END:initComponents
 
     private void AdicionarAssociado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdicionarAssociado
-        new FrmCadastrarFornecedor(null, this);
+            EntityManager manager = ConexaoSingletonRemota.getConexao();
+            if (manager != null) {
+                new FrmCadastrarFornecedor(null, this);
+            }
     }//GEN-LAST:event_AdicionarAssociado
 
     private void EditarCadastroAssociado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarCadastroAssociado

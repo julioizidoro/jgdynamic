@@ -23,6 +23,12 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "produto")
 public class Produto implements Serializable {
+    @Column(name = "sincronizado")
+    private Integer sincronizado;
+    @Column(name = "percentualComissao")
+    private Double percentualComissao;
+    @Column(name = "codgioJurere")
+    private Integer codgioJurere;
     @Column(name =     "dataPedido")
     @Temporal(TemporalType.DATE)
     private Date dataPedido;
@@ -53,10 +59,6 @@ public class Produto implements Serializable {
     private Integer referencia;
     @Column(name = "codigoBarras")
     private String codigoBarras;
-    @Column(name = "sincronizado")
-    private int sincronizado;
-    @Column(name = "percentualComissao")
-    private double percentualComissao;
     @Column(name = "aliquota_idaliquota")
     private int aliquota;
     @Column(name = "subgrupoproduto_idsubGrupoProduto")
@@ -83,13 +85,6 @@ public class Produto implements Serializable {
         return descricao;
     }
     
-    public void setpercentualComissao(double percentualComissao) {
-        this.percentualComissao = percentualComissao;
-    }
-
-    public double getPercentualComissao() {
-        return percentualComissao;
-    }
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
@@ -115,13 +110,6 @@ public class Produto implements Serializable {
         return mva;
     }
 
-    public int getSincronizado() {
-        return sincronizado;
-    }
-
-    public void setSincronizado(int sincronizado) {
-        this.sincronizado = sincronizado;
-    }
 
     public void setMva(Double mva) {
         this.mva = mva;
@@ -225,6 +213,31 @@ public class Produto implements Serializable {
     public void setDataPedido(Date dataPedido) {
         this.dataPedido = dataPedido;
     }
+
+    public Integer getSincronizado() {
+        return sincronizado;
+    }
+
+    public void setSincronizado(Integer sincronizado) {
+        this.sincronizado = sincronizado;
+    }
+
+    public Double getPercentualComissao() {
+        return percentualComissao;
+    }
+
+    public void setPercentualComissao(Double percentualComissao) {
+        this.percentualComissao = percentualComissao;
+    }
+
+    public Integer getCodgioJurere() {
+        return codgioJurere;
+    }
+
+    public void setCodgioJurere(Integer codgioJurere) {
+        this.codgioJurere = codgioJurere;
+    }
+
 
 
 }

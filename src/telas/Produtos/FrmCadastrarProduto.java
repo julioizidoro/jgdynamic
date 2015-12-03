@@ -655,8 +655,8 @@ public class FrmCadastrarProduto extends javax.swing.JFrame implements ICadProdu
             produto.setNcm("0");
         }else produto.setNcm(ncmjTextField.getText());
         if (comissaojFormattedTextField.getText().length()==0){
-            produto.setpercentualComissao(0.0);
-        }else produto.setpercentualComissao(Formatacao.ConvercaoMonetariaDouble(comissaojFormattedTextField.getText()));
+            produto.setPercentualComissao(0.0);
+        }else produto.setPercentualComissao(Formatacao.ConvercaoMonetariaDouble(comissaojFormattedTextField.getText()));
         produto.setMva(Formatacao.ConvercaoMonetariaDouble(mvajFormattedTextField.getText()));
         produto.setSituacao((String) situacaojComboBox.getSelectedItem());
         produto.setReferencia(Integer.parseInt(codigojTextField.getText()));

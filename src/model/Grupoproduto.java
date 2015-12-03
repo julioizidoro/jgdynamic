@@ -23,6 +23,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "grupoproduto")
 public class Grupoproduto implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "grupoproduto")
+    private List<Subgrupoproduto> subgrupoprodutoList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,6 +81,14 @@ public class Grupoproduto implements Serializable {
     @Override
     public String toString() {
         return getIdgrupoProduto() + " - " + getDescricao();
+    }
+
+    public List<Subgrupoproduto> getSubgrupoprodutoList() {
+        return subgrupoprodutoList;
+    }
+
+    public void setSubgrupoprodutoList(List<Subgrupoproduto> subgrupoprodutoList) {
+        this.subgrupoprodutoList = subgrupoprodutoList;
     }
 
 }

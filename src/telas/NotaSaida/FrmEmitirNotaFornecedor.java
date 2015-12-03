@@ -165,8 +165,6 @@ public class FrmEmitirNotaFornecedor extends javax.swing.JFrame implements INota
     jLabel31 = new javax.swing.JLabel();
     valorDescontoCalculadojTextField = new javax.swing.JTextField();
     jButton16 = new javax.swing.JButton();
-    jLabel42 = new javax.swing.JLabel();
-    fretejComboBox = new javax.swing.JComboBox();
     jLabel43 = new javax.swing.JLabel();
     despAcessoriasjTextField = new javax.swing.JTextField();
     jPanel2 = new javax.swing.JPanel();
@@ -250,6 +248,32 @@ jLabel41 = new javax.swing.JLabel();
 jLabel39 = new javax.swing.JLabel();
 modeloreferenciajTextField = new javax.swing.JTextField();
 jButton2 = new javax.swing.JButton();
+jPanel13 = new javax.swing.JPanel();
+jLabel44 = new javax.swing.JLabel();
+nomeTransportadorajTextField = new javax.swing.JTextField();
+modalidadefretejComboBox = new javax.swing.JComboBox();
+jLabel45 = new javax.swing.JLabel();
+jLabel46 = new javax.swing.JLabel();
+cnpjtransportadorajTextField = new javax.swing.JTextField();
+ietransportadorajTextField = new javax.swing.JTextField();
+jLabel47 = new javax.swing.JLabel();
+uftransportadorajTextField = new javax.swing.JTextField();
+jLabel48 = new javax.swing.JLabel();
+jLabel49 = new javax.swing.JLabel();
+enderecotransportadorajTextField = new javax.swing.JTextField();
+jLabel50 = new javax.swing.JLabel();
+ciadetransportadorajTextField = new javax.swing.JTextField();
+jLabel51 = new javax.swing.JLabel();
+nvolumesjTextField = new javax.swing.JTextField();
+evolumesjTextField = new javax.swing.JTextField();
+jLabel52 = new javax.swing.JLabel();
+pesobrutojTextField = new javax.swing.JTextField();
+jLabel53 = new javax.swing.JLabel();
+pesoliquidojTextField = new javax.swing.JTextField();
+jLabel54 = new javax.swing.JLabel();
+jLabel55 = new javax.swing.JLabel();
+jLabel56 = new javax.swing.JLabel();
+jLabel57 = new javax.swing.JLabel();
 jMenuBar1 = new javax.swing.JMenuBar();
 jMenu1 = new javax.swing.JMenu();
 jMenu2 = new javax.swing.JMenu();
@@ -388,10 +412,6 @@ jPanel7Layout.setHorizontalGroup(
         }
     });
 
-    jLabel42.setText("Frete");
-
-    fretejComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 - Por conta do Emitente", "1 - Por conta do destinatario", "3 - Por conta de terceiros", "9 - Sem frete" }));
-
     jLabel43.setText("Desp Acessorias");
 
     despAcessoriasjTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -446,21 +466,14 @@ jPanel7Layout.setHorizontalGroup(
                                 .addComponent(jLabel8)
                                 .addComponent(totalProdutojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel43)
+                                .addComponent(despAcessoriasjTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(17, 17, 17)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel42)
-                                        .addComponent(fretejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(29, 29, 29))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel43)
-                                        .addComponent(despAcessoriasjTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(valorDescontojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)))
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(valorDescontojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tipoOperacaojComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -499,13 +512,11 @@ jPanel7Layout.setHorizontalGroup(
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel3)
-                .addComponent(jLabel22)
-                .addComponent(jLabel42))
+                .addComponent(jLabel22))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(tipoNFejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(tipoOperacaojComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(fretejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(tipoOperacaojComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1249,6 +1260,158 @@ jPanel7Layout.setHorizontalGroup(
 
     jTabbedPane1.addTab("Documento Fiscal Referenciado", jPanel8);
 
+    jLabel44.setText("Nome / Razão Social");
+
+    modalidadefretejComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 - Por conta do Emitente", "1 - Por conta do destinatário/remetente", "2 - Por conta de terceiros", "9 - Sem frete" }));
+
+    jLabel45.setText("Frete pro conta");
+
+    jLabel46.setText("CNPJ Transportadora");
+
+    jLabel47.setText("Inscrição Estadual");
+
+    jLabel48.setText("Sigla Estado");
+
+    jLabel49.setText("Endereço Completo");
+
+    jLabel50.setText("Cidade");
+
+    jLabel51.setText("Quantiade Volumes");
+
+    nvolumesjTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+    nvolumesjTextField.setText("0");
+
+    evolumesjTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+
+    jLabel52.setText("Espécie");
+
+    pesobrutojTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+    pesobrutojTextField.setText("0");
+
+    jLabel53.setText("Peso Bruto");
+
+    pesoliquidojTextField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+    pesoliquidojTextField.setText("0");
+
+    jLabel54.setText("Peso Líquido");
+
+    jLabel55.setForeground(new java.awt.Color(0, 51, 255));
+    jLabel55.setText(" 1 - Isncrição estadual informar somente números");
+
+    jLabel56.setForeground(new java.awt.Color(0, 51, 255));
+    jLabel56.setText("2 - Se for isento de inscricção estadual informar a palavra ISENTO");
+
+    jLabel57.setForeground(new java.awt.Color(0, 51, 255));
+    jLabel57.setText("3 - Se possuir inscrição estadual informar a sigla do Estado");
+
+    javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+    jPanel13.setLayout(jPanel13Layout);
+    jPanel13Layout.setHorizontalGroup(
+        jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel13Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel13Layout.createSequentialGroup()
+                            .addGap(4, 4, 4)
+                            .addComponent(jLabel51))
+                        .addComponent(nvolumesjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(27, 27, 27)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(evolumesjTextField)
+                        .addGroup(jPanel13Layout.createSequentialGroup()
+                            .addComponent(jLabel52)
+                            .addGap(0, 67, Short.MAX_VALUE)))
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(pesobrutojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel53))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel54)
+                        .addComponent(pesoliquidojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(enderecotransportadorajTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nomeTransportadorajTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel44, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
+                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cnpjtransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel46))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel47)
+                                    .addComponent(ietransportadorajTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))))
+                        .addComponent(jLabel49))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel50)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel45)
+                            .addComponent(modalidadefretejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(uftransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel48)
+                            .addComponent(ciadetransportadorajTextField))))
+                .addComponent(jLabel55)
+                .addComponent(jLabel56)
+                .addComponent(jLabel57))
+            .addContainerGap(340, Short.MAX_VALUE))
+    );
+    jPanel13Layout.setVerticalGroup(
+        jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel13Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel44)
+                .addComponent(jLabel45))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(nomeTransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(modalidadefretejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel46)
+                .addComponent(jLabel47)
+                .addComponent(jLabel48))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(cnpjtransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ietransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(uftransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel49)
+                .addComponent(jLabel50))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(enderecotransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ciadetransportadorajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel51)
+                .addComponent(jLabel52)
+                .addComponent(jLabel53)
+                .addComponent(jLabel54))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(nvolumesjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(evolumesjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pesobrutojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pesoliquidojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(44, 44, 44)
+            .addComponent(jLabel55)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jLabel56)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jLabel57)
+            .addContainerGap(184, Short.MAX_VALUE))
+    );
+
+    jTabbedPane1.addTab("Transporte", jPanel13);
+
     jMenu1.setText("File");
     jMenuBar1.add(jMenu1);
 
@@ -1437,7 +1600,7 @@ jPanel7Layout.setHorizontalGroup(
     private void numeroNFejTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numeroNFejTextFieldFocusLost
         int numeroAtual = Integer.parseInt(numeroNFejTextField.getText());
         if (numeroAtual!=numeroNFE){
-            JOptionPane.showMessageDialog(fretejComboBox, "Número da NF-e fora da sequência");
+            JOptionPane.showMessageDialog(null, "Número da NF-e fora da sequência");
         }
     }//GEN-LAST:event_numeroNFejTextFieldFocusLost
 
@@ -1460,8 +1623,10 @@ jPanel7Layout.setHorizontalGroup(
     private javax.swing.JTextField bairrojTextField;
     private javax.swing.JFormattedTextField cepjFormattedTextField;
     private javax.swing.JTextField chaveACessojTextField;
+    private javax.swing.JTextField ciadetransportadorajTextField;
     private javax.swing.JTextField cidadejTextField;
     private javax.swing.JTextField cnpjreferenciajTextField;
+    private javax.swing.JTextField cnpjtransportadorajTextField;
     private javax.swing.JTextField codigoUFjTextField;
     private javax.swing.JComboBox comSTjComboBox;
     private javax.swing.JTextField complementojTextField;
@@ -1473,11 +1638,13 @@ jPanel7Layout.setHorizontalGroup(
     private javax.swing.JTable duplicatajTable;
     private javax.swing.JTable duplicatajTable1;
     private javax.swing.JTextField emailjTextField;
+    private javax.swing.JTextField enderecotransportadorajTextField;
     private javax.swing.JTextField estadojTextField;
+    private javax.swing.JTextField evolumesjTextField;
     private javax.swing.JFormattedTextField foneFixojFormattedTextField;
     private javax.swing.JComboBox formaPagamentojComboBox;
-    private javax.swing.JComboBox fretejComboBox;
     private javax.swing.JButton gerarjButton;
+    private javax.swing.JTextField ietransportadorajTextField;
     private javax.swing.JTextArea infojTextArea;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton14;
@@ -1527,9 +1694,22 @@ jPanel7Layout.setHorizontalGroup(
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1541,6 +1721,7 @@ jPanel7Layout.setHorizontalGroup(
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1556,14 +1737,19 @@ jPanel7Layout.setHorizontalGroup(
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField logradourojTextFiel;
     private javax.swing.JTextField mesanojTextField;
+    private javax.swing.JComboBox modalidadefretejComboBox;
     private javax.swing.JTextField modeloreferenciajTextField;
     private javax.swing.JTextField naturezaOperacaojTextField;
+    private javax.swing.JTextField nomeTransportadorajTextField;
     private javax.swing.JTextField nomejTextField;
     private javax.swing.JTextField numeroDuplicatajTextField;
     private javax.swing.JTextField numeroFaturajTextField;
     private javax.swing.JTextField numeroNFejTextField;
     private javax.swing.JTextField numeroNFereferenciajTextField;
     private javax.swing.JTextField numerojTextField;
+    private javax.swing.JTextField nvolumesjTextField;
+    private javax.swing.JTextField pesobrutojTextField;
+    private javax.swing.JTextField pesoliquidojTextField;
     private javax.swing.JTable produtojTable;
     private javax.swing.JTextField rgjTextField;
     private javax.swing.JComboBox semSTjComboBox;
@@ -1573,6 +1759,7 @@ jPanel7Layout.setHorizontalGroup(
     private javax.swing.JComboBox tipoOperacaojComboBox;
     private javax.swing.JTextField totalNotajTextField;
     private javax.swing.JTextField totalProdutojTextField;
+    private javax.swing.JTextField uftransportadorajTextField;
     private javax.swing.JTextField valorDescontoCalculadojTextField;
     private javax.swing.JTextField valorDescontoFaturajTextField;
     private javax.swing.JTextField valorDescontojTextField;
@@ -1721,6 +1908,7 @@ jPanel7Layout.setHorizontalGroup(
         gerarDadosDestinatario();
         gerarDadosProduto();
         gerarTotaisSimplesNacional();
+        gerarTrasnporte();
         if (notaSaidaBean.getFormaPagamento().equalsIgnoreCase("A PRAZO")){
             if (notaSaidaBean.getFatura()!=null){
                 gerarFatura();
@@ -1931,18 +2119,37 @@ jPanel7Layout.setHorizontalGroup(
         arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getValorNota())) + "|");//w16
         arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios())) + "|");//w16a
         arquivo.write("\r\n");
-        if (fretejComboBox.getSelectedItem().toString().equalsIgnoreCase("0 - Por conta do Emitente")){
-            arquivo.write("X|0|");
-        }else if (fretejComboBox.getSelectedItem().toString().equalsIgnoreCase("1 - Por conta do destinatario")){
-            arquivo.write("X|1|");
-        }else if (fretejComboBox.getSelectedItem().toString().equalsIgnoreCase("3 - Por conta de terceiros")){
-            arquivo.write("X|2|");
-        }else arquivo.write("X|9|");
+       
         
+    }
+    
+    public void gerarTrasnporte() throws IOException{
+        String modalidade = modalidadeFrete();
+        arquivo.write("X|");
+        arquivo.write(modalidade + "|");
+        arquivo.write(retirarPontos(cnpjtransportadorajTextField.getText()) + "|");
         arquivo.write("\r\n");
-        arquivo.write("Z||" + notaSaidaBean.getInfoTexto() + " - VALOR APROXIMADO DOS TRIBUTOS R$ " +
-                Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios()) + 
-                infojTextArea.getText() + "|");
+        if (nomeTransportadorajTextField.getText().length()>0) {
+            arquivo.write("X03" + "|");
+            if (ietransportadorajTextField.getText().length() > 0) {
+                arquivo.write(retirarPontos(ietransportadorajTextField.getText()) + "|");
+            }
+            arquivo.write(enderecotransportadorajTextField.getText() + "|");
+            arquivo.write(ciadetransportadorajTextField.getText() + "|");
+            arquivo.write(uftransportadorajTextField.getText() + "|");
+            arquivo.write("\r\n");
+        }
+        arquivo.write("X26" + "|");
+        arquivo.write(nvolumesjTextField.getText() + "|");
+        arquivo.write(evolumesjTextField.getText() + "|");
+        arquivo.write(pesobrutojTextField.getText() + "|");
+        arquivo.write(pesoliquidojTextField.getText() + "|");
+        
+         arquivo.write("\r\n");
+        arquivo.write("Z||" + notaSaidaBean.getInfoTexto() + " - VALOR APROXIMADO DOS TRIBUTOS R$ "
+                + Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios())
+                + infojTextArea.getText() + "|");
+        
     }
 
     public void gerarPisSimplesNacional() throws IOException{
@@ -1970,6 +2177,24 @@ jPanel7Layout.setHorizontalGroup(
         arquivo.write("0.00"+ "|");
         arquivo.write("\r\n");
     }
+    
+    
+    
+    public String modalidadeFrete(){
+        if (modalidadefretejComboBox.getSelectedItem().toString().equalsIgnoreCase("0 - Por conta do Emitente")){
+            return "0";
+        }else if (modalidadefretejComboBox.getSelectedItem().toString().equalsIgnoreCase("1 - Por conta do destinatário/remetente")){
+            return "1";
+        }
+        if (modalidadefretejComboBox.getSelectedItem().toString().equalsIgnoreCase("2 - Por conta de terceiros")){
+            return "2";
+        }
+        if (modalidadefretejComboBox.getSelectedItem().toString().equalsIgnoreCase("9 - Sem frete")){
+            return "9";
+        }
+        return "9";
+    }
+    
 
     public void gerarFatura() throws IOException{
         arquivo.write("Y|");
@@ -2365,7 +2590,7 @@ jPanel7Layout.setHorizontalGroup(
         String cArqXML = this.config.getCaminhoNFe() + this.arquivoXML.getName();
         String cEnviaPDF = "1";
         String cAssunto = "Segue em Anexo NF-e da empresa " + this.config.getEmpresa().getRazaoSocial();
-        String cEmailsCopias = "jizidoro@globo.com";
+        String cEmailsCopias = "";
         String texto = "NFe.EnviarEmail(" + cEmailDestino+ "," +
                 cArqXML + "," + cEnviaPDF + "," + cAssunto + "," +
                         cEmailsCopias + ")";

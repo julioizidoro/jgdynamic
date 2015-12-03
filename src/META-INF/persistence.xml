@@ -104,6 +104,8 @@
     <class>view.Viewprodutoentrada</class>
     <class>view.Viewprodutosaida</class>
     <class>view.Viewrelatoriodevolucao</class>
+    <class>model.Encerramento</class>
+    <class>model.Inventario</class>
     <properties>
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
