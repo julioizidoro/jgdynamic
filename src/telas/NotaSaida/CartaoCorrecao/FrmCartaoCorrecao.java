@@ -3,25 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package telas.NotaSaida;
+package telas.NotaSaida.CartaoCorrecao;
 
 import Regras.NotaSaidaController;
 import controler.Config;
+import controler.relatoriosJasper;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -33,10 +32,14 @@ import model.Fornecedor;
 import model.Municipios;
 import model.Notasaida;
 import model.Terminalcliente;
+import net.sf.ehcache.search.expression.Not;
 import telas.ContasReceber.CreditoBean;
 import telas.NotaSaida.Fatura.DuplicataBean;
 import telas.NotaSaida.Fatura.FaturaBean;
-import telas.NotaSaida.FrmConsultaNotaSaida.RemindTask;
+import telas.NotaSaida.FrmConsultaNotaSaida;
+
+import telas.NotaSaida.FrmEmitirNotaCliente;
+import telas.NotaSaida.INotaSaidaBean;
 
 /**
  *
@@ -248,24 +251,7 @@ public class FrmCartaoCorrecao extends javax.swing.JFrame implements INotaSaidaB
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void carregarArquivoXMLLocalizado(File file) {
-        if (file != null) {
-            arquivoXML = file;
-            try {
-                notaSaida.setXmlcarta(carregarXML());
-                NotaSaidaController notaSaidaController = new NotaSaidaController();
-                notaSaida = notaSaidaController.salvarNotaSaida(notaSaida);
-                imprimirCartaoCorrecao();
-                salvarArquivodeNFe();
-                EnviarEmailCartaoCorrecao();
-            } catch (IOException ex) {
-                Logger.getLogger(FrmConsultaNotaSaida.class.getName()).log(Level.SEVERE, null, ex);
-            }
-;
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Erro carregar Arquivo XML");
-        }
-    }
+    
 
     public void carregarFaturas(FaturaBean fatura, List<DuplicataBean> listaDuplicata) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -294,6 +280,10 @@ public class FrmCartaoCorrecao extends javax.swing.JFrame implements INotaSaidaB
     public void setDocEntrada(Docentrada docEntrada) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public void carregarArquivoXMLLocalizado(File file) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
      class RemindTask extends TimerTask {
 
@@ -307,6 +297,8 @@ public class FrmCartaoCorrecao extends javax.swing.JFrame implements INotaSaidaB
     }
      
      public void lerArquivoSaidaAcbr() throws IOException{
+       boolean resultado=false;
+       String tipoLeitor="dhRegEvento";
        File arqSaida = new File(this.config.getCaminhoAcbr() + "sainfe.txt");
         String xml = null;
         while (!arqSaida.exists()) {
@@ -317,66 +309,68 @@ public class FrmCartaoCorrecao extends javax.swing.JFrame implements INotaSaidaB
         }
         FileReader sainfe = new FileReader(arqSaida);
         BufferedReader leitor = new BufferedReader(sainfe);
-        xml = leitor.readLine();
-        String linha = xml.substring(0, 2);
-        if (linha.equalsIgnoreCase("OK")) {
+        String linha =" ";
+         while (linha != null) {
+             xml = leitor.readLine();
+             if (xml != null) {
+                 if (!resultado) {
+                     linha = xml.substring(0, 2);
+                     if (linha.equalsIgnoreCase("OK")) {
+                         resultado = true;
+                     }
+                 } else {
+                     if (xml.length() > 11) {
+                         if (tipoLeitor.equalsIgnoreCase("dhRegEvento")){
+                             linha = xml.substring(0, 11);
+                         }else{
+                             linha = xml.substring(0, 5);
+                         }
+                     } else {
+                         if (xml != null) {
+                             linha = "";
+                         }
+                     }
+                     if (linha.equalsIgnoreCase("dhRegEvento")) {
+                         notaSaida.setDatacorrecao(xml.substring(12, 31));
+                         tipoLeitor="nProt";
+                     } else {
+                         if (linha.equalsIgnoreCase("nProt")) {
+                             notaSaida.setProtocolo(xml.substring(6, 20));
+                             linha =null;
+                         }
+                     }
+                 }
+             }
+         }
+        if (resultado){
             JOptionPane.showMessageDialog(rootPane, "Carta de correção emitida com Sucesso");
-            new FrmLocalizarArquivoNFe(this, this.config.getCaminhoNFe());
         }else {
             JOptionPane.showMessageDialog(rootPane, "Erro oa gerar Nota Fiscal");
         }
         leitor.close();
+        notaSaida.setEvento(motivojTextArea.getText());
+        NotaSaidaController notaSaidaController = new NotaSaidaController();
+        notaSaidaController.salvarNotaSaida(notaSaida);
+        apagarArquivoSaidaAcbr();
+        imprimirCartaoCorrecao();
     }
-     
-     public byte[] carregarXML() throws IOException {
-        File file = arquivoXML;
-        InputStream is = new FileInputStream(file);
-        byte[] xml = new byte[(int) file.length()];
-        int offset = 0;
-        int numRead = 0;
-        while (offset < xml.length
-                && (numRead = is.read(xml, offset, xml.length - offset)) >= 0) {
-            offset += numRead;
-        }
-        return xml;
-    }   
      
     public void imprimirCartaoCorrecao(){
-        String texto = "NFe.ImprimirEvento(";
-        String chave = arquivoXML.getAbsolutePath();
-        texto = texto + "\"" + chave + "\"" + ")";
-        gerarArquivoAcbr(texto);
-    }
-    
-    public void salvarArquivodeNFe() throws FileNotFoundException, IOException{
-        String caminho = this.config.getCaminhoNFe() + notaSaida.getNomearquivocarta();
-        arquivoXML = new File(caminho);
-        FileOutputStream carta = new FileOutputStream(arquivoXML) ;    
-        carta.write(notaSaida.getXmlcarta());  
-        carta.close();
-    }
-    
-    public void EnviarEmailCartaoCorrecao(){
-        String cdestino = notaSaida.getEmail();
-        String cArqEvento = this.arquivoXML.getAbsolutePath();
-        String cArqNFe = this.arquivoNFe.getAbsolutePath();
-        String cEnviaPDF = "1";
-        String cAssunto = "Carta de Correção da NF-e em anexo";
-        String cEmailcopia = "";
-        String texto = "NFe.EnviarEmailEvento(";
-        texto = texto + "\"" + cdestino + "\""  + ","
-                + "\"" + cArqEvento + "\"" + "," 
-                + "\"" + cArqNFe + "\"" + "," 
-                + "\"" + cEnviaPDF + "\"" + "," 
-                + "\"" + cAssunto + "\"" + "," 
-                + "\"" + cEmailcopia + "\"" 
-                + ")";
-        gerarArquivoAcbr(texto);
+                String url = ("telas/NotaSaida/CartaoCorrecao/reportCartaCorrecao.jasper");
+        Map parameters = new HashMap();
         try {
-            apagarArquivoSaidaAcbr();
-        } catch (IOException ex) {
-            Logger.getLogger(FrmCartaoCorrecao.class.getName()).log(Level.SEVERE, null, ex);
+            parameters.put("chave", notaSaida.getChaveAutorizacao());
+            parameters.put("nfe", String.valueOf(notaSaida.getNumero()));
+            parameters.put("protocolo", notaSaida.getProtocolo());
+            parameters.put("data", notaSaida.getDatacorrecao());
+            parameters.put("correcao", notaSaida.getEvento());
+            parameters.put("idempresa", this.config.getEmpresa().getIdempresa());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Não foi possível gerar o relatório " + ex);
+            ex.printStackTrace();
         }
+        new relatoriosJasper(url, parameters);
+        this.dispose();
     }
     
     public void apagarArquivoSaidaAcbr() throws IOException {

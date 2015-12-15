@@ -54,6 +54,11 @@ public class ProdutoFacade {
           produtoDao = new ProdutoDao();
           return produtoDao.consultarProdutoReferencia(referencia);
       }
+      
+      public List<Produto> listarReferencia(int referencia) throws Exception {
+          produtoDao = new ProdutoDao();
+          return produtoDao.listarReferencia(referencia);
+      }
 
       public int pesquisarCodigoFabricante(String codigoFabricante) throws SQLException{
           produtoDao = new ProdutoDao();

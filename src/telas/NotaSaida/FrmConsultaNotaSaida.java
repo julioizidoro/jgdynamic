@@ -4,6 +4,7 @@
  */
 package telas.NotaSaida;
 
+import telas.NotaSaida.CartaoCorrecao.FrmCartaoCorrecao;
 import Regras.ClienteController;
 import Regras.Formatacao;
 import Regras.NotaSaidaController;

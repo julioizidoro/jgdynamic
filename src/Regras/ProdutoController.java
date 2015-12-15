@@ -31,6 +31,17 @@ public class ProdutoController {
         }
         return listaProduto;
      }
+     
+     public List<Produto> listarReferencia(int referencia)  {
+        ProdutoFacade produtoFacade = new ProdutoFacade();
+        try {
+            return produtoFacade.listarReferencia(referencia);
+        } catch (Exception ex) {
+            Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, " Erro consultar Produto");
+            return null;
+        }
+     }
     
     public Produto consultarProdutoReferencia(int referencia){
         Produto produto = new Produto();
@@ -44,6 +55,8 @@ public class ProdutoController {
         }
         return produto;
     }
+    
+    
     
     public Produto consultarProdutoFabricante(String codigoFabricante){
         ProdutoFacade produtoFacade = new ProdutoFacade();

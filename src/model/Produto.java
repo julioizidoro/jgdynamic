@@ -63,6 +63,10 @@ public class Produto implements Serializable {
     private int aliquota;
     @Column(name = "subgrupoproduto_idsubGrupoProduto")
     private int subgrupoproduto;
+    @Column(name = "estoque")
+    private String estoque;
+    @Column(name = "produto")
+    private String produto;
 
 
     public Produto() {
@@ -161,6 +165,22 @@ public class Produto implements Serializable {
 
     public void setSubgrupoproduto(int subgrupoproduto) {
         this.subgrupoproduto = subgrupoproduto;
+    }
+
+    public String getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(String estoque) {
+        this.estoque = estoque;
+    }
+
+    public String getProduto() {
+        return produto;
+    }
+
+    public void setProduto(String produto) {
+        this.produto = produto;
     }
 
 

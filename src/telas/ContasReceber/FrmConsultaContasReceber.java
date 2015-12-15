@@ -977,7 +977,7 @@ try{
             if (contasjTabbedPane.getSelectedIndex() == 4) {
                 int linha = faturasjTable.getSelectedRow();
                 if (linha >= 0) {
-                    if (listaFatura.get(linha).getDataVencimento().after(new Date())) {
+                    if (listaFatura.get(linha).getDataVencimento().before(new Date())) {
                         boolean resultado = JOptionPane.showConfirmDialog(null, "Excluir Fatura", "Atenção", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0;
                         if (resultado) {
                             excluirFatura(listaFatura.get(linha));

@@ -71,6 +71,14 @@ public class ProdutoDao {
         manager.close();
         return produto;
     }
+    
+    public List<Produto> listarReferencia(int referencia) throws Exception {
+        manager = ConexaoSingleton.getConexao();
+        Query q = manager.createQuery("select p from Produto p where p.referencia=" + referencia + " order by p.referencia asc");
+        List<Produto> listaProduto = q.getResultList();
+        manager.close();
+        return listaProduto;
+    }
 
     public List<Produto> consultarProduto(String descricao) throws Exception {
         manager = ConexaoSingleton.getConexao();

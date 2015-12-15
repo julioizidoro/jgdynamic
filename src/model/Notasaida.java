@@ -114,17 +114,19 @@ public class Notasaida implements Serializable {
     @Column(name = "motivocancelamento")
     private String motivocancelamento;
     @Lob
-    @Column(name = "xmlcarta")
-    private byte[] xmlcarta;
-    @Lob
     @Column(name = "xmlcancelada")
     private byte[] xmlcancelada;
     @Size(max = 200)
     @Column(name = "nomearquivocancelada")
     private String nomearquivocancelada;
-    @Size(max = 200)
-    @Column(name = "nomearquivocarta")
-    private String nomearquivocarta;
+    @Size(max = 100)        
+    @Column(name = "datacorrecao")
+    private String datacorrecao;
+    @Size(max = 50)
+    @Column(name = "protocolo")
+    private String protocolo;
+    @Column(name = "evento")
+    private String evento;
 
     public Notasaida() {
     }
@@ -153,16 +155,7 @@ public class Notasaida implements Serializable {
         this.nomearquivocancelada = nomearquivocancelada;
     }
 
-    public String getNomearquivocarta() {
-        return nomearquivocarta;
-    }
-
-    public void setNomearquivocarta(String nomearquivocarta) {
-        this.nomearquivocarta = nomearquivocarta;
-    }
-
-    
-
+   
     public void setDataEmissao(Date dataEmissao) {
         this.dataEmissao = dataEmissao;
     }
@@ -201,14 +194,6 @@ public class Notasaida implements Serializable {
 
     public Integer getNumero() {
         return numero;
-    }
-
-    public byte[] getXmlcarta() {
-        return xmlcarta;
-    }
-
-    public void setXmlcarta(byte[] xmlcarta) {
-        this.xmlcarta = xmlcarta;
     }
 
     public byte[] getXmlcancelada() {
@@ -413,6 +398,30 @@ public class Notasaida implements Serializable {
 
     public void setCondicaopagamento(String condicaopagamento) {
         this.condicaopagamento = condicaopagamento;
+    }
+
+    public String getDatacorrecao() {
+        return datacorrecao;
+    }
+
+    public void setDatacorrecao(String datacorrecao) {
+        this.datacorrecao = datacorrecao;
+    }
+
+    public String getProtocolo() {
+        return protocolo;
+    }
+
+    public void setProtocolo(String protocolo) {
+        this.protocolo = protocolo;
+    }
+
+    public String getEvento() {
+        return evento;
+    }
+
+    public void setEvento(String evento) {
+        this.evento = evento;
     }
 
 

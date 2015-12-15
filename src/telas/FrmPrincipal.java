@@ -31,7 +31,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import model.Empresa;
 import model.Estoque;
 import model.ParametrosLocal;
 import model.Produto;

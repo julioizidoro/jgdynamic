@@ -737,6 +737,10 @@ public final class FrmConsultaProdutos extends javax.swing.JFrame implements Ite
                 this.listaProduto = estoqueController.consultarEstoqueGeral(config.getEmpresa().getIdempresa());
             }
             setModelProduto(null, null);
+        }else {
+             if (evt.getKeyCode() == evt.VK_F1) {
+                 verificarProduto();
+             }
         }
     }//GEN-LAST:event_codigojTextFieldKeyPressed
 
@@ -1179,6 +1183,36 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
     public void setArquivo(File arquivo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void verificarProduto(){
+        ProdutoController produtoController = new ProdutoController();
+        List<Produto> listaProdutos = produtoController.consultarProduto();
+        EstoqueController estoqueController = new EstoqueController();
+        boolean salvar=false;
+        if (listaProdutos!=null){
+            for(int i=0;i<listaProdutos.size();i++){
+                salvar=false;
+                List<Produto> listaReferencia = produtoController.listarReferencia(listaProdutos.get(i).getReferencia());
+                List<Estoque> listaEstoque = estoqueController.consultaEstoqueProduto(listaProdutos.get(i).getIdProduto(), config.getEmpresa().getIdempresa());
+                if (listaReferencia!=null){
+                    if (listaReferencia.size()>1){
+                        salvar=true;
+                        listaProdutos.get(i).setProduto("S");
+                    }
+                }
+                if (listaEstoque!=null){
+                    if (listaEstoque.size()>1){
+                        salvar=true;
+                        listaProdutos.get(i).setEstoque("S");
+                    }
+                }
+                if(salvar){
+                    produtoController.salvarProduto(listaProdutos.get(i));
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(rootPane, "Terminou");
     }
 }
 
