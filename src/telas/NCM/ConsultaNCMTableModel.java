@@ -4,10 +4,9 @@
  */
 package telas.NCM;
 
-import Regras.Formatacao;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import model.Ibpt;
+import model.Cest;
 
 /**
  *
@@ -15,10 +14,10 @@ import model.Ibpt;
  */
 public class ConsultaNCMTableModel extends AbstractTableModel{
     
-    private List<Ibpt> listaNCM;
-    private String[] colunas ={"NCM", "Descrição", "Imposto"};
+    private List<Cest> listaNCM;
+    private String[] colunas ={"CEST", "NCM", "Descrição"};
 
-    public ConsultaNCMTableModel(List<Ibpt> listaNCM) {
+    public ConsultaNCMTableModel(List<Cest> listaNCM) {
         this.listaNCM = listaNCM;
     }
 
@@ -32,10 +31,10 @@ public class ConsultaNCMTableModel extends AbstractTableModel{
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         if (columnIndex==0){
-            return listaNCM.get(rowIndex).getNcm();
+            return listaNCM.get(rowIndex).getCest();
         }else if (columnIndex==1){
-            return listaNCM.get(rowIndex).getDescricao();
-        }else return Formatacao.foramtarDoubleString(listaNCM.get(rowIndex).getAliquotaImposto());
+            return listaNCM.get(rowIndex).getNcm();
+        }else return listaNCM.get(rowIndex).getDescricao();
     }
     
     @Override

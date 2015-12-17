@@ -42,6 +42,7 @@ import telas.ContasReceber.FrmConsultaContasReceber;
 import telas.ControleCheques.FrmControleCheques;
 import telas.Devolucao.Defeito.FrmConsultaDevolucaoDefeito;
 import telas.Devolucao.FrmRelatorioDevolucao;
+import telas.Encerramento.FrmConsultarEncerramento;
 import telas.Entrada.FrmConsultaEntrada;
 import telas.Entrada.FrmConsultarSituacaoEntrada;
 import telas.Estoque.FrmRelatorioEstoque;
@@ -155,6 +156,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
+        jMenuItem28 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -665,6 +667,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem24);
+
+        jMenuItem28.setText("Encerramento Anual");
+        jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem28ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem28);
 
         jMenuBar1.add(jMenu3);
 
@@ -1230,6 +1240,10 @@ private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         new FrmRelatorioData(3, config);
     }//GEN-LAST:event_jMenuItem27ActionPerformed
 
+    private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
+        new FrmConsultarEncerramento(config, usuarioLogado);
+    }//GEN-LAST:event_jMenuItem28ActionPerformed
+
 
     /**
     * @param args the command line arguments
@@ -1289,6 +1303,7 @@ private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem27;
+    private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

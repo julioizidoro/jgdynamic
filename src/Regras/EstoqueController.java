@@ -173,4 +173,15 @@ public class EstoqueController {
             return null;
         }
     }
+    
+    public List<Viewconsultaprodutoestoque> listarEstoqueZero(int idEmpresa) {
+        EstoqueFacade estoqueFacade = new EstoqueFacade();
+        try {
+            return estoqueFacade.listarEstoqueZero(idEmpresa);
+        } catch (SQLException ex) {
+            Logger.getLogger(EstoqueController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro Consultar Estoque " + ex);
+            return null;
+        }
+    }
 }

@@ -67,6 +67,8 @@ public class Produto implements Serializable {
     private String estoque;
     @Column(name = "produto")
     private String produto;
+    @Column(name = "cest")
+    private String cest;
 
 
     public Produto() {
@@ -181,6 +183,14 @@ public class Produto implements Serializable {
 
     public void setProduto(String produto) {
         this.produto = produto;
+    }
+
+    public String getCest() {
+        return cest;
+    }
+
+    public void setCest(String cest) {
+        this.cest = cest;
     }
 
 

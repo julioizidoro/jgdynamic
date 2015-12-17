@@ -73,4 +73,9 @@ public class EstoqueFacade {
         estoqueDao = new EstoqueDao();
         return estoqueDao.consultaEstoqueProduto(idProduto, idEmpresa);
     }
+    
+    public List<Viewconsultaprodutoestoque> listarEstoqueZero(int idEmpresa) throws SQLException{
+        estoqueDao = new EstoqueDao();
+        return estoqueDao.listarEstoqueZero(idEmpresa);
+    }
 }

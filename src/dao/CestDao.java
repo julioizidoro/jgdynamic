@@ -10,20 +10,21 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import model.Cest;
 import model.Ibpt;
 
 /**
  *
  * @author Wolverine
  */
-public class IbptDao {
+public class CestDao {
     
     private EntityManager manager;
     
-    public List<Ibpt> listarIbpt() throws SQLException{
+    public List<Cest> listar() throws SQLException{
         manager = ConexaoSingleton.getConexao();
-        Query q = manager.createQuery("select i from Ibpt i order by i.descricao" );
-        List<Ibpt> lista = null;
+        Query q = manager.createQuery("select c from Cest c order by c.descricao" );
+        List<Cest> lista = null;
         if (q.getResultList().size()>0){
             lista =  q.getResultList();
         }
@@ -31,10 +32,10 @@ public class IbptDao {
         return lista;
     }
     
-    public List<Ibpt> listarIbpt(String descricao) throws SQLException{
+    public List<Cest> listar(String descricao) throws SQLException{
         manager = ConexaoSingleton.getConexao();
-        Query q = manager.createQuery("select i from Ibpt i where i.descricao like '%" + descricao + "%' order by i.descricao" );
-        List<Ibpt> lista = null;
+        Query q = manager.createQuery("select i from Cest i where i.descricao like '%" + descricao + "%' order by i.descricao" );
+        List<Cest> lista = null;
         if (q.getResultList().size()>0){
             lista =  q.getResultList();
         }
@@ -51,5 +52,16 @@ public class IbptDao {
         }
         manager.close();
         return ibpt;
+    }
+    
+    public Cest cunsultarCest(String ncm) throws SQLException{
+        manager = ConexaoSingleton.getConexao();
+        Query q = manager.createQuery("select i from Cest i where i.ncm = '" + ncm + "' order by i.descricao" );
+        Cest cest = null;
+        if (q.getResultList().size()>0){
+            cest =  (Cest) q.getResultList().get(0);
+        }
+        manager.close();
+        return cest;
     }
 }

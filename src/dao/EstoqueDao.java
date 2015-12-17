@@ -107,7 +107,7 @@ public class EstoqueDao {
     public List<Viewconsultaprodutoestoque> listarEstoqueZero(int idEmpresa) throws SQLException{
        manager = ConexaoSingleton.getConexao();
        List<Viewconsultaprodutoestoque>  listaEstoque  = new ArrayList<Viewconsultaprodutoestoque>();
-        Query q = manager.createQuery("select c from Viewconsultaprodutoestoque c where c.quantidadeEstoque>0 and empresa=" + idEmpresa);
+        Query q = manager.createQuery("select c from Viewconsultaprodutoestoque c where c.quantidadeEstoque>0 and empresa=" + idEmpresa + " order by c.descricao");
         listaEstoque = q.getResultList();
         manager.close();
         return listaEstoque;

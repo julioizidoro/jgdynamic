@@ -17,8 +17,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -69,6 +67,12 @@ public class Encerramento implements Serializable {
     private Float saldocaixa;
     @Column(name = "totalestoque")
     private Float totalestoque;
+    @Column(name = "creditos")
+    private Float creditos;
+    @Column(name = "bb")
+    private Float bb;
+    @Column(name = "cef")
+    private Float cef;
     @JoinColumn(name = "empresa_idempresa", referencedColumnName = "idempresa")
     @ManyToOne(optional = false)
     private Empresa empresa;
@@ -209,6 +213,31 @@ public class Encerramento implements Serializable {
     public void setInventarioList(List<Inventario> inventarioList) {
         this.inventarioList = inventarioList;
     }
+
+    public Float getCreditos() {
+        return creditos;
+    }
+
+    public void setCreditos(Float creditos) {
+        this.creditos = creditos;
+    }
+
+    public Float getBb() {
+        return bb;
+    }
+
+    public void setBb(Float bb) {
+        this.bb = bb;
+    }
+
+    public Float getCef() {
+        return cef;
+    }
+
+    public void setCef(Float cef) {
+        this.cef = cef;
+    }
+
 
     @Override
     public int hashCode() {

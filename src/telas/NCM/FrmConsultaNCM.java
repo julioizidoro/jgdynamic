@@ -4,7 +4,7 @@
  */
 package telas.NCM;
 
-import Regras.IbptController;
+import Regras.CestController;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import model.Cest;
 import model.Ibpt;
 import telas.Produtos.ICadProduto;
 
@@ -21,7 +22,7 @@ import telas.Produtos.ICadProduto;
  */
 public class FrmConsultaNCM extends javax.swing.JFrame {
     
-    private List<Ibpt> listaNCM;
+    private List<Cest> listaNCM;
     private ConsultaNCMTableModel modelNCM;
     private ICadProduto telaProduto;
 
@@ -186,29 +187,28 @@ public class FrmConsultaNCM extends javax.swing.JFrame {
 
     public void carregarModel(){
         if (listaNCM==null){
-            listaNCM = new ArrayList<Ibpt>();
+            listaNCM = new ArrayList<Cest>();
         }
         modelNCM = new ConsultaNCMTableModel(listaNCM);
         ncmjTable.setModel(modelNCM);
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(SwingConstants.RIGHT);
-        ncmjTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-        ncmjTable.getColumnModel().getColumn(1).setPreferredWidth(200);
-        ncmjTable.getColumnModel().getColumn(2).setCellRenderer(renderer);
-        ncmjTable.getColumnModel().getColumn(2).setPreferredWidth(30);
+        ncmjTable.getColumnModel().getColumn(0).setPreferredWidth(80);
+        ncmjTable.getColumnModel().getColumn(1).setPreferredWidth(80);
+        ncmjTable.getColumnModel().getColumn(2).setPreferredWidth(300);
         ncmjTable.repaint();
     }
     
     public void consultarNCMporNCM(String ncm){
-        listaNCM = new ArrayList<Ibpt>();
-        IbptController ibptController = new IbptController();
-        listaNCM.add(ibptController.cunsultarIbpt(ncm));
+        listaNCM = new ArrayList<Cest>();
+        CestController ibptController = new CestController();
+        listaNCM.add(ibptController.cunsultarCest(ncm));
         carregarModel();
     }
     
     public void consultarNCMporDescricao(String descricao){
-        IbptController ibptController = new IbptController();
-        listaNCM = ibptController.listarIbpt(descricao);
+        CestController cestController = new CestController();
+        listaNCM = cestController.listar(descricao);
         carregarModel();
     }
 

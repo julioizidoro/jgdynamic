@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class ListaProdutoSaidaBeanTableModel extends AbstractTableModel{
     
     private List<NotaSaidaProdutoBean> listaProdutoBean;
-    private String[] colunas ={"Código", "Descrição", "Unidade", "NCM", "Quantidade", "Valor Unitário", "Valor Total", "Valor Desconto", "Valor Outros" ,"Situação"};
+    private String[] colunas ={"Código", "Descrição", "Unidade", "NCM", "CEST", "Quantidade", "Valor Unitário", "Valor Total", "Valor Desconto", "Valor Outros" ,"Situação"};
 
     public ListaProdutoSaidaBeanTableModel(List<NotaSaidaProdutoBean> listaProdutoBean) {
         this.listaProdutoBean = listaProdutoBean;
@@ -39,14 +39,16 @@ public class ListaProdutoSaidaBeanTableModel extends AbstractTableModel{
         }else if (columnIndex==3){
             return listaProdutoBean.get(rowIndex).getProduto().getNcm();
         }else if (columnIndex==4){
-            return Formatacao.foramtarQuantidade(listaProdutoBean.get(rowIndex).getQuantidade());
+            return listaProdutoBean.get(rowIndex).getProduto().getCest();
         }else if (columnIndex==5){
-            return Formatacao.foramtarDoubleString(listaProdutoBean.get(rowIndex).getValorUnitario());
+            return Formatacao.foramtarQuantidade(listaProdutoBean.get(rowIndex).getQuantidade());
         }else if (columnIndex==6){
-            return Formatacao.foramtarDoubleString(listaProdutoBean.get(rowIndex).getValortotal());
+            return Formatacao.foramtarDoubleString(listaProdutoBean.get(rowIndex).getValorUnitario());
         }else if (columnIndex==7){
-            return Formatacao.foramtarDoubleString(listaProdutoBean.get(rowIndex).getValorDesconto());
+            return Formatacao.foramtarDoubleString(listaProdutoBean.get(rowIndex).getValortotal());
         }else if (columnIndex==8){
+            return Formatacao.foramtarDoubleString(listaProdutoBean.get(rowIndex).getValorDesconto());
+        }else if (columnIndex==9){
             return Formatacao.foramtarDoubleString(listaProdutoBean.get(rowIndex).getValoracessorios());
         }else return listaProdutoBean.get(rowIndex).getSituacao();
     }

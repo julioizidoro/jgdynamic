@@ -14,6 +14,7 @@ package telas.Produtos;
 import Interfaces.IdevolucaoRelatorio;
 import Interfaces.IforPedido;
 import Interfaces.ItelaConsulta;
+import Regras.CestController;
 import Regras.EstoqueController;
 import Regras.Formatacao;
 import Regras.ProdutoController;
@@ -44,6 +45,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.Banco;
+import model.Cest;
 import model.CodigoBarras;
 import model.Estoque;
 import model.Fornecedor;
@@ -740,6 +742,10 @@ public final class FrmConsultaProdutos extends javax.swing.JFrame implements Ite
         }else {
              if (evt.getKeyCode() == evt.VK_F1) {
                  verificarProduto();
+             }else {
+                 if (evt.getKeyCode() == evt.VK_F6) {
+                    verificarCodigoCEST();
+                 }
              }
         }
     }//GEN-LAST:event_codigojTextFieldKeyPressed
@@ -1209,6 +1215,24 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                 }
                 if(salvar){
                     produtoController.salvarProduto(listaProdutos.get(i));
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(rootPane, "Terminou");
+    }
+    
+    public void verificarCodigoCEST(){
+        ProdutoController produtoController = new ProdutoController();
+        List<Produto> listaProdutos = produtoController.consultarProduto();
+        CestController cestController = new CestController();
+        for(int i=0;i<listaProdutos.size();i++){
+            if (listaProdutos.get(i).getCest().equalsIgnoreCase("0")){
+                if ((listaProdutos.get(i).getNcm()!=null) && (listaProdutos.get(i).getNcm().length()>0)){
+                    Cest cest = cestController.cunsultarCest(listaProdutos.get(i).getNcm());
+                    if (cest!=null){
+                        listaProdutos.get(i).setCest(cest.getCest());
+                        produtoController.salvarProduto(listaProdutos.get(i));
+                    }
                 }
             }
         }

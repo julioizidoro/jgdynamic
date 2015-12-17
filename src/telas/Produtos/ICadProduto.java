@@ -4,7 +4,7 @@
  */
 package telas.Produtos;
 
-import model.Ibpt;
+import model.Cest;
 
 /**
  *
@@ -12,6 +12,6 @@ import model.Ibpt;
  */
 public interface ICadProduto {
     
-    void consultaNCM(Ibpt ncm);
+    void consultaNCM(Cest ncm);
     
 }
