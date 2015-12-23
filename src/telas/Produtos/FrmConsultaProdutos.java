@@ -17,7 +17,9 @@ import Interfaces.ItelaConsulta;
 import Regras.CestController;
 import Regras.EstoqueController;
 import Regras.Formatacao;
+import Regras.FornecedorController;
 import Regras.ProdutoController;
+import Regras.VinculoController;
 import beanController.NfDuplicatas;
 import beanController.NfProdutos;
 import beanController.NotaEletronica;
@@ -26,6 +28,7 @@ import controler.CodigoBarrasController;
 import controler.Config;
 import controler.relatoriosJasper;
 import dao.VendaDao;
+import facade.FornecedorFacade;
 import facade.ProdutoFacade;
 import facadeRemoto.ProdutoRemotoFacade;
 import java.awt.HeadlessException;
@@ -34,6 +37,7 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +54,7 @@ import model.CodigoBarras;
 import model.Estoque;
 import model.Fornecedor;
 import model.Produto;
+import model.Vinculo;
 import telas.Produtos.codigoBarras.FrmConsultaCodigoBarras;
 import telas.RelatorioVendas.IrelatorioVenda;
 import view.Viewconsultaprodutoestoque;
@@ -741,7 +746,8 @@ public final class FrmConsultaProdutos extends javax.swing.JFrame implements Ite
             setModelProduto(null, null);
         }else {
              if (evt.getKeyCode() == evt.VK_F1) {
-                 verificarProduto();
+                 //verificarProduto();
+                 verificarVinculo();
              }else {
                  if (evt.getKeyCode() == evt.VK_F6) {
                     verificarCodigoCEST();
@@ -1237,6 +1243,40 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             }
         }
         JOptionPane.showMessageDialog(rootPane, "Terminou");
+    }
+    
+    
+    public void verificarVinculo(){
+        List<ListaProdutoBean> lista = new ArrayList<ListaProdutoBean>();
+        FornecedorFacade fornecedorFacade = new FornecedorFacade();
+        List<Fornecedor> listaFornecedor = null;
+        try {
+            listaFornecedor = fornecedorFacade.consultarFornecedor();
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmConsultaProdutos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        VinculoController vinculoController = new VinculoController();
+        ProdutoController produtoController = new ProdutoController();
+        List<Produto> listaProdutos = produtoController.consultarProduto();
+        for(int i=0;i<listaFornecedor.size();i++){
+            for(int p=0;p<listaProdutos.size();p++){
+                List<Vinculo> listaVinculo = vinculoController.consultarVinculoFornecedorProduto(listaProdutos.get(p).getIdProduto(), config.getEmpresa().getIdempresa(), listaFornecedor.get(i).getIdfornecedor());
+                if ((listaVinculo!=null) && (listaVinculo.size()>1)){
+                    ListaProdutoBean prod = new ListaProdutoBean();
+                    prod.setDescricao(listaProdutos.get(p).getDescricao());
+                    prod.setIdFornecedor(listaFornecedor.get(i).getIdfornecedor());
+                    prod.setIdProduto(listaProdutos.get(p).getIdProduto());
+                    lista.add(prod);
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(rootPane, "Terminou");
+        if (lista.size()>0){
+            for(int i=0;i<lista.size();i++){
+                System.out.println(lista.get(i).getIdProduto() + "  -  " + lista.get(i).getIdFornecedor());
+            }
+        }
+    
     }
 }
 

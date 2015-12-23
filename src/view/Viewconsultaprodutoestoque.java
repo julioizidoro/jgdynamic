@@ -10,8 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,8 +20,6 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "viewconsultaprodutoestoque")
-@NamedQueries({
-    @NamedQuery(name = "Viewconsultaprodutoestoque.findAll", query = "SELECT v FROM Viewconsultaprodutoestoque v")})
 public class Viewconsultaprodutoestoque implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
@@ -57,6 +53,8 @@ public class Viewconsultaprodutoestoque implements Serializable {
     private Float valorVenda;
     @Column(name = "valorCusto")
     private Double valorCusto;
+    @Column(name = "valorCompra")
+    private Double valorCompra;
     @Column(name = "dataVenda")
     @Temporal(TemporalType.DATE)
     private Date dataVenda;
@@ -238,6 +236,14 @@ public class Viewconsultaprodutoestoque implements Serializable {
 
     public void setPedido(Integer pedido) {
         this.pedido = pedido;
+    }
+
+    public Double getValorCompra() {
+        return valorCompra;
+    }
+
+    public void setValorCompra(Double valorCompra) {
+        this.valorCompra = valorCompra;
     }
     
 }

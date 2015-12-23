@@ -77,6 +77,17 @@ public class VinculoController {
         }
     }
     
+    public List<Vinculo> consultarVinculoFornecedorProduto(int idProduto, int idEmpresa, int idfornecedor) {
+        VinculoFacade vinculoFacade = new VinculoFacade();
+        try {
+            return vinculoFacade.consultarVinculoFornecedorProduto(idProduto, idEmpresa, idfornecedor);
+        } catch (SQLException ex) {
+            Logger.getLogger(VinculoController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro Consultar Vinculo para Pedido " + ex);
+            return null;
+        }
+    }
+    
     public Vinculo getVinculo(int idVinculo){
         VinculoFacade vinculoFacade = new VinculoFacade();
         try {

@@ -6,6 +6,8 @@
 package Regras;
 
 import facade.EncerramentoFacade;
+import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -60,6 +62,17 @@ public class EncerramentoController {
         } catch (SQLException ex) {
             Logger.getLogger(EncerramentoController.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Erro Listar Inventário " + ex);
+            return null;
+        }
+    }
+    
+    public ResultSet ExportarInventario(String nomeRelatorio, int idEncerramento)  {
+        encerramentoFacade = new EncerramentoFacade();
+        try {
+            return encerramentoFacade.ExportarInventario(nomeRelatorio, idEncerramento);
+        } catch (IOException ex) {
+            Logger.getLogger(EncerramentoController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro Exportar Inventário " + ex);
             return null;
         }
     }

@@ -36,6 +36,11 @@ public class VinculoFacade {
         return vinculoDao.consultarVinculo(produto, empresa, fornecedor);
     }
     
+    public List<Vinculo> consultarVinculoFornecedorProduto(int idProduto, int idEmpresa, int idfornecedor) throws SQLException{
+        vinculoDao = new VinculoDao();
+        return vinculoDao.consultarVinculoFornecedorProduto(idProduto, idEmpresa, idfornecedor);
+    }
+    
     public List<Vinculo> consultaVinculo(int fornecedor, int empresa) throws SQLException{
         vinculoDao = new VinculoDao();
         return vinculoDao.consultaVinculo(fornecedor, empresa);

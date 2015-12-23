@@ -73,6 +73,16 @@ public class VinculoDao {
         return listaVinculo;
     }
     
+    public List<Vinculo> consultarVinculoFornecedorProduto(int idProduto, int idEmpresa, int idfornecedor) throws SQLException{
+        manager = ConexaoSingleton.getConexao();
+        List<Vinculo> listaVinculo = new ArrayList<Vinculo>();
+        Query q = manager.createQuery("SELECT v FROM Vinculo v where v.produto="  + idProduto + " and v.empresa=" + idEmpresa + " "
+                + " and v.fornecedor=" + idfornecedor + " order by v.produto");
+        listaVinculo = q.getResultList();
+        manager.close();
+        return listaVinculo;
+    }
+    
     public Vinculo getVinculo(int idVinculo) throws SQLException{
          manager = ConexaoSingleton.getConexao();
          Vinculo vinculo = new Vinculo();

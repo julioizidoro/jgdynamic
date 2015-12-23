@@ -1176,6 +1176,7 @@ jPanel7Layout.setHorizontalGroup(
     jLabel45.setText("Frete pro conta");
 
     modalidadefretejComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 - Por conta do Emitente", "1 - Por conta do destinatário/remetente", "2 - Por conta de terceiros", "9 - Sem frete" }));
+    modalidadefretejComboBox.setSelectedIndex(3);
 
     jLabel46.setText("CNPJ Transportadora");
 
@@ -2093,7 +2094,7 @@ jPanel7Layout.setHorizontalGroup(
             arquivo.write(listaProdutoBean.get(i).getProduto().getUnidade() + "|");
             arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(listaProdutoBean.get(i).getQuantidade())) +"00" + "|");
             arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(listaProdutoBean.get(i).getValorUnitario())) + "00000000" + "|");
-            arquivo.write(retirarPontos(listaProdutoBean.get(i).getProduto().getCest()) + "|");
+            arquivo.write("|");
             arquivo.write("|");
             if (listaProdutoBean.get(i).getValorDesconto()==0){
                 arquivo.write("|");
@@ -2147,24 +2148,27 @@ jPanel7Layout.setHorizontalGroup(
     public void gerarTrasnporte() throws IOException{
         String modalidade = modalidadeFrete();
         arquivo.write("X|");
-        arquivo.write(modalidade + "|");
-        arquivo.write(retirarPontos(cnpjtransportadorajTextField.getText()) + "|");
-        arquivo.write("\r\n");
-        if (nomeTransportadorajTextField.getText().length()>0) {
-            arquivo.write("X03" + "|");
-            if (ietransportadorajTextField.getText().length() > 0) {
-                arquivo.write(retirarPontos(ietransportadorajTextField.getText()) + "|");
-            }
-            arquivo.write(enderecotransportadorajTextField.getText() + "|");
-            arquivo.write(ciadetransportadorajTextField.getText() + "|");
-            arquivo.write(uftransportadorajTextField.getText() + "|");
+        if (!modalidade.equalsIgnoreCase("9")) {
+            arquivo.write(modalidade + "|");
+            arquivo.write(retirarPontos(cnpjtransportadorajTextField.getText()) + "|");
             arquivo.write("\r\n");
+            if (nomeTransportadorajTextField.getText().length() > 0) {
+                arquivo.write("X03" + "|");
+                if (ietransportadorajTextField.getText().length() > 0) {
+                    arquivo.write(retirarPontos(ietransportadorajTextField.getText()) + "|");
+                }
+                arquivo.write(enderecotransportadorajTextField.getText() + "|");
+                arquivo.write(ciadetransportadorajTextField.getText() + "|");
+                arquivo.write(uftransportadorajTextField.getText() + "|");
+                arquivo.write("\r\n");
+            }
         }
         arquivo.write("X26" + "|");
         arquivo.write(nvolumesjTextField.getText() + "|");
         arquivo.write(evolumesjTextField.getText() + "|");
         arquivo.write(pesobrutojTextField.getText() + "|");
         arquivo.write(pesoliquidojTextField.getText() + "|");
+        
         
          arquivo.write("\r\n");
         arquivo.write("Z||" + notaSaidaBean.getInfoTexto() + " - VALOR APROXIMADO DOS TRIBUTOS R$ "

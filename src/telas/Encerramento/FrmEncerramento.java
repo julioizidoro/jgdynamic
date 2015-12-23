@@ -734,8 +734,8 @@ public class FrmEncerramento extends javax.swing.JFrame {
             for(int i=0;i<listaEstoque.size();i++){
                 Inventario inventario = new Inventario();
                 inventario.setQuantidadeestoque(listaEstoque.get(i).getQuantidadeEstoque());
-                inventario.setValorunitario(listaEstoque.get(i).getValorCusto().floatValue());
-                if (inventario.getValorunitario()>0){
+                inventario.setValorunitario(listaEstoque.get(i).getValorCompra().floatValue());
+                if (inventario.getValorunitario()<=0){
                     inventario.setValorunitario(listaEstoque.get(i).getValorVenda().floatValue() * 0.7f);
                 }
                 inventario.setValortotal(inventario.getValorunitario() * inventario.getQuantidadeestoque().floatValue());

@@ -6,6 +6,8 @@
 package facade;
 
 import dao.EncerramentoDao;
+import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import model.Encerramento;
@@ -38,6 +40,11 @@ public class EncerramentoFacade {
     public List<Inventario> listar(int idEncerramento) throws SQLException{
         encerramentoDao = new EncerramentoDao();
         return encerramentoDao.listar(idEncerramento);
+    }
+    
+    public ResultSet ExportarInventario(String nomeRelatorio, int idEncerramento) throws IOException {
+        encerramentoDao = new EncerramentoDao();
+        return encerramentoDao.ExportarInventario(nomeRelatorio, idEncerramento);
     }
     
     
