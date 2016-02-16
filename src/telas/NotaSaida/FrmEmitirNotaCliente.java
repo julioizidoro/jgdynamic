@@ -5,12 +5,12 @@
 package telas.NotaSaida;
 
 import Regras.AliquotaController;
+import Regras.CestController;
 import Regras.ClienteController;
 import Regras.CodigoFiscalController;
 import Regras.ContasReceberController;
 import Regras.CreditoReceberController;
 import Regras.Formatacao;
-import Regras.CestController;
 import Regras.MunicipiosController;
 import Regras.NotaSaidaController;
 import Regras.ParametroLocalController;
@@ -119,7 +119,7 @@ public class FrmEmitirNotaCliente extends javax.swing.JFrame implements INotaSai
         carregarComboBoxCFOP();
         gerarNumeroNFe();
         ParametroLocalController parametroLocalController = new ParametroLocalController();
-        parametrosLocal = parametroLocalController.localizarEmpresa(this.config.getEmpresa().getIdparametros());
+        parametrosLocal = parametroLocalController.localizarEmpresa(this.config.getEmpresa().getIdempresa());
         dataEmissaojDateChooser.setDate(new Date());
         seriejTextField.setText(String.valueOf(config.getEmpresa().getSerieNFe()));
         this.setVisible(true);
@@ -210,7 +210,6 @@ public class FrmEmitirNotaCliente extends javax.swing.JFrame implements INotaSai
     jButton9 = new javax.swing.JButton();
     jButton12 = new javax.swing.JButton();
     jButton13 = new javax.swing.JButton();
-    jButton17 = new javax.swing.JButton();
     jPanel5 = new javax.swing.JPanel();
     jLabel14 = new javax.swing.JLabel();
     formaPagamentojComboBox = new javax.swing.JComboBox();
@@ -417,22 +416,24 @@ jPanel7Layout.setHorizontalGroup(
                         .addComponent(jLabel2))
                     .addGap(0, 0, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(tipoNFejComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(numeroNFejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(23, 23, 23)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(seriejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addContainerGap(703, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(tipoNFejComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4)
-                                        .addComponent(numeroNFejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(23, 23, 23)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addComponent(seriejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,8 +478,8 @@ jPanel7Layout.setHorizontalGroup(
                                                     .addGap(2, 2, 2))
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                                     .addComponent(jLabel22)
-                                                    .addGap(135, 135, 135)))))))))
-                    .addContainerGap(70, Short.MAX_VALUE))))
+                                                    .addGap(135, 135, 135))))))))
+                        .addGap(49, 49, 49)))))
     );
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -661,7 +662,7 @@ jPanel7Layout.setHorizontalGroup(
                         .addComponent(rgjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12))
                     .addGap(9, 9, 9)
-                    .addComponent(contribuintejComboBox, 0, 304, Short.MAX_VALUE)
+                    .addComponent(contribuintejComboBox, 0, 243, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(foneFixojFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -817,13 +818,6 @@ jPanel7Layout.setHorizontalGroup(
         }
     });
 
-    jButton17.setText("Alterar CEST");
-    jButton17.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton17ActionPerformed(evt);
-        }
-    });
-
     javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
     jPanel3.setLayout(jPanel3Layout);
     jPanel3Layout.setHorizontalGroup(
@@ -831,6 +825,7 @@ jPanel7Layout.setHorizontalGroup(
         .addGroup(jPanel3Layout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(34, 34, 34)
                     .addComponent(jButton2)
@@ -847,11 +842,8 @@ jPanel7Layout.setHorizontalGroup(
                     .addGap(18, 18, 18)
                     .addComponent(jButton13)
                     .addGap(18, 18, 18)
-                    .addComponent(jButton4)
-                    .addGap(18, 18, 18)
-                    .addComponent(jButton17))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 936, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(jButton4)))
+            .addContainerGap(59, Short.MAX_VALUE))
     );
     jPanel3Layout.setVerticalGroup(
         jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -860,8 +852,7 @@ jPanel7Layout.setHorizontalGroup(
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jButton5)
                 .addComponent(jButton13)
-                .addComponent(jButton4)
-                .addComponent(jButton17))
+                .addComponent(jButton4))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
@@ -1176,7 +1167,6 @@ jPanel7Layout.setHorizontalGroup(
     jLabel45.setText("Frete pro conta");
 
     modalidadefretejComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 - Por conta do Emitente", "1 - Por conta do destinatário/remetente", "2 - Por conta de terceiros", "9 - Sem frete" }));
-    modalidadefretejComboBox.setSelectedIndex(3);
 
     jLabel46.setText("CNPJ Transportadora");
 
@@ -1271,7 +1261,7 @@ jPanel7Layout.setHorizontalGroup(
                 .addComponent(jLabel55)
                 .addComponent(jLabel56)
                 .addComponent(jLabel57))
-            .addContainerGap(364, Short.MAX_VALUE))
+            .addContainerGap(295, Short.MAX_VALUE))
     );
     jPanel8Layout.setVerticalGroup(
         jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1331,8 +1321,8 @@ jPanel7Layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 975, Short.MAX_VALUE)
-            .addContainerGap())
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(23, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1612,24 +1602,6 @@ jPanel7Layout.setHorizontalGroup(
         }
     }//GEN-LAST:event_numeroNFejTextFieldFocusLost
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-       int linha = produtojTable.getSelectedRow();
-       if (linha>=0){
-           String cest = "";
-           cest = JOptionPane.showInputDialog("Informe CEST");
-           listaProdutoBean.get(linha).getProduto().setCest(cest);
-           ProdutoController produtoController = new ProdutoController();
-           Produto prod = produtoController.consultarProdutoid(listaProdutoBean.get(linha).getProduto().getIdProduto());
-           if (prod!=null){
-               prod.setCest(cest);
-               produtoController.salvarProduto(prod);
-           }
-           setModelProduto();
-       }else{
-           JOptionPane.showMessageDialog(rootPane, "Selecione um produto");
-       }
-    }//GEN-LAST:event_jButton17ActionPerformed
-
     /**
      * @param ags the command line arguments
      */
@@ -1665,7 +1637,6 @@ jPanel7Layout.setHorizontalGroup(
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -2076,14 +2047,13 @@ jPanel7Layout.setHorizontalGroup(
         for (int i = 0; i < listaProdutoBean.size(); i++) {
             arquivo.write("H|");
             arquivo.write((i+1) + "|");//Numero do item
-            arquivo.write("VALOR APROXIMADO DOS TRIBUTOS R$ " + Formatacao.foramtarDoubleString(listaProdutoBean.get(i).getValorTributo()) +"|");//Informacoes Adicionais
+            arquivo.write("VALOR APROXIMADO DOS TRIBUTOS R$ " + Formatacao.foramtarDoubleString(listaProdutoBean.get(i).getValorTributoFederal() + listaProdutoBean.get(i).getValorTributoEstadual()) +"|");//Informacoes Adicionais
             arquivo.write("\r\n");
             arquivo.write("I|");
             arquivo.write(String.valueOf(listaProdutoBean.get(i).getProduto().getReferencia()) + "|");
             arquivo.write(verificarCodgioBarras(listaProdutoBean.get(i).getProduto().getIdProduto()) + "|");//codigo Barras
             arquivo.write(listaProdutoBean.get(i).getProduto().getDescricao() + "|");
             arquivo.write(listaProdutoBean.get(i).getProduto().getNcm() + "|");
-            //arquivo.write(retirarPontos(listaProdutoBean.get(i).getProduto().getCest()) + "|");
             arquivo.write("|");
             arquivo.write(listaProdutoBean.get(i).getCfop() + "|");
             arquivo.write(listaProdutoBean.get(i).getProduto().getUnidade() + "|");
@@ -2105,7 +2075,7 @@ jPanel7Layout.setHorizontalGroup(
             arquivo.write("|");
             arquivo.write("\r\n");
             arquivo.write("M|");
-            arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(listaProdutoBean.get(i).getValorTributo())) + "|");
+            arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(listaProdutoBean.get(i).getValorTributoFederal() + listaProdutoBean.get(i).getValorTributoEstadual())) + "|");
             arquivo.write("\r\n");
             arquivo.write("N|");
             arquivo.write("\r\n");
@@ -2141,27 +2111,25 @@ jPanel7Layout.setHorizontalGroup(
         arquivo.write("0.00" + "|");//w14
         arquivo.write("0.00" + "|");//w15
         arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getValorNota())) + "|");//w16
-        arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios())) + "|");//w16a
+        arquivo.write(FormatarValoreMonetarios(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosFederal() + notaSaidaBean.getTotalTributiosEstadual())) + "|");//w16a
         arquivo.write("\r\n");
     }
     
     public void gerarTrasnporte() throws IOException{
         String modalidade = modalidadeFrete();
         arquivo.write("X|");
-        if (!modalidade.equalsIgnoreCase("9")) {
-            arquivo.write(modalidade + "|");
-            arquivo.write(retirarPontos(cnpjtransportadorajTextField.getText()) + "|");
-            arquivo.write("\r\n");
-            if (nomeTransportadorajTextField.getText().length() > 0) {
-                arquivo.write("X03" + "|");
-                if (ietransportadorajTextField.getText().length() > 0) {
-                    arquivo.write(retirarPontos(ietransportadorajTextField.getText()) + "|");
-                }
-                arquivo.write(enderecotransportadorajTextField.getText() + "|");
-                arquivo.write(ciadetransportadorajTextField.getText() + "|");
-                arquivo.write(uftransportadorajTextField.getText() + "|");
-                arquivo.write("\r\n");
+        arquivo.write(modalidade + "|");
+        arquivo.write(retirarPontos(cnpjtransportadorajTextField.getText()) + "|");
+        arquivo.write("\r\n");
+        if (nomeTransportadorajTextField.getText().length()>0) {
+            arquivo.write("X03" + "|");
+            if (ietransportadorajTextField.getText().length() > 0) {
+                arquivo.write(retirarPontos(ietransportadorajTextField.getText()) + "|");
             }
+            arquivo.write(enderecotransportadorajTextField.getText() + "|");
+            arquivo.write(ciadetransportadorajTextField.getText() + "|");
+            arquivo.write(uftransportadorajTextField.getText() + "|");
+            arquivo.write("\r\n");
         }
         arquivo.write("X26" + "|");
         arquivo.write(nvolumesjTextField.getText() + "|");
@@ -2169,10 +2137,9 @@ jPanel7Layout.setHorizontalGroup(
         arquivo.write(pesobrutojTextField.getText() + "|");
         arquivo.write(pesoliquidojTextField.getText() + "|");
         
-        
          arquivo.write("\r\n");
         arquivo.write("Z||" + notaSaidaBean.getInfoTexto() + " - VALOR APROXIMADO DOS TRIBUTOS R$ "
-                + Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios())
+                + Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosFederal() + notaSaidaBean.getTotalTributiosEstadual())
                 + infojTextArea.getText() + "|");
         
     }
@@ -2408,7 +2375,8 @@ jPanel7Layout.setHorizontalGroup(
         notaSaidaBean.setValorDesconto(Formatacao.ConvercaoMonetariaDouble(valorDescontojTextField.getText()));
         calcularRateioDesconto();
         double valorTotalProdutos=0;
-        double valorTributos=0;
+        double valorTributosFederal=0;
+        double valorTributosEstadual=0;
         double totalDesconto=0;
         double novoValorDesconto=0;
         if (notaSaidaBean.getPercentualDesconto()<=0){
@@ -2420,16 +2388,25 @@ jPanel7Layout.setHorizontalGroup(
             valorTotalProdutos+=listaProdutoBean.get(i).getValortotal();
             Ibpt ibpt = new Ibpt();
             ibpt = ibptController.cunsultarIbpt(listaProdutoBean.get(i).getProduto().getNcm());
-            double valor =0.0;
+            double valorFederal =0.0;
+            double valorEstadual = 0.0;
             if (ibpt!=null){
-                valor = listaProdutoBean.get(i).getValortotal()*(ibpt.getAliquotaImposto()/100);
+                valorFederal = listaProdutoBean.get(i).getValortotal()*(ibpt.getNacionalfederal()/100);
+                if (ibpt.getEstadual()>0){
+                    valorEstadual = listaProdutoBean.get(i).getValortotal() *(ibpt.getEstadual()/100);
+                }
             }else {
-                valor = listaProdutoBean.get(i).getValortotal()*(26.75/100);
+                valorFederal = listaProdutoBean.get(i).getValortotal()*(26.75/100);
+                valorEstadual = listaProdutoBean.get(i).getValortotal()*(17/100);
             }
-            String novoValor = Formatacao.foramtarDoubleString(valor);
-            valor = Formatacao.formatarStringDouble(novoValor);
-            listaProdutoBean.get(i).setValorTributo(valor);
-            valorTributos+=listaProdutoBean.get(i).getValorTributo();
+            String novoValorFederal = Formatacao.foramtarDoubleString(valorFederal);
+            String novoValorEstadual = Formatacao.foramtarDoubleString(valorEstadual);
+            valorFederal = Formatacao.formatarStringDouble(novoValorFederal);
+            valorEstadual = Formatacao.formatarStringDouble(novoValorEstadual);
+            listaProdutoBean.get(i).setValorTributoFederal(valorFederal);
+            listaProdutoBean.get(i).setValorTributoEstadual(valorEstadual);
+            valorTributosFederal+=listaProdutoBean.get(i).getValorTributoFederal();
+            valorTributosEstadual+=listaProdutoBean.get(i).getValorTributoEstadual();
             if (notaSaidaBean.getPercentualDesconto()>0){
                 double valorDesconto =  (listaProdutoBean.get(i).getValortotal() * notaSaidaBean.getPercentualDesconto());
                 String vd = Formatacao.foramtarDoubleString(valorDesconto);
@@ -2462,26 +2439,27 @@ jPanel7Layout.setHorizontalGroup(
         notaSaidaBean.setValorNota(valorTotalProdutos - notaSaidaBean.getValorDesconto());
         notaSaidaBean.setTotalBaseICMS(0);
         notaSaidaBean.setTotalValorICMS(0);
-        notaSaidaBean.setTotalTributios(valorTributos);
+        notaSaidaBean.setTotalTributiosFederal(valorTributosFederal);
+        notaSaidaBean.setTotalTributiosEstadual(valorTributosEstadual);
         totalProdutojTextField.setText(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalValoProdutos()));
         totalNotajTextField.setText(Formatacao.foramtarDoubleString(notaSaidaBean.getValorNota()));
-        valorTributosjTextField.setText(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios()));
+         valorTributosjTextField.setText(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosFederal()+ notaSaidaBean.getTotalTributiosEstadual()));
         gerarjButton.setEnabled(true);
     }
      
      
     public void somarValoresNFe(){
         double valorTotalProdutos = 0;
-        double valorTributos = 0;
+        double valorTributosFederal = 0;
+        double valorTributosEstadual = 0;
         double totalDesconto = 0;
         double novoValorDesconto = 0;
         double valorCalcualdo = 0;
         CestController ibptController = new CestController();
         for (int i = 0; i < listaProdutoBean.size(); i++) {
             valorTotalProdutos += listaProdutoBean.get(i).getValortotal();
-            double valor = 0.0;
-            valor = listaProdutoBean.get(i).getValorTributo();
-            valorTributos += listaProdutoBean.get(i).getValorTributo();
+            valorTributosFederal += listaProdutoBean.get(i).getValorTributoFederal();
+            valorTributosEstadual += listaProdutoBean.get(i).getValorTributoEstadual();
             totalDesconto = totalDesconto + listaProdutoBean.get(i).getValorDesconto();
         }
         valorDescontoCalculadojTextField.setText(Formatacao.foramtarDoubleString(totalDesconto));
@@ -2489,10 +2467,11 @@ jPanel7Layout.setHorizontalGroup(
         notaSaidaBean.setValorNota(valorTotalProdutos - notaSaidaBean.getValorDesconto());
         notaSaidaBean.setTotalBaseICMS(0);
         notaSaidaBean.setTotalValorICMS(0);
-        notaSaidaBean.setTotalTributios(valorTributos);
+        notaSaidaBean.setTotalTributiosFederal(valorTributosFederal);
+        notaSaidaBean.setTotalTributiosEstadual(valorTributosEstadual);
         totalProdutojTextField.setText(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalValoProdutos()));
         totalNotajTextField.setText(Formatacao.foramtarDoubleString(notaSaidaBean.getValorNota()));
-        valorTributosjTextField.setText(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributios()));
+        valorTributosjTextField.setText(Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosFederal() + notaSaidaBean.getTotalTributiosEstadual()));
         gerarjButton.setEnabled(true);
     }
 

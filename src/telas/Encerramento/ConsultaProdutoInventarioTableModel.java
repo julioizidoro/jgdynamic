@@ -43,9 +43,9 @@ public class ConsultaProdutoInventarioTableModel extends AbstractTableModel {
         } else if (columnIndex == 2) {
             return listaProduto.get(rowIndex).getProduto().getUnidade();
         } else if (columnIndex == 3) {
-            return Formatacao.foramtarQuantidade(listaProduto.get(rowIndex).getQuantidadeestoque());
+            return listaProduto.get(rowIndex).getQuantidadeestoque();
         } else {
-            return Formatacao.foramtarFloatString(listaProduto.get(rowIndex).getValortotal());
+            return listaProduto.get(rowIndex).getValortotal();
         }
     }
 

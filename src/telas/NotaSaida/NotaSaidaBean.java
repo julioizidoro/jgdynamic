@@ -41,7 +41,8 @@ public class NotaSaidaBean {
     private Date dataEmissaoCupomFiscal;
     private String numeroOrdemECF;
     private String numeroCOO;
-    private double totalTributios;
+    private double totalTributiosFederal;
+    private double totalTributiosEstadual;
     private FaturaBean fatura;
     private double percentualDesconto;
     private String codigoMunicipio;
@@ -96,8 +97,20 @@ public class NotaSaidaBean {
         this.codigo = codigo;
     }
 
-    public double getTotalTributios() {
-        return totalTributios;
+    public double getTotalTributiosFederal() {
+        return totalTributiosFederal;
+    }
+
+    public void setTotalTributiosFederal(double totalTributiosFederal) {
+        this.totalTributiosFederal = totalTributiosFederal;
+    }
+
+    public double getTotalTributiosEstadual() {
+        return totalTributiosEstadual;
+    }
+
+    public void setTotalTributiosEstadual(double totalTributiosEstadual) {
+        this.totalTributiosEstadual = totalTributiosEstadual;
     }
 
     public double getPercentualDesconto() {
@@ -106,10 +119,6 @@ public class NotaSaidaBean {
 
     public void setPercentualDesconto(double percentualDesconto) {
         this.percentualDesconto = percentualDesconto;
-    }
-
-    public void setTotalTributios(double totalTributios) {
-        this.totalTributios = totalTributios;
     }
 
     public double getValorDesconto() {

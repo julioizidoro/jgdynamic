@@ -19,10 +19,14 @@ public class Venda implements Serializable {
     private Float valorVenda2;
     @Column(name = "percentualDesconto")
     private Float percentualDesconto;
-    @Column(name = "valorImposto")
-    private Double valorImposto;
-    @Column(name = "aliquotaImposto")
-    private Double aliquotaImposto;
+    @Column(name = "valorImpostofederal")
+    private double valorImpostofederal;
+    @Column(name = "aliquotaImpostofederal")
+    private double aliquotaImpostofederal;
+    @Column(name = "valorimpostoestadual")
+    private double valorimpostoestadual;
+    @Column(name = "aliquotaimpostoestadual")
+    private double aliquotaimpostoestadual;
     @Column(name =     "dataVenda")
     @Temporal(TemporalType.DATE)
     private Date dataVenda;
@@ -245,20 +249,38 @@ public class Venda implements Serializable {
         this.percentualDesconto = percentualDesconto;
     }
 
-    public Double getValorImposto() {
-        return valorImposto;
+    public double getValorImpostofederal() {
+        return valorImpostofederal;
     }
 
-    public void setValorImposto(Double valorImposto) {
-        this.valorImposto = valorImposto;
+    public void setValorImpostofederal(double valorImpostofederal) {
+        this.valorImpostofederal = valorImpostofederal;
     }
 
-    public Double getAliquotaImposto() {
-        return aliquotaImposto;
+    public double getAliquotaImpostofederal() {
+        return aliquotaImpostofederal;
     }
 
-    public void setAliquotaImposto(Double aliquotaImposto) {
-        this.aliquotaImposto = aliquotaImposto;
+    public void setAliquotaImpostofederal(double aliquotaImpostofederal) {
+        this.aliquotaImpostofederal = aliquotaImpostofederal;
     }
+
+    public double getValorimpostoestadual() {
+        return valorimpostoestadual;
+    }
+
+    public void setValorimpostoestadual(double valorimpostoestadual) {
+        this.valorimpostoestadual = valorimpostoestadual;
+    }
+
+    public double getAliquotaimpostoestadual() {
+        return aliquotaimpostoestadual;
+    }
+
+    public void setAliquotaimpostoestadual(double aliquotaimpostoestadual) {
+        this.aliquotaimpostoestadual = aliquotaimpostoestadual;
+    }
+
+
 
 }

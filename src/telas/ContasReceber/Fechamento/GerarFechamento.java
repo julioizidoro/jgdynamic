@@ -85,6 +85,7 @@ public class GerarFechamento {
         if (listaCliente!=null){
             for(int i=0;i<listaCliente.size();i++){
                 float valor =0;
+                listaCliente.get(i).setValorCredito(valor);
                 String sqlCredito = " select c from Creditosreceber c where c.contasreceberpagamento=1 and c.dataLancamento<='" + this.ano + "-" + 
                         Formatacao.retornaDataFinal(Integer.parseInt(mes)) + "' and c.cliente=" + listaCliente.get(i).getCliente();
                 List<Creditosreceber> listaCredito = creditoReceberController.listarCreditos(sqlCredito);
@@ -92,7 +93,6 @@ public class GerarFechamento {
                     for(int c=0;c<listaCredito.size();c++){
                         valor+= listaCredito.get(c).getValorCredito();
                     }
-                    listaCliente.get(i).setValorCredito(valor);
                 }
             }
         }
@@ -108,6 +108,9 @@ public class GerarFechamento {
                 listaCliente.get(i).setValorPagar(valorPagar);
                 int diasAtraso = Formatacao.subtrairDatas(new Date(), listaCliente.get(i).getDataVencimento());///calcularDiasAtraso(Formatacao.ConvercaoDataSql(listaCliente.get(i).getDataVencimento()), dataFinal);
                 listaCliente.get(i).setDiasAtraso(diasAtraso);
+                if (listaCliente.get(i).getDiasAtraso()==null){
+                    listaCliente.get(i).setDiasAtraso(0);
+                }
                 fechamentoContasReceberController.salvarFechamentoCliente(listaCliente.get(i));
             }
         }

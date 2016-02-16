@@ -33,13 +33,13 @@ public class Inventario implements Serializable {
     private Integer idinventario;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "valorunitario")
-    private Float valorunitario;
+    private String valorunitario;
     @Column(name = "quantidadeestoque")
-    private Double quantidadeestoque;
+    private String quantidadeestoque;
     @Column(name = "valortotal")
-    private Float valortotal;
+    private String valortotal;
     @Column(name = "valorvenda")
-    private Float valorvenda;
+    private String valorvenda;
     @JoinColumn(name = "encerramento_idencerramento", referencedColumnName = "idencerramento")
     @ManyToOne(optional = false)
     private Encerramento encerramento;
@@ -62,38 +62,40 @@ public class Inventario implements Serializable {
         this.idinventario = idinventario;
     }
 
-    public Float getValorunitario() {
+    public String getValorunitario() {
         return valorunitario;
     }
 
-    public void setValorunitario(Float valorunitario) {
+    public void setValorunitario(String valorunitario) {
         this.valorunitario = valorunitario;
     }
 
-    public Double getQuantidadeestoque() {
+    public String getQuantidadeestoque() {
         return quantidadeestoque;
     }
 
-    public void setQuantidadeestoque(Double quantidadeestoque) {
+    public void setQuantidadeestoque(String quantidadeestoque) {
         this.quantidadeestoque = quantidadeestoque;
     }
 
-    public Float getValortotal() {
+    public String getValortotal() {
         return valortotal;
     }
 
-    public void setValortotal(Float valortotal) {
+    public void setValortotal(String valortotal) {
         this.valortotal = valortotal;
     }
 
-    public Float getValorvenda() {
+    public String getValorvenda() {
         return valorvenda;
     }
 
-    public void setValorvenda(Float valorvenda) {
+    public void setValorvenda(String valorvenda) {
         this.valorvenda = valorvenda;
     }
 
+    
+    
     public Encerramento getEncerramento() {
         return encerramento;
     }

@@ -365,9 +365,15 @@ public class FrmConsultaFechamentoMes extends javax.swing.JFrame {
             double valorConta=0;
             double valorCredito=0;
             for(int i=0;i<listaFechamento.size();i++){
-                valorConta+= listaFechamento.get(i).getValorConta();
-                valorCredito+= listaFechamento.get(i).getValorCredito();
-                valorPagar+= listaFechamento.get(i).getValorPagar();
+                if (listaFechamento.get(i).getValorConta()!=null){
+                    valorConta+= listaFechamento.get(i).getValorConta();
+                }
+                if (listaFechamento.get(i).getValorCredito()!=null){
+                    valorCredito+= listaFechamento.get(i).getValorCredito();
+                }
+                if (listaFechamento.get(i).getValorPagar()!=null){
+                    valorPagar+= listaFechamento.get(i).getValorPagar();
+                }
             }
             valorContajTextField.setText(Formatacao.foramtarDoubleString(valorConta));
             valorCreditosjTextField.setText(Formatacao.foramtarDoubleString(valorCredito));

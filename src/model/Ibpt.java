@@ -1,17 +1,24 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -26,15 +33,41 @@ public class Ibpt implements Serializable {
     @Basic(optional = false)
     @Column(name = "idibpt")
     private Integer idibpt;
+    @Size(max = 10)
     @Column(name = "ncm")
     private String ncm;
+    @Size(max = 255)
+    @Column(name = "ex")
+    private String ex;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "tipo")
+    private Double tipo;
+    @Size(max = 255)
     @Column(name = "descricao")
     private String descricao;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "aliquotaNacional")
-    private Double aliquotaNacional;
-    @Column(name = "aliquotaImposto")
-    private Double aliquotaImposto;
+    @Column(name = "nacionalfederal")
+    private Double nacionalfederal;
+    @Column(name = "importadosfederal")
+    private Double importadosfederal;
+    @Column(name = "estadual")
+    private Double estadual;
+    @Column(name = "municipal")
+    private Double municipal;
+    @Column(name = "vigenciainicio")
+    @Temporal(TemporalType.DATE)
+    private Date vigenciainicio;
+    @Column(name = "vigenciafim")
+    @Temporal(TemporalType.DATE)
+    private Date vigenciafim;
+    @Size(max = 255)
+    @Column(name = "chave")
+    private String chave;
+    @Size(max = 255)
+    @Column(name = "versao")
+    private String versao;
+    @Size(max = 255)
+    @Column(name = "fonte")
+    private String fonte;
 
     public Ibpt() {
     }
@@ -59,6 +92,22 @@ public class Ibpt implements Serializable {
         this.ncm = ncm;
     }
 
+    public String getEx() {
+        return ex;
+    }
+
+    public void setEx(String ex) {
+        this.ex = ex;
+    }
+
+    public Double getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Double tipo) {
+        this.tipo = tipo;
+    }
+
     public String getDescricao() {
         return descricao;
     }
@@ -67,20 +116,76 @@ public class Ibpt implements Serializable {
         this.descricao = descricao;
     }
 
-    public Double getAliquotaNacional() {
-        return aliquotaNacional;
+    public Double getNacionalfederal() {
+        return nacionalfederal;
     }
 
-    public void setAliquotaNacional(Double aliquotaNacional) {
-        this.aliquotaNacional = aliquotaNacional;
+    public void setNacionalfederal(Double nacionalfederal) {
+        this.nacionalfederal = nacionalfederal;
     }
 
-    public Double getAliquotaImposto() {
-        return aliquotaImposto;
+    public Double getImportadosfederal() {
+        return importadosfederal;
     }
 
-    public void setAliquotaImposto(Double aliquotaImposto) {
-        this.aliquotaImposto = aliquotaImposto;
+    public void setImportadosfederal(Double importadosfederal) {
+        this.importadosfederal = importadosfederal;
+    }
+
+    public Double getEstadual() {
+        return estadual;
+    }
+
+    public void setEstadual(Double estadual) {
+        this.estadual = estadual;
+    }
+
+    public Double getMunicipal() {
+        return municipal;
+    }
+
+    public void setMunicipal(Double municipal) {
+        this.municipal = municipal;
+    }
+
+    public Date getVigenciainicio() {
+        return vigenciainicio;
+    }
+
+    public void setVigenciainicio(Date vigenciainicio) {
+        this.vigenciainicio = vigenciainicio;
+    }
+
+    public Date getVigenciafim() {
+        return vigenciafim;
+    }
+
+    public void setVigenciafim(Date vigenciafim) {
+        this.vigenciafim = vigenciafim;
+    }
+
+    public String getChave() {
+        return chave;
+    }
+
+    public void setChave(String chave) {
+        this.chave = chave;
+    }
+
+    public String getVersao() {
+        return versao;
+    }
+
+    public void setVersao(String versao) {
+        this.versao = versao;
+    }
+
+    public String getFonte() {
+        return fonte;
+    }
+
+    public void setFonte(String fonte) {
+        this.fonte = fonte;
     }
 
     @Override

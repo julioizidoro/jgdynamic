@@ -20,8 +20,10 @@ public class NotaSaidaProdutoBean {
     private double  valorDesconto;
     private double percDesconto;
     private String cst;
-    private double valorTributo;
-    private double percentualTributo;
+    private double valorTributoFederal;
+    private double percentualTributoFederal;
+    private double valorTributoEstadual;
+    private double percentualTributoEstadual;
     private String situacao;
     private double valoracessorios;
 
@@ -49,17 +51,39 @@ public class NotaSaidaProdutoBean {
         this.quantidade = quantidade;
     }
 
-    public double getValorTributo() {
-        return valorTributo;
+    public double getValorTributoFederal() {
+        return valorTributoFederal;
     }
 
-    public void setValorTributo(double valorTributo) {
-        this.valorTributo = valorTributo;
+    public void setValorTributoFederal(double valorTributoFederal) {
+        this.valorTributoFederal = valorTributoFederal;
     }
 
-    public double getPercentualTributo() {
-        return percentualTributo;
+    public double getPercentualTributoFederal() {
+        return percentualTributoFederal;
     }
+
+    public void setPercentualTributoFederal(double percentualTributoFederal) {
+        this.percentualTributoFederal = percentualTributoFederal;
+    }
+
+    public double getValorTributoEstadual() {
+        return valorTributoEstadual;
+    }
+
+    public void setValorTributoEstadual(double valorTributoEstadual) {
+        this.valorTributoEstadual = valorTributoEstadual;
+    }
+
+    public double getPercentualTributoEstadual() {
+        return percentualTributoEstadual;
+    }
+
+    public void setPercentualTributoEstadual(double percentualTributoEstadual) {
+        this.percentualTributoEstadual = percentualTributoEstadual;
+    }
+
+    
 
     public double getPercDesconto() {
         return percDesconto;
@@ -67,10 +91,6 @@ public class NotaSaidaProdutoBean {
 
     public void setPercDesconto(double percDesconto) {
         this.percDesconto = percDesconto;
-    }
-
-    public void setPercentualTributo(double percentualTributo) {
-        this.percentualTributo = percentualTributo;
     }
 
     public double getValorUnitario() {

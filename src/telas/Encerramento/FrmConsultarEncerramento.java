@@ -8,11 +8,14 @@ package telas.Encerramento;
 import Regras.EncerramentoController;
 import controler.Config;
 import controler.UsuarioLogado;
+import controler.relatoriosJasper;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import model.Encerramento;
 
@@ -59,6 +62,7 @@ public class FrmConsultarEncerramento extends javax.swing.JFrame implements IInv
         EditarjButton = new javax.swing.JButton();
         SeparadordeTarefasjSeparator = new javax.swing.JToolBar.Separator();
         FecharrjButton1 = new javax.swing.JButton();
+        FecharrjButton3 = new javax.swing.JButton();
         FecharrjButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -144,6 +148,22 @@ public class FrmConsultarEncerramento extends javax.swing.JFrame implements IInv
         });
         BarradeTarefasjToolBar.add(FecharrjButton1);
 
+        FecharrjButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/impressao.png"))); // NOI18N
+        FecharrjButton3.setText("Imprimir");
+        FecharrjButton3.setToolTipText("Imprimir Inventário");
+        FecharrjButton3.setFocusable(false);
+        FecharrjButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        FecharrjButton3.setMaximumSize(new java.awt.Dimension(80, 90));
+        FecharrjButton3.setMinimumSize(new java.awt.Dimension(80, 90));
+        FecharrjButton3.setPreferredSize(new java.awt.Dimension(80, 90));
+        FecharrjButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        FecharrjButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FecharrjButton3FecharAssociado(evt);
+            }
+        });
+        BarradeTarefasjToolBar.add(FecharrjButton3);
+
         FecharrjButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/voltar.png"))); // NOI18N
         FecharrjButton2.setText("Fechar");
         FecharrjButton2.setToolTipText("Fechar");
@@ -170,9 +190,9 @@ public class FrmConsultarEncerramento extends javax.swing.JFrame implements IInv
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(329, Short.MAX_VALUE)
+                    .addContainerGap(289, Short.MAX_VALUE)
                     .addComponent(BarradeTarefasjToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(222, Short.MAX_VALUE)))
+                    .addContainerGap(182, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,6 +233,25 @@ public class FrmConsultarEncerramento extends javax.swing.JFrame implements IInv
         this.dispose();;
     }//GEN-LAST:event_FecharrjButton2FecharAssociado
 
+    private void FecharrjButton3FecharAssociado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FecharrjButton3FecharAssociado
+        int linha = encerramentojTable.getSelectedRow();
+        if (linha >= 0) {
+            String url = ("telas/Estoque/reportInventario.jasper");
+            Map parameters = new HashMap();
+            try {
+                parameters.put("nomeFantasia", this.config.getEmpresa().getNomeFantasia());
+                parameters.put("RazaoSocial", this.config.getEmpresa().getRazaoSocial());
+                parameters.put("idencerramento", listaEncerramento.get(linha).getIdencerramento());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Não foi possível gerar o relatório " + ex);
+                ex.printStackTrace();
+            }
+            new relatoriosJasper(url, parameters);
+        }else {
+            JOptionPane.showMessageDialog(rootPane, "Selecione o Encerramento");
+        }
+    }//GEN-LAST:event_FecharrjButton3FecharAssociado
+
     /**
      * @param args the command line arguments
      */
@@ -224,6 +263,7 @@ public class FrmConsultarEncerramento extends javax.swing.JFrame implements IInv
     private javax.swing.JButton EditarjButton;
     private javax.swing.JButton FecharrjButton1;
     private javax.swing.JButton FecharrjButton2;
+    private javax.swing.JButton FecharrjButton3;
     private javax.swing.JToolBar.Separator SeparadordeTarefasjSeparator;
     private javax.swing.JTable encerramentojTable;
     private javax.swing.JPanel jPanel1;

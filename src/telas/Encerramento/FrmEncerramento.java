@@ -733,16 +733,18 @@ public class FrmEncerramento extends javax.swing.JFrame {
             ProdutoController produtoController = new ProdutoController();
             for(int i=0;i<listaEstoque.size();i++){
                 Inventario inventario = new Inventario();
-                inventario.setQuantidadeestoque(listaEstoque.get(i).getQuantidadeEstoque());
-                inventario.setValorunitario(listaEstoque.get(i).getValorCompra().floatValue());
-                if (inventario.getValorunitario()<=0){
-                    inventario.setValorunitario(listaEstoque.get(i).getValorVenda().floatValue() * 0.7f);
+                inventario.setQuantidadeestoque(Formatacao.foramtarQuantidade(listaEstoque.get(i).getQuantidadeEstoque()));
+                
+                float valorUnitario = listaEstoque.get(i).getValorCompra().floatValue();
+                if (valorUnitario<=0){
+                    valorUnitario = listaEstoque.get(i).getValorVenda().floatValue() * 0.7f;
                 }
-                inventario.setValortotal(inventario.getValorunitario() * inventario.getQuantidadeestoque().floatValue());
-                inventario.setValorvenda(listaEstoque.get(i).getValorVenda());
+                inventario.setValorunitario(Formatacao.foramtarFloatString(valorUnitario));
+                inventario.setValortotal(Formatacao.foramtarFloatString(valorUnitario * listaEstoque.get(i).getQuantidadeEstoque().floatValue()));
+                inventario.setValorvenda(Formatacao.foramtarFloatString(listaEstoque.get(i).getValorVenda()));
                 inventario.setProduto(produtoController.consultarProdutoid(listaEstoque.get(i).getIdProduto()));
                 listaProduto.add(inventario);
-                total = total + inventario.getValortotal();
+                total = total + (valorUnitario * listaEstoque.get(i).getQuantidadeEstoque().floatValue());
             }
         }
         totalEstoquejTextField.setText(Formatacao.foramtarFloatString(total));

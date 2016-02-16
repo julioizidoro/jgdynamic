@@ -1267,6 +1267,7 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                     prod.setIdFornecedor(listaFornecedor.get(i).getIdfornecedor());
                     prod.setIdProduto(listaProdutos.get(p).getIdProduto());
                     lista.add(prod);
+                    System.out.println(prod.getIdProduto() + "  -  " + prod.getIdFornecedor());
                 }
             }
         }
