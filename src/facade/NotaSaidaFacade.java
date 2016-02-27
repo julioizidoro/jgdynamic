@@ -42,4 +42,9 @@ public class NotaSaidaFacade {
         return notaSaidaDao.filtrarNotaSaida(sql);
     }
     
+    public boolean validarNumero(int numero) throws SQLException{
+        notaSaidaDao = new NotaSaidaDao();
+        return notaSaidaDao.validarNumero(numero);
+    }
+    
 }

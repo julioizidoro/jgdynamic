@@ -23,19 +23,6 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "produto")
 public class Produto implements Serializable {
-    @Column(name = "sincronizado")
-    private Integer sincronizado;
-    @Column(name = "percentualComissao")
-    private Double percentualComissao;
-    @Column(name = "codgioJurere")
-    private Integer codgioJurere;
-    @Column(name =     "dataPedido")
-    @Temporal(TemporalType.DATE)
-    private Date dataPedido;
-    @Column(name = "codigoNovo")
-    private Integer codigoNovo;
-    @Column(name = "precoFixo")
-    private Integer precoFixo;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,6 +56,22 @@ public class Produto implements Serializable {
     private String produto;
     @Column(name = "cest")
     private String cest;
+    @Column(name = "sincronizado")
+    private Integer sincronizado;
+    @Column(name = "percentualComissao")
+    private Double percentualComissao;
+    @Column(name = "codgioJurere")
+    private Integer codgioJurere;
+    @Column(name =     "dataPedido")
+    @Temporal(TemporalType.DATE)
+    private Date dataPedido;
+    @Column(name = "codigoNovo")
+    private Integer codigoNovo;
+    @Column(name = "precoFixo")
+    private Integer precoFixo;
+    @Column(name = "vinculo")
+    private boolean vicnulo;
+    
 
 
     public Produto() {
@@ -191,6 +194,14 @@ public class Produto implements Serializable {
 
     public void setCest(String cest) {
         this.cest = cest;
+    }
+
+    public boolean isVicnulo() {
+        return vicnulo;
+    }
+
+    public void setVicnulo(boolean vicnulo) {
+        this.vicnulo = vicnulo;
     }
 
 

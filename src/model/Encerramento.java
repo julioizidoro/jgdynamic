@@ -36,9 +36,12 @@ public class Encerramento implements Serializable {
     @Basic(optional = false)
     @Column(name = "idencerramento")
     private Integer idencerramento;
-    @Size(max = 4)
-    @Column(name = "ano")
-    private String ano;
+    @Size(max = 10)
+    @Column(name = "tipo")
+    private String tipo;
+    @Size(max = 10)
+    @Column(name = "periodo")
+    private String periodo;
     @Column(name = "data")
     @Temporal(TemporalType.DATE)
     private Date data;
@@ -94,13 +97,22 @@ public class Encerramento implements Serializable {
         this.idencerramento = idencerramento;
     }
 
-    public String getAno() {
-        return ano;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setAno(String ano) {
-        this.ano = ano;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
+
+    public String getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(String periodo) {
+        this.periodo = periodo;
+    }
+
 
     public Date getData() {
         return data;

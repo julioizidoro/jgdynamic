@@ -75,4 +75,15 @@ public class NotaSaidaController {
         }
     }
     
+    public boolean validarNumero(int numero) {
+        notaSaidaFacade = new NotaSaidaFacade();
+        try {
+            return notaSaidaFacade.validarNumero(numero);
+        } catch (SQLException ex) {
+            Logger.getLogger(NotaSaidaController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro Válidar Numero NF-e " + ex);
+            return false;
+        }
+    }
+    
 }

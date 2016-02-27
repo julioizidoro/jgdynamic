@@ -222,7 +222,7 @@ public class FrmConsultarEncerramento extends javax.swing.JFrame implements IInv
         int linha = encerramentojTable.getSelectedRow();
         if (linha>=0) {
             EncerramentoController encerramentoController = new EncerramentoController();
-            String nome = "Inventario_" + listaEncerramento.get(linha).getAno() + ".xls";
+            String nome = "Inventario_" + listaEncerramento.get(linha).getPeriodo()+ ".xls";
             encerramentoController.ExportarInventario(nome, listaEncerramento.get(linha).getIdencerramento());
         }else {
             JOptionPane.showMessageDialog(rootPane, "Selecione o Encerramento");
@@ -279,10 +279,11 @@ public class FrmConsultarEncerramento extends javax.swing.JFrame implements IInv
         }
         model = new ConsultaEncerramentoTableModel(listaEncerramento);
         encerramentojTable.setModel(model);
-        encerramentojTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-        encerramentojTable.getColumnModel().getColumn(1).setPreferredWidth(80);
+        encerramentojTable.getColumnModel().getColumn(0).setPreferredWidth(80);
+        encerramentojTable.getColumnModel().getColumn(1).setPreferredWidth(50);
         encerramentojTable.getColumnModel().getColumn(2).setPreferredWidth(80);
-        encerramentojTable.getColumnModel().getColumn(3).setPreferredWidth(200);
+        encerramentojTable.getColumnModel().getColumn(3).setPreferredWidth(80);
+        encerramentojTable.getColumnModel().getColumn(4).setPreferredWidth(200);
         encerramentojTable.repaint();
     }
 

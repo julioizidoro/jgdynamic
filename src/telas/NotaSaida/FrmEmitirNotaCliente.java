@@ -2047,7 +2047,7 @@ jPanel7Layout.setHorizontalGroup(
         for (int i = 0; i < listaProdutoBean.size(); i++) {
             arquivo.write("H|");
             arquivo.write((i+1) + "|");//Numero do item
-            arquivo.write("VALOR APROXIMADO DOS TRIBUTOS R$ " + Formatacao.foramtarDoubleString(listaProdutoBean.get(i).getValorTributoFederal() + listaProdutoBean.get(i).getValorTributoEstadual()) +"|");//Informacoes Adicionais
+            arquivo.write("VALOR APROXIMADO DOS TRIBUTOS FEDERAL R$" + Formatacao.foramtarDoubleString(listaProdutoBean.get(i).getValorTributoFederal()) + " ESTADUAL R$ " + Formatacao.foramtarDoubleString(listaProdutoBean.get(i).getValorTributoEstadual()) +"|");//Informacoes Adicionais
             arquivo.write("\r\n");
             arquivo.write("I|");
             arquivo.write(String.valueOf(listaProdutoBean.get(i).getProduto().getReferencia()) + "|");
@@ -2082,7 +2082,7 @@ jPanel7Layout.setHorizontalGroup(
             if (listaProdutoBean.get(i).getProduto().getAliquota()==6){
                 arquivo.write("N10g|0|500||||");
             }else {
-                arquivo.write("N10h|0|900||||");
+                arquivo.write("N10h|0|102||||");
             }
             arquivo.write("\r\n");
             gerarPisSimplesNacional();
@@ -2138,9 +2138,9 @@ jPanel7Layout.setHorizontalGroup(
         arquivo.write(pesoliquidojTextField.getText() + "|");
         
          arquivo.write("\r\n");
-        arquivo.write("Z||" + notaSaidaBean.getInfoTexto() + " - VALOR APROXIMADO DOS TRIBUTOS R$ "
-                + Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosFederal() + notaSaidaBean.getTotalTributiosEstadual())
-                + infojTextArea.getText() + "|");
+        arquivo.write("Z||" + notaSaidaBean.getInfoTexto() + " a)      EMPRESA ME OU EPP OPTANTE PELO SIMPLES NACIONAL;b) NÃO GERA DIREITO A CRÉDITO FISCAL DE IPI. Valor aproximado dos tributos com base na lei  12.741/2012 "
+                + " Federal R$ " + Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosFederal()) + "; Estadual R$ " +  Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosEstadual()) +
+                ";municipal R$ 0,00. FONTE: IBPT." + infojTextArea.getText() + "|");
         
     }
     

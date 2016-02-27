@@ -19,7 +19,7 @@ import model.Encerramento;
 public class ConsultaEncerramentoTableModel extends AbstractTableModel {
 
     private List<Encerramento> lista;
-    private String[] colunas ={"Ano", "Data", "Hora", "Usuário"};
+    private String[] colunas ={"Tipo", "Período", "Data", "Hora", "Usuário"};
 
     public ConsultaEncerramentoTableModel(List<Encerramento> lista) {
         this.lista = lista;
@@ -34,12 +34,13 @@ public class ConsultaEncerramentoTableModel extends AbstractTableModel {
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
-        
         if (columnIndex==0){
-            return lista.get(rowIndex).getAno();
+            return lista.get(rowIndex).getTipo();
         }else if (columnIndex==1){
-            return lista.get(rowIndex).getData();
+            return lista.get(rowIndex).getPeriodo();
         }else if (columnIndex==2){
+            return lista.get(rowIndex).getData();
+        }else if (columnIndex==3){
             return lista.get(rowIndex).getHora();
         }else return lista.get(rowIndex).getUsuario();
     }

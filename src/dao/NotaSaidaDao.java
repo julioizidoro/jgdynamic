@@ -68,4 +68,15 @@ public class NotaSaidaDao {
         return lista;
     }
     
+    public boolean validarNumero(int numero) throws SQLException{
+        manager = ConexaoSingleton.getConexao();
+        Query q = manager.createQuery("Select n From Notasaida n where n.numero=" + numero);
+        boolean validar = false;
+        if (q.getResultList().size()==0){
+            validar = true;
+        }
+        manager.close();
+        return validar;
+    }
+    
 }

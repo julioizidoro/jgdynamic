@@ -2105,8 +2105,8 @@ jPanel7Layout.setHorizontalGroup(
             arquivo.write("\r\n");
             arquivo.write("N|");
             arquivo.write("\r\n");
-            if (listaProdutoBean.get(i).getProduto().getAliquota()==6){
-                arquivo.write("N10g|0|500||||");
+            if (tipoOperacaojComboBox.getSelectedItem().toString().equalsIgnoreCase("Remessa")){
+                arquivo.write("N10g|0|400||||");
             }else {
                 arquivo.write("N10h|0|900||||");
             }
@@ -2166,10 +2166,9 @@ jPanel7Layout.setHorizontalGroup(
         arquivo.write(pesoliquidojTextField.getText() + "|");
         
          arquivo.write("\r\n");
-         arquivo.write("Z||" + notaSaidaBean.getInfoTexto() + " - VALOR APROXIMADO DOS TRIBUTOS R$ "
-                + Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosFederal()+ notaSaidaBean.getTotalTributiosEstadual()) +
-                " , com base na Lei 12.741/2012 – FONTE IBPT."
-                + infojTextArea.getText() + "|");
+         arquivo.write("Z||" + notaSaidaBean.getInfoTexto() + " a)      EMPRESA ME OU EPP OPTANTE PELO SIMPLES NACIONAL;b) NÃO GERA DIREITO A CRÉDITO FISCAL DE IPI. Valor aproximado dos tributos com base na lei  12.741/2012 "
+                + " Federal R$ " + Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosFederal()) + "; Estadual R$ " +  Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosEstadual()) +
+                ";municipal R$ 0,00. FONTE: IBPT." + infojTextArea.getText() + "|");
         
     }
 

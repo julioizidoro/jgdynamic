@@ -300,6 +300,7 @@ public final class FrmConsultaProdutos extends javax.swing.JFrame implements Ite
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -627,6 +628,14 @@ public final class FrmConsultaProdutos extends javax.swing.JFrame implements Ite
             }
         });
         jMenu2.add(jMenuItem2);
+
+        jMenuItem13.setText("Produtos sem vinculo");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem13);
 
         jMenuBar1.add(jMenu2);
 
@@ -971,6 +980,30 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             }else JOptionPane.showMessageDialog(rootPane, "Estoque não localizado");
         }
     }//GEN-LAST:event_ValorVendajButtonEditarCadastroAssociado
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        VinculoController vinculoController = new VinculoController();
+        ProdutoController produtoController = new ProdutoController();
+        List<Produto> lista = produtoController.consultarProduto();
+        for (int i=0;lista.size()>i;i++){
+            List<Vinculo> listaVinculo = vinculoController.consultarVinculo(lista.get(i).getIdProduto(), config.getEmpresa().getIdempresa());
+            if ((listaVinculo!=null) && (listaVinculo.size()>0)) {
+                lista.get(i).setVicnulo(true);
+            }else lista.get(i).setVicnulo(false);
+            produtoController.salvarProduto(lista.get(i));
+        }
+                String url = ("telas/Produtos/reportProdutosemvinculo.jasper");
+        Map parameters = new HashMap();
+        try {
+            parameters.put("nomeFantasia", this.config.getEmpresa().getNomeFantasia());
+            parameters.put("RazaoSocial", this.config.getEmpresa().getRazaoSocial());
+            parameters.put("idempresa", this.config.getEmpresa().getIdempresa());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Não foi possível gerar o relatório " + ex);
+            ex.printStackTrace();
+        }
+        new relatoriosJasper(url, parameters);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -1006,6 +1039,7 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

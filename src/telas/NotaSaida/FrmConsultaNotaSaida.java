@@ -90,6 +90,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         PesquisarjButton = new javax.swing.JButton();
         AdicionarjButton1 = new javax.swing.JButton();
         PesquisarjButton1 = new javax.swing.JButton();
+        PesquisarjButton2 = new javax.swing.JButton();
         SeparadordeTarefasjSeparator = new javax.swing.JToolBar.Separator();
         ImprimirjButton = new javax.swing.JButton();
         VisualizarjButton = new javax.swing.JButton();
@@ -172,6 +173,22 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
             }
         });
         BarradeTarefasjToolBar.add(PesquisarjButton1);
+
+        PesquisarjButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes02/cadplanocontas.png"))); // NOI18N
+        PesquisarjButton2.setText("Inutilizar");
+        PesquisarjButton2.setToolTipText("Inutilizar número da NF-e");
+        PesquisarjButton2.setFocusable(false);
+        PesquisarjButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        PesquisarjButton2.setMaximumSize(new java.awt.Dimension(80, 90));
+        PesquisarjButton2.setMinimumSize(new java.awt.Dimension(80, 90));
+        PesquisarjButton2.setPreferredSize(new java.awt.Dimension(80, 90));
+        PesquisarjButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        PesquisarjButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarjButton2PesquisarAssociado(evt);
+            }
+        });
+        BarradeTarefasjToolBar.add(PesquisarjButton2);
         BarradeTarefasjToolBar.add(SeparadordeTarefasjSeparator);
 
         ImprimirjButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/impressao.png"))); // NOI18N
@@ -300,16 +317,16 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(168, 168, 168)
-                                .addComponent(BarradeTarefasjToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap()
+                                .addComponent(jLabel1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel1)))
+                                .addComponent(nomejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(nomejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88)
+                .addComponent(BarradeTarefasjToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -425,6 +442,10 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         }else JOptionPane.showMessageDialog(rootPane, "Selecione uma NF-e");
     }//GEN-LAST:event_PesquisarjButton1PesquisarAssociado
 
+    private void PesquisarjButton2PesquisarAssociado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarjButton2PesquisarAssociado
+        new FrmInutilizarNFe(config);
+    }//GEN-LAST:event_PesquisarjButton2PesquisarAssociado
+
     /**
      * @param args the command line arguments
      */
@@ -437,6 +458,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
     private javax.swing.JButton ImprimirjButton;
     private javax.swing.JButton PesquisarjButton;
     private javax.swing.JButton PesquisarjButton1;
+    private javax.swing.JButton PesquisarjButton2;
     private javax.swing.JButton RelatoriojButton;
     private javax.swing.JButton RelatoriojButton1;
     private javax.swing.JToolBar.Separator SeparadordeTarefasjSeparator;
