@@ -90,8 +90,8 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         PesquisarjButton = new javax.swing.JButton();
         AdicionarjButton1 = new javax.swing.JButton();
         PesquisarjButton1 = new javax.swing.JButton();
-        PesquisarjButton2 = new javax.swing.JButton();
         SeparadordeTarefasjSeparator = new javax.swing.JToolBar.Separator();
+        PesquisarjButton2 = new javax.swing.JButton();
         ImprimirjButton = new javax.swing.JButton();
         VisualizarjButton = new javax.swing.JButton();
         RelatoriojButton = new javax.swing.JButton();
@@ -173,6 +173,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
             }
         });
         BarradeTarefasjToolBar.add(PesquisarjButton1);
+        BarradeTarefasjToolBar.add(SeparadordeTarefasjSeparator);
 
         PesquisarjButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes02/cadplanocontas.png"))); // NOI18N
         PesquisarjButton2.setText("Inutilizar");
@@ -189,7 +190,6 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
             }
         });
         BarradeTarefasjToolBar.add(PesquisarjButton2);
-        BarradeTarefasjToolBar.add(SeparadordeTarefasjSeparator);
 
         ImprimirjButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/impressao.png"))); // NOI18N
         ImprimirjButton.setText("Imprimir");
@@ -310,18 +310,13 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(nomejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1)
+                            .addComponent(nomejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()

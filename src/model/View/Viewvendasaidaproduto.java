@@ -45,8 +45,10 @@ public class Viewvendasaidaproduto implements Serializable {
     private Float valorVenda;
     @Column(name = "valorDesconto")
     private Float valorDesconto;
-    @Column(name = "valorImposto")
-    private Double valorImposto;
+    @Column(name = "valorImpostofederal")
+    private Double valorImpostofederal;
+    @Column(name = "valorimpostoestadual")
+    private Double valorimpostoestadual;
     @Size(max = 100)
     @Column(name = "descricao")
     private String descricao;
@@ -122,13 +124,23 @@ public class Viewvendasaidaproduto implements Serializable {
         this.valorDesconto = valorDesconto;
     }
 
-    public Double getValorImposto() {
-        return valorImposto;
+    public Double getValorImpostofederal() {
+        return valorImpostofederal;
     }
 
-    public void setValorImposto(Double valorImposto) {
-        this.valorImposto = valorImposto;
+    public void setValorImpostofederal(Double valorImpostofederal) {
+        this.valorImpostofederal = valorImpostofederal;
     }
+
+    public Double getValorimpostoestadual() {
+        return valorimpostoestadual;
+    }
+
+    public void setValorimpostoestadual(Double valorimpostoestadual) {
+        this.valorimpostoestadual = valorimpostoestadual;
+    }
+
+    
 
     public String getDescricao() {
         return descricao;

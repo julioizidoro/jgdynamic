@@ -40,7 +40,7 @@ public class EncerramentoDao {
     public List<Encerramento> listar() throws SQLException{
         manager = ConexaoSingleton.getConexao();
         manager.getTransaction().begin();
-        Query q = manager.createQuery("select e from Encerramento e order by ano");
+        Query q = manager.createQuery("select e from Encerramento e order by periodo");
         List<Encerramento> lista = q.getResultList();
         manager.getTransaction().commit(); 
         manager.close();

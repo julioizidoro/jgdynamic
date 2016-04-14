@@ -206,10 +206,10 @@
   <persistence-unit name="parametrosPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <properties>
-      <property name="hibernate.connection.username" value="activ2br2"/>
+      <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-      <property name="hibernate.connection.password" value="30Tour03"/>
-      <property name="hibernate.connection.url" value="jdbc:mysql://mysql.activetour.com.br:3306/activ2br2?zeroDateTimeBehavior=convertToNull"/>
+      <property name="hibernate.connection.password" value="jfhmaster123"/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://191.191.45.76:8082/parametros?zeroDateTimeBehavior=convertToNull"/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
     </properties>
   </persistence-unit>

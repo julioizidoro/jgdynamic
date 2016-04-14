@@ -26,6 +26,16 @@ public class NotaSaidaProdutoBean {
     private double percentualTributoEstadual;
     private String situacao;
     private double valoracessorios;
+    private String numeroOrdemECF;
+    private String numeroCOO;
+
+    public NotaSaidaProdutoBean() {
+        this.numeroOrdemECF = "001";
+        this.numeroCOO = "0";
+    }
+    
+    
+    
 
     public Produto getProduto() {
         return produto;
@@ -81,6 +91,22 @@ public class NotaSaidaProdutoBean {
 
     public void setPercentualTributoEstadual(double percentualTributoEstadual) {
         this.percentualTributoEstadual = percentualTributoEstadual;
+    }
+
+    public String getNumeroOrdemECF() {
+        return numeroOrdemECF;
+    }
+
+    public void setNumeroOrdemECF(String numeroOrdemECF) {
+        this.numeroOrdemECF = numeroOrdemECF;
+    }
+
+    public String getNumeroCOO() {
+        return numeroCOO;
+    }
+
+    public void setNumeroCOO(String numeroCOO) {
+        this.numeroCOO = numeroCOO;
     }
 
     

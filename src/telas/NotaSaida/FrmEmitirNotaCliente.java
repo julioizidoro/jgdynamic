@@ -62,6 +62,7 @@ import model.Produto;
 import model.Saida;
 import model.Terminalcliente;
 import model.Terminalproduto;
+import model.Venda;
 import model.View.Viewvendasaidaproduto;
 import telas.Cliente.FrmConsultaClientes;
 import telas.ContasReceber.CreditoBean;
@@ -1956,14 +1957,23 @@ jPanel7Layout.setHorizontalGroup(
         arquivo.write("\r\n");
     }
 
-    public void gerarDadosCupomFiscalReferenciado() throws IOException{
-        if (!notaSaidaBean.getNumeroOrdemECF().equalsIgnoreCase("0")){
-            arquivo.write("BA20|");//BA20
-            arquivo.write("2D|"); //BA21
-            arquivo.write(notaSaidaBean.getNumeroOrdemECF() + "|"); //BA22
-            arquivo.write(notaSaidaBean.getNumeroCOO() + "|"); //BA23
-            arquivo.write("\r\n");
+    public void gerarDadosCupomFiscalReferenciado() throws IOException {
+        for (int i = 0; i < notaSaidaBean.getListaProdutos().size(); i++) {
+            if (!notaSaidaBean.getListaProdutos().get(i).getNumeroCOO().equalsIgnoreCase("0")) {
+                notaSaidaBean.setNumeroCOO(notaSaidaBean.getListaProdutos().get(i).getNumeroCOO());
+                notaSaidaBean.setNumeroOrdemECF(notaSaidaBean.getListaProdutos().get(i).getNumeroOrdemECF());
+                i = 10000;
+            }
         }
+        if (notaSaidaBean.getNumeroCOO().equalsIgnoreCase("0")){
+            notaSaidaBean.setNumeroCOO("170788");
+            notaSaidaBean.setNumeroOrdemECF("001");
+        }
+        arquivo.write("BA20|");//BA20
+        arquivo.write("2D|"); //BA21
+        arquivo.write(notaSaidaBean.getNumeroOrdemECF() + "|"); //BA22
+        arquivo.write(notaSaidaBean.getNumeroCOO() + "|"); //BA23
+        arquivo.write("\r\n");
     }
 
     public void gerarDadosEmitente() throws IOException{
@@ -2321,6 +2331,8 @@ jPanel7Layout.setHorizontalGroup(
                     Codigofiscal cf = (Codigofiscal) semSTjComboBox.getSelectedItem();
                     notaSaidaProdutoBean.setCfop(cf.getCfop());
                 }
+                notaSaidaProdutoBean.setNumeroCOO("0");
+                notaSaidaProdutoBean.setNumeroOrdemECF("001");
                 listaProdutoBean.add(notaSaidaProdutoBean);
             }
         }
@@ -2763,6 +2775,8 @@ jPanel7Layout.setHorizontalGroup(
                 if (listaProdutoContas != null) {
                     for (int i = 0; i < listaProdutoContas.size(); i++) {
                         Saida saida = listaProdutoContas.get(i);
+                        VendaController vendasController = new VendaController();
+                        Venda venda = vendasController.getVenda(saida.getVenda());
                         NotaSaidaProdutoBean notaSaidaProdutoBean = new NotaSaidaProdutoBean();
                         Produto produto = new Produto();
                         ProdutoController produtoController = new ProdutoController();
@@ -2783,6 +2797,8 @@ jPanel7Layout.setHorizontalGroup(
                                 Codigofiscal cf = (Codigofiscal) semSTjComboBox.getSelectedItem();
                                 notaSaidaProdutoBean.setCfop(cf.getCfop());
                             }
+                            notaSaidaProdutoBean.setNumeroCOO(venda.getNumeroECF());
+                            notaSaidaProdutoBean.setNumeroOrdemECF("001");
                             listaProdutoBean.add(notaSaidaProdutoBean);
                         }
                     }

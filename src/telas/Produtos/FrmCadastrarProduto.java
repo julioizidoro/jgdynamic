@@ -866,7 +866,7 @@ private void valorCustojFormattedTextFieldKeyReleased(java.awt.event.KeyEvent ev
                 codigojTextField.setText(String.valueOf(codigo));
                 parametros.setCodigoProduto(codigo);
                 try {
-                    parametrosFacade.salvar(parametros);
+                    parametrosFacade.salvar(parametros, config.getEmpresa().getIdempresa());
                 } catch (Exception ex) {
                     Logger.getLogger(FrmCadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(null, "Erro Salvar Código " + ex);
@@ -977,7 +977,7 @@ private void valorCustojFormattedTextFieldKeyReleased(java.awt.event.KeyEvent ev
         ParametrosFacade parametrosFacade = new ParametrosFacade();
         parametro.setCodigoProduto(codigo);
         try {
-            parametrosFacade.salvar(parametro);
+            parametrosFacade.salvar(parametro, config.getEmpresa().getIdempresa());
         } catch (Exception ex) {
             Logger.getLogger(FrmCadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(rootPane, "Erro Salvar Código");

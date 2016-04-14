@@ -215,14 +215,18 @@ public class FrmConsultarEncerramento extends javax.swing.JFrame implements IInv
     }//GEN-LAST:event_AdicionarjButtonAdicionarAssociado
 
     private void EditarjButtonEditarCadastroAssociado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarjButtonEditarCadastroAssociado
-        
+        int linha = encerramentojTable.getSelectedRow();
+        if (linha>=0) {
+            new FrmEncerramento(config, usuarioLogado, listaEncerramento.get(linha), this);
+        }
     }//GEN-LAST:event_EditarjButtonEditarCadastroAssociado
 
     private void FecharrjButton1FecharAssociado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FecharrjButton1FecharAssociado
         int linha = encerramentojTable.getSelectedRow();
         if (linha>=0) {
             EncerramentoController encerramentoController = new EncerramentoController();
-            String nome = "Inventario_" + listaEncerramento.get(linha).getPeriodo()+ ".xls";
+            String nome = JOptionPane.showInputDialog("Informe nome do arquivo (sem caracteres especiais");
+            nome = nome  + ".xls";
             encerramentoController.ExportarInventario(nome, listaEncerramento.get(linha).getIdencerramento());
         }else {
             JOptionPane.showMessageDialog(rootPane, "Selecione o Encerramento");

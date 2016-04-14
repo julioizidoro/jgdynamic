@@ -47,6 +47,12 @@ public class ParametrosLocal implements Serializable {
     private double impostosst;
     @Column(name= "versaonfe")
     private String versaonfe;
+    @Column(name= "banco")
+    private String banco;
+    @Column(name= "usuario")
+    private String usuario;
+    @Column(name= "senha")
+    private String senha;
     
 
     public ParametrosLocal() {
@@ -139,6 +145,30 @@ public class ParametrosLocal implements Serializable {
 
     public void setVersaonfe(String versaonfe) {
         this.versaonfe = versaonfe;
+    }
+
+    public String getBanco() {
+        return banco;
+    }
+
+    public void setBanco(String banco) {
+        this.banco = banco;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
 

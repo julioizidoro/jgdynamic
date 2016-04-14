@@ -55,6 +55,8 @@ public class NotaSaidaBean {
         this.codigoCliente=0;
         this.codigoFornecedor=0;
         this.codigoMunicipio = "0";
+        this.numeroCOO="0";
+        this.numeroOrdemECF="001";
     }
    
     public String getNaturezaOperacao() {

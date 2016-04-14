@@ -20,6 +20,7 @@ import model.Contasreceber;
 import model.Contasreceberprodutos;
 import model.Produto;
 import model.Saida;
+import model.Venda;
 
 /**
  *
@@ -234,7 +235,9 @@ public class FrmConsultaProdutoConta extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int linha = produtoContasjTable.getSelectedRow();
         if (linha>=0){
-            carregarProdutoBean(listaProdutoContas.get(linha));
+            VendaController vendasController = new VendaController();
+            Venda venda = vendasController.getVenda(listaProdutoContas.get(linha).getVenda());
+            carregarProdutoBean(listaProdutoContas.get(linha), venda);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -244,8 +247,10 @@ public class FrmConsultaProdutoConta extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (listaProdutoContas.size()>0){
+            VendaController vendasController = new VendaController();
+            Venda venda = vendasController.getVenda(listaProdutoContas.get(0).getVenda());
             for(int i=0;i<listaProdutoContas.size();i++){
-                carregarProdutoBean(listaProdutoContas.get(i));
+                carregarProdutoBean(listaProdutoContas.get(i), venda);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -317,7 +322,7 @@ public class FrmConsultaProdutoConta extends javax.swing.JFrame {
         }
     }
     
-    public void carregarProdutoBean(Saida saida){
+    public void carregarProdutoBean(Saida saida, Venda venda){
         NotaSaidaProdutoBean notaSaidaProdutoBean = new NotaSaidaProdutoBean();
         Produto produto = new Produto();
         ProdutoController produtoController = new ProdutoController();
@@ -327,6 +332,8 @@ public class FrmConsultaProdutoConta extends javax.swing.JFrame {
             notaSaidaProdutoBean.setProduto(produto);
             notaSaidaProdutoBean.setQuantidade(saida.getQuantidade());
             notaSaidaProdutoBean.setValorDesconto(0.0f);
+            notaSaidaProdutoBean.setNumeroCOO(venda.getNumeroECF());
+            notaSaidaProdutoBean.setNumeroOrdemECF("001");
             stvalor = Formatacao.foramtarFloatString(saida.getValorVenda()/saida.getQuantidade().floatValue());
             notaSaidaProdutoBean.setValorUnitario(Formatacao.formatarStringfloat(stvalor));
             stvalor = Formatacao.foramtarDoubleString( notaSaidaProdutoBean.getValorUnitario() * notaSaidaProdutoBean.getQuantidade());

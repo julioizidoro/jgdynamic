@@ -19,11 +19,9 @@ public class ParametroLocalDao {
     private EntityManager manager;
     
     public void salvar(ParametrosLocal parametros) throws Exception {
-         manager = ConexaoSingleton.getConexao();
-        //abrindo uma transação
+        manager = ConexaoSingleton.getConexao();
         manager.getTransaction().begin();
         manager.merge(parametros);
-        //fechando uma transação
         manager.getTransaction().commit(); 
         manager.close();
     }
@@ -32,10 +30,8 @@ public class ParametroLocalDao {
     
     public ParametrosLocal localizarParametro(int idParametro) throws Exception{
         manager = ConexaoSingleton.getConexao();
-        //abrindo uma transação
         manager.getTransaction().begin();
         ParametrosLocal parametros = manager.find(ParametrosLocal.class, idParametro); 
-        //fechando uma transação
         manager.getTransaction().commit();
         manager.close();
         return parametros;

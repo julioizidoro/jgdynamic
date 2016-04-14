@@ -54,9 +54,11 @@ public class ConsultaEncerramentoTableModel extends AbstractTableModel {
     public Class<?> getColumnClass(int columnIndex) {
         if (columnIndex==0){
              return String.class;
-        } else if (columnIndex==1){
+        }else if (columnIndex==1){
+             return String.class;
+        } else if (columnIndex==2){
             return Date.class;
-         }else if (columnIndex==2){
+         }else if (columnIndex==3){
              return  String.class;
          }else return String.class;
     }

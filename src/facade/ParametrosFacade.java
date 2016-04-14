@@ -15,14 +15,14 @@ public class ParametrosFacade {
     
     ParametrosDao parametrosDao;
     
-     public void salvar(Parametros parametros) throws Exception {
+     public void salvar(Parametros parametros, int idEmpresa) throws Exception {
          parametrosDao = new ParametrosDao();
-         parametrosDao.salvar(parametros);
+         parametrosDao.salvar(parametros,idEmpresa);
     }
     
-    public Parametros localizar(int idParametro) throws Exception{
+    public Parametros localizar(int idEpmresa) throws Exception{
         parametrosDao = new ParametrosDao();
-        return parametrosDao.localizar(idParametro);
+        return parametrosDao.localizar(idEpmresa);
     }
     
 }

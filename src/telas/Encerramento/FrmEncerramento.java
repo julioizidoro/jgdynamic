@@ -50,15 +50,15 @@ public class FrmEncerramento extends javax.swing.JFrame {
     public FrmEncerramento(Config config, UsuarioLogado usuarioLogado, Encerramento encerramento, IInventario telaInventario) {
         this.encerramento = encerramento;
         this.telaInventario = telaInventario;
-        if (encerramento==null){
+        initComponents();
+        if (encerramento == null) {
             this.encerramento = new Encerramento();
             this.encerramento.setUsuario(usuarioLogado.getUsuario().getNome());
             this.encerramento.setEmpresa(config.getEmpresa());
-        }else {
+        } else {
             popuplarInvetario();
         }
-        initComponents();
-         URL url = this.getClass().getResource("/imagens/logo_mini.png");
+        URL url = this.getClass().getResource("/imagens/logo_mini.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
         this.setLocationRelativeTo(null);

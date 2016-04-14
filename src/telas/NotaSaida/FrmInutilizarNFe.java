@@ -168,7 +168,11 @@ public class FrmInutilizarNFe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salvarjButton2SalvarCadastroAssociado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarjButton2SalvarCadastroAssociado
-        
+        if (motivojTextField.getText().length() > 0) {
+            gerarArquivoInutilzacao();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Preencher o motivo da inutilização");
+        }
     }//GEN-LAST:event_salvarjButton2SalvarCadastroAssociado
 
     private void jButton2FecharCadastro(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2FecharCadastro
@@ -182,11 +186,7 @@ public class FrmInutilizarNFe extends javax.swing.JFrame {
             int numero = Integer.parseInt(numerojTextField.getText());
             NotaSaidaController notaSaidaController = new NotaSaidaController();
             if (notaSaidaController.validarNumero(numero)){
-                if (motivojTextField.getText().length()>0){
-                    gerarArquivoInutilzacao();
-                }else {
-                    JOptionPane.showMessageDialog(rootPane, "Preencher o motivo da inutilização");
-                }
+                JOptionPane.showMessageDialog(rootPane, "Número pode ser inutilizado");
             }else {
                 JOptionPane.showMessageDialog(rootPane, "Número não pode ser inutilizado");
             }
@@ -213,12 +213,26 @@ public class FrmInutilizarNFe extends javax.swing.JFrame {
 
     public void gerarArquivoInutilzacao(){
         //InutilizarNFe( cCNPJ, cJustificativa, nAno, nModelo, nSerie, nNumInicial, nNumFinal
-        String texto = config.getEmpresa().getCnpj().trim();
-        texto = texto + ", " + motivojTextField.getText();
-        texto = texto + ", " +  anoCorrente();
-        texto = texto + ", " + "55 ,1";
-        texto = texto + ", " + numerojTextField.getText() + ", " + numerojTextField.getText();
+        String texto = retirarPontos(config.getEmpresa().getCnpj());
+        texto = texto + "," + motivojTextField.getText();
+        texto = texto + "," +  anoCorrente();
+        texto = texto + "," + "55,1";
+        texto = texto + "," + numerojTextField.getText() + "," + numerojTextField.getText();
         texto = "NFe.InutilizarNFe(" + texto + ")";
+        try {
+            FileWriter acbr = new FileWriter(new File(this.config.getCaminhoAcbr() + "ENTNFE.txt"));
+            acbr.write(texto);
+            acbr.close();
+        } catch (IOException ex) {
+            Logger.getLogger(FrmEmitirNotaCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Timer timer = new Timer();
+        timer.schedule(new RemindTask(), 5 * 1000);
+        imprimirInutilizacao();
+    }
+    
+    public void imprimirInutilizacao(){
+        String texto = "NFe.ImprimirInutilizacao()";
         try {
             FileWriter acbr = new FileWriter(new File(this.config.getCaminhoAcbr() + "ENTNFE.txt"));
             acbr.write(texto);
@@ -265,6 +279,21 @@ public class FrmInutilizarNFe extends javax.swing.JFrame {
     public String anoCorrente(){
         Calendar cal = Calendar.getInstance();
         int ano = cal.get(Calendar.YEAR);
+        ano = ano - 2000;
         return String.valueOf(ano);
+    }
+    
+    public String retirarPontos(String dado){
+        String formatado = "";
+        char c = ' ';
+        if (dado != null) {
+            for (int i = 0; i < dado.length(); i++) {
+                c = dado.charAt(i);
+                if ((c != '.') && (c != ',') && (c != '-') && (c != '/') && (c != '(') && (c != ')')) {
+                    formatado += c;
+                }
+            }
+        }
+        return formatado;
     }
 }
