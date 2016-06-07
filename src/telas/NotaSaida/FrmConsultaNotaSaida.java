@@ -10,6 +10,7 @@ import Regras.Formatacao;
 import Regras.NotaSaidaController;
 import controler.Config;
 import controler.UsuarioLogado;
+import controler.relatoriosJasper;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
@@ -24,7 +25,9 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -91,8 +94,9 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         AdicionarjButton1 = new javax.swing.JButton();
         PesquisarjButton1 = new javax.swing.JButton();
         SeparadordeTarefasjSeparator = new javax.swing.JToolBar.Separator();
-        PesquisarjButton2 = new javax.swing.JButton();
+        ImprimirjButton1 = new javax.swing.JButton();
         ImprimirjButton = new javax.swing.JButton();
+        ImprimirjButton2 = new javax.swing.JButton();
         VisualizarjButton = new javax.swing.JButton();
         RelatoriojButton = new javax.swing.JButton();
         RelatoriojButton1 = new javax.swing.JButton();
@@ -175,21 +179,21 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         BarradeTarefasjToolBar.add(PesquisarjButton1);
         BarradeTarefasjToolBar.add(SeparadordeTarefasjSeparator);
 
-        PesquisarjButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botoes02/cadplanocontas.png"))); // NOI18N
-        PesquisarjButton2.setText("Inutilizar");
-        PesquisarjButton2.setToolTipText("Inutilizar número da NF-e");
-        PesquisarjButton2.setFocusable(false);
-        PesquisarjButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        PesquisarjButton2.setMaximumSize(new java.awt.Dimension(80, 90));
-        PesquisarjButton2.setMinimumSize(new java.awt.Dimension(80, 90));
-        PesquisarjButton2.setPreferredSize(new java.awt.Dimension(80, 90));
-        PesquisarjButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        PesquisarjButton2.addActionListener(new java.awt.event.ActionListener() {
+        ImprimirjButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/finreceber.png"))); // NOI18N
+        ImprimirjButton1.setText("Inutilizar");
+        ImprimirjButton1.setToolTipText("Imprimir");
+        ImprimirjButton1.setFocusable(false);
+        ImprimirjButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ImprimirjButton1.setMaximumSize(new java.awt.Dimension(80, 90));
+        ImprimirjButton1.setMinimumSize(new java.awt.Dimension(80, 90));
+        ImprimirjButton1.setPreferredSize(new java.awt.Dimension(80, 90));
+        ImprimirjButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ImprimirjButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PesquisarjButton2PesquisarAssociado(evt);
+                ImprimirjButton1ActionPerformed(evt);
             }
         });
-        BarradeTarefasjToolBar.add(PesquisarjButton2);
+        BarradeTarefasjToolBar.add(ImprimirjButton1);
 
         ImprimirjButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/impressao.png"))); // NOI18N
         ImprimirjButton.setText("Imprimir");
@@ -205,6 +209,22 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
             }
         });
         BarradeTarefasjToolBar.add(ImprimirjButton);
+
+        ImprimirjButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/impressao.png"))); // NOI18N
+        ImprimirjButton2.setText("Carta");
+        ImprimirjButton2.setToolTipText("Imprimir");
+        ImprimirjButton2.setFocusable(false);
+        ImprimirjButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ImprimirjButton2.setMaximumSize(new java.awt.Dimension(80, 90));
+        ImprimirjButton2.setMinimumSize(new java.awt.Dimension(80, 90));
+        ImprimirjButton2.setPreferredSize(new java.awt.Dimension(80, 90));
+        ImprimirjButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ImprimirjButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImprimirjButton2ActionPerformed(evt);
+            }
+        });
+        BarradeTarefasjToolBar.add(ImprimirjButton2);
 
         VisualizarjButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/visualizar.png"))); // NOI18N
         VisualizarjButton.setText("Pesquisar");
@@ -320,8 +340,8 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(BarradeTarefasjToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(BarradeTarefasjToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 878, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -437,9 +457,37 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         }else JOptionPane.showMessageDialog(rootPane, "Selecione uma NF-e");
     }//GEN-LAST:event_PesquisarjButton1PesquisarAssociado
 
-    private void PesquisarjButton2PesquisarAssociado(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarjButton2PesquisarAssociado
+    private void ImprimirjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirjButton1ActionPerformed
         new FrmInutilizarNFe(config);
-    }//GEN-LAST:event_PesquisarjButton2PesquisarAssociado
+    }//GEN-LAST:event_ImprimirjButton1ActionPerformed
+
+    private void ImprimirjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirjButton2ActionPerformed
+        int linha = notaSaidajTable.getSelectedRow();
+        if (linha >= 0) {
+            String url = ("telas/NotaSaida/CartaoCorrecao/reportCartaCorrecao.jasper");
+            Notasaida notaSaida = listaNotaSaida.get(linha);
+            if (notaSaida.getProtocolo()!=null) {
+                Map parameters = new HashMap();
+                try {
+                    parameters.put("chave", notaSaida.getChaveAutorizacao());
+                    parameters.put("nfe", String.valueOf(notaSaida.getNumero()));
+                    parameters.put("protocolo", notaSaida.getProtocolo());
+                    parameters.put("data", notaSaida.getDatacorrecao());
+                    parameters.put("correcao", notaSaida.getEvento());
+                    parameters.put("idempresa", this.config.getEmpresa().getIdempresa());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Não foi possível gerar o relatório " + ex);
+                    ex.printStackTrace();
+                }
+                new relatoriosJasper(url, parameters);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "NF-e não possui carta de correção");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma NF-e");
+        }
+
+    }//GEN-LAST:event_ImprimirjButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -451,9 +499,10 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
     private javax.swing.JToolBar BarradeTarefasjToolBar;
     private javax.swing.JButton FecharrjButton1;
     private javax.swing.JButton ImprimirjButton;
+    private javax.swing.JButton ImprimirjButton1;
+    private javax.swing.JButton ImprimirjButton2;
     private javax.swing.JButton PesquisarjButton;
     private javax.swing.JButton PesquisarjButton1;
-    private javax.swing.JButton PesquisarjButton2;
     private javax.swing.JButton RelatoriojButton;
     private javax.swing.JButton RelatoriojButton1;
     private javax.swing.JToolBar.Separator SeparadordeTarefasjSeparator;
@@ -676,6 +725,9 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         String linha = xml.substring(0, 2);
         if (linha.equalsIgnoreCase("OK")) {
             JOptionPane.showMessageDialog(rootPane, "Nota Fiscal Cancelada com Sucesso");
+            NotaSaidaController notaSaidaController = new NotaSaidaController();
+            listaNotaSaida.get(this.linha).setSituacao("CANCELADA");
+            notaSaidaController.salvarNotaSaida(listaNotaSaida.get(this.linha));
             new FrmLocalizarArquivoNFe(this, this.config.getCaminhoNFe());
         }else {
             JOptionPane.showMessageDialog(rootPane, "Erro oa gerar Nota Fiscal");

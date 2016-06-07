@@ -211,7 +211,6 @@ public class FrmCartaoCorrecao extends javax.swing.JFrame implements INotaSaidaB
         arq = arq + "nSeqEvento=1" +  " \b\n";
         arq = arq + "xCorrecao=" + motivojTextArea.getText();
         String novoArq = "NFE.CARTADECORRECAO(" +  "\"" + arq  + "\"" + ")";
-        System.out.println(novoArq);
         return novoArq;
     }
     
@@ -356,7 +355,7 @@ public class FrmCartaoCorrecao extends javax.swing.JFrame implements INotaSaidaB
     }
      
     public void imprimirCartaoCorrecao(){
-                String url = ("telas/NotaSaida/CartaoCorrecao/reportCartaCorrecao.jasper");
+        String url = ("telas/NotaSaida/CartaoCorrecao/reportCartaCorrecao.jasper");
         Map parameters = new HashMap();
         try {
             parameters.put("chave", notaSaida.getChaveAutorizacao());

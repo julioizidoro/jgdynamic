@@ -1978,7 +1978,7 @@ jPanel7Layout.setHorizontalGroup(
         }else arquivo.write("4|");//finalidade da Emissao da NF-e 4 - Devolução/Retorno //B25
         if (tipoOperacaojComboBox.getSelectedItem().toString().equalsIgnoreCase("Venda")){
             arquivo.write("1|");//Indica operacao consumidor final 0 - Nao   1-Cosumidor final //B25a
-        }else arquivo.write("0|");//Indica operacao consumidor final 0 - Nao   0-Não  //B25a
+        }else arquivo.write("1|");//Indica operacao consumidor final 0 - Nao   0-Não  //B25a
         arquivo.write("1|");//Indica de presença do comprador //B25b
         arquivo.write("0|" + parametrosLocal.getVersaonfe());//Processo de emissao da NF-e B26 e B27
         arquivo.write("|||");
