@@ -23,8 +23,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "cest")
-@NamedQueries({
-    @NamedQuery(name = "Cest.findAll", query = "SELECT c FROM Cest c")})
 public class Cest implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
