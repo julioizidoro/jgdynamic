@@ -21,7 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -36,7 +35,6 @@ public class Contasreceber implements Serializable {
     @Basic(optional = false)
     @Column(name = "idcontasReceber")
     private Integer idcontasReceber;
-    @Size(max = 20)
     @Column(name = "numeroDocumento")
     private String numeroDocumento;
     @Column(name = "numeroParcelas")
@@ -53,18 +51,14 @@ public class Contasreceber implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "valorConta")
     private Double valorConta;
-    @Size(max = 20)
     @Column(name = "numeroFaturaGerada")
     private String numeroFaturaGerada;
-    @Size(max = 3)
     @Column(name = "pagamento")
     private String pagamento;
     @Column(name = "bancoPagamento")
     private int bancoPagamento;
-    @Size(max = 1)
     @Column(name = "tipo")
     private String tipo;
-    @Size(max = 7)
     @Column(name = "mes")
     private String mes;
     @Column(name = "numeroFatura")

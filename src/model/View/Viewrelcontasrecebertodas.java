@@ -11,13 +11,9 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -28,17 +24,13 @@ import javax.validation.constraints.Size;
 public class Viewrelcontasrecebertodas implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "cliente_idcliente")
     @Id
     private int clienteIdcliente;
-    @Size(max = 100)
     @Column(name = "nome")
     private String nome;
-    @Size(max = 13)
     @Column(name = "foneFixo")
     private String foneFixo;
-    @Size(max = 13)
     @Column(name = "foneCelular")
     private String foneCelular;
     @Column(name = "dataLancamento")
@@ -47,7 +39,6 @@ public class Viewrelcontasrecebertodas implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "valorConta")
     private Double valorConta;
-    @Size(max = 50)
     @Column(name = "formaPagamento")
     private String formaPagamento;
     @Column(name = "diaPagamento")
@@ -55,7 +46,6 @@ public class Viewrelcontasrecebertodas implements Serializable {
     @Column(name = "diasAtraso")
     private Integer diasAtraso;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "empresa_idempresa")
     private int empresaIdempresa;
 

@@ -10,11 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -25,27 +21,22 @@ import javax.validation.constraints.Size;
 public class Viewconsultaprodutogrupo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idProduto")
     @Id
     private int idProduto;
     @Column(name = "referencia")
     private Integer referencia;
-    @Size(max = 100)
     @Column(name = "descricao")
     private String descricao;
-    @Size(max = 5)
     @Column(name = "unidade")
     private String unidade;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "quantidadeEstoque")
     private Double quantidadeEstoque;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "empresa_idempresa")
     private int empresaIdempresa;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "subgrupoproduto_idsubGrupoProduto")
     private int subgrupoprodutoidsubGrupoProduto;
 

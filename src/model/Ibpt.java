@@ -13,12 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -33,16 +30,13 @@ public class Ibpt implements Serializable {
     @Basic(optional = false)
     @Column(name = "idibpt")
     private Integer idibpt;
-    @Size(max = 10)
     @Column(name = "ncm")
     private String ncm;
-    @Size(max = 255)
     @Column(name = "ex")
     private String ex;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "tipo")
     private Double tipo;
-    @Size(max = 255)
     @Column(name = "descricao")
     private String descricao;
     @Column(name = "nacionalfederal")
@@ -59,13 +53,10 @@ public class Ibpt implements Serializable {
     @Column(name = "vigenciafim")
     @Temporal(TemporalType.DATE)
     private Date vigenciafim;
-    @Size(max = 255)
     @Column(name = "chave")
     private String chave;
-    @Size(max = 255)
     @Column(name = "versao")
     private String versao;
-    @Size(max = 255)
     @Column(name = "fonte")
     private String fonte;
 

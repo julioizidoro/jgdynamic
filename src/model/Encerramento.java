@@ -21,7 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -36,19 +35,15 @@ public class Encerramento implements Serializable {
     @Basic(optional = false)
     @Column(name = "idencerramento")
     private Integer idencerramento;
-    @Size(max = 10)
     @Column(name = "tipo")
     private String tipo;
-    @Size(max = 10)
     @Column(name = "periodo")
     private String periodo;
     @Column(name = "data")
     @Temporal(TemporalType.DATE)
     private Date data;
-    @Size(max = 10)
     @Column(name = "hora")
     private String hora;
-    @Size(max = 100)
     @Column(name = "usuario")
     private String usuario;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation

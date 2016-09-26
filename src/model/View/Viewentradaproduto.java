@@ -11,8 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -23,7 +21,6 @@ import javax.validation.constraints.Size;
 public class Viewentradaproduto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idEntradaProduto")
     @Id
     private int idEntradaProduto;
@@ -50,21 +47,16 @@ public class Viewentradaproduto implements Serializable {
     private Double quantiaddeAnterior;
     @Column(name = "quantdadeAtual")
     private Double quantdadeAtual;
-    @Size(max = 1)
     @Column(name = "preco")
     private String preco;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "docentrada_idDocEntrada")
     private int docentradaidDocEntrada;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idProduto")
     private int idProduto;
-    @Size(max = 100)
     @Column(name = "descricao")
     private String descricao;
-    @Size(max = 5)
     @Column(name = "unidade")
     private String unidade;
     @Column(name = "referencia")

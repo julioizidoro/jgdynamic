@@ -14,8 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -26,7 +24,6 @@ import javax.validation.constraints.Size;
 public class Viewvendasaidaproduto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idvenda")
     @Id
     private int idvenda;
@@ -34,8 +31,6 @@ public class Viewvendasaidaproduto implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataVenda;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
     @Column(name = "numeroECF")
     private String numeroECF;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -49,27 +44,21 @@ public class Viewvendasaidaproduto implements Serializable {
     private Double valorImpostofederal;
     @Column(name = "valorimpostoestadual")
     private Double valorimpostoestadual;
-    @Size(max = 100)
     @Column(name = "descricao")
     private String descricao;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "aliquota_idaliquota")
     private int aliquotaIdaliquota;
-    @Size(max = 5)
     @Column(name = "unidade")
     private String unidade;
-    @Size(max = 10)
     @Column(name = "ncm")
     private String ncm;
     @Column(name = "referencia")
     private Integer referencia;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idproduto")
     private int idproduto;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idsaida")
     private int idsaida;
 

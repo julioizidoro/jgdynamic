@@ -14,10 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -25,8 +22,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "contasreceberforma")
-@NamedQueries({
-    @NamedQuery(name = "Contasreceberforma.findAll", query = "SELECT c FROM Contasreceberforma c")})
 public class Contasreceberforma implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,7 +29,6 @@ public class Contasreceberforma implements Serializable {
     @Basic(optional = false)
     @Column(name = "idcontasReceberForma")
     private Integer idcontasReceberForma;
-    @Size(max = 20)
     @Column(name = "formaRecebimento")
     private String formaRecebimento;
     @Column(name = "idBanco")

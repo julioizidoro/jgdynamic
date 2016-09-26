@@ -12,10 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+
 
 /**
  *
@@ -23,8 +21,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "produtosorcamento")
-@NamedQueries({
-    @NamedQuery(name = "Produtosorcamento.findAll", query = "SELECT p FROM Produtosorcamento p")})
 public class Produtosorcamento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -32,13 +28,10 @@ public class Produtosorcamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "idprodutosOrcamento")
     private Integer idprodutosOrcamento;
-    @Size(max = 50)
     @Column(name = "descricao")
     private String descricao;
-    @Size(max = 1)
     @Column(name = "tipo")
     private String tipo;
-    @Size(max = 50)
     @Column(name = "descricaooutralingua")
     private String descricaooutralingua;
     @Column(name = "vincular")

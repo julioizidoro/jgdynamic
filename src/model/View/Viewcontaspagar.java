@@ -14,8 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -26,11 +24,9 @@ import javax.validation.constraints.Size;
 public class Viewcontaspagar implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idcontasPagar")
     @Id
     private int idcontasPagar;
-    @Size(max = 30)
     @Column(name = "numeroDocumento")
     private String numeroDocumento;
     @Column(name = "dataLancamento")
@@ -39,27 +35,22 @@ public class Viewcontaspagar implements Serializable {
     @Column(name = "dataVencimento")
     @Temporal(TemporalType.DATE)
     private Date dataVencimento;
-    @Size(max = 100)
     @Column(name = "credor")
     private String credor;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "valorConta")
     private Double valorConta;
-    @Size(max = 20)
     @Column(name = "tipoPagamento")
     private String tipoPagamento;
     @Column(name = "idFornecedor")
     private Integer idFornecedor;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "planoconta_idplanoconta")
     private int planocontaIdplanoconta;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "pagamentoContasPagar_idpagamentoContasPagar")
     private int pagamentoContasPagaridpagamentoContasPagar;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "empresa_idempresa")
     private int empresaIdempresa;
     @Column(name = "dataPagamento")

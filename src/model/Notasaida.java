@@ -17,7 +17,7 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
+
 
 /**
  *
@@ -49,62 +49,45 @@ public class Notasaida implements Serializable {
     @Lob
     @Column(name = "xml")
     private byte[] xml;
-    @Size(max = 45)
     @Column(name = "situacao")
     private String situacao;
-    @Size(max = 200)
     @Column(name = "nomeArquivoXML")
     private String nomeArquivoXML;
-    @Size(max = 100)
     @Column(name = "chaveAutorizacao")
     private String chaveAutorizacao;
     @Column(name = "idcliente")
     private Integer idcliente;
     @Column(name = "idfornecedor")
     private Integer idfornecedor;
-    @Size(max = 1)
     @Column(name = "tipo")
     private String tipo;
-    @Size(max = 100)
     @Column(name = "nome")
     private String nome;
-    @Size(max = 18)
     @Column(name = "cnpj")
     private String cnpj;
-    @Size(max = 30)
     @Column(name = "ie")
     private String ie;
     @Column(name = "contribuinteicms")
     private Integer contribuinteicms;
-    @Size(max = 14)
     @Column(name = "fonefixo")
     private String fonefixo;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 100)
     @Column(name = "email")
     private String email;
-    @Size(max = 100)
     @Column(name = "logradouro")
     private String logradouro;
-    @Size(max = 50)
     @Column(name = "complemento")
     private String complemento;
-    @Size(max = 50)
     @Column(name = "bairro")
     private String bairro;
-    @Size(max = 9)
     @Column(name = "cep")
     private String cep;
-    @Size(max = 50)
     @Column(name = "cidade")
     private String cidade;
-    @Size(max = 2)
     @Column(name = "estado")
     private String estado;
-    @Size(max = 30)
     @Column(name = "codigocidade")
     private String codigocidade;
-    @Size(max = 50)
     @Column(name = "condicaopagamento")
     private String condicaopagamento;
     @Column(name = "empresa_idempresa")
@@ -116,13 +99,10 @@ public class Notasaida implements Serializable {
     @Lob
     @Column(name = "xmlcancelada")
     private byte[] xmlcancelada;
-    @Size(max = 200)
     @Column(name = "nomearquivocancelada")
     private String nomearquivocancelada;
-    @Size(max = 100)        
     @Column(name = "datacorrecao")
     private String datacorrecao;
-    @Size(max = 50)
     @Column(name = "protocolo")
     private String protocolo;
     @Column(name = "evento")

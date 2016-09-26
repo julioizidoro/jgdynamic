@@ -15,7 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+
 
 /**
  *
@@ -30,13 +30,10 @@ public class Cest implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 255)
     @Column(name = "cest")
     private String cest;
-    @Size(max = 255)
     @Column(name = "ncm")
     private String ncm;
-    @Size(max = 255)
     @Column(name = "descricao")
     private String descricao;
 

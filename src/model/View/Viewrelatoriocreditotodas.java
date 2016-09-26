@@ -11,7 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+
 
 /**
  *
@@ -22,7 +22,6 @@ import javax.validation.constraints.NotNull;
 public class Viewrelatoriocreditotodas implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "cliente_idcliente")
     @Id
     private int clienteIdcliente;
