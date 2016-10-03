@@ -148,6 +148,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         usuariologadojLabel = new javax.swing.JLabel();
         nomeFantasiajLabel = new javax.swing.JLabel();
         razaoSocialjLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         sairSistemajMenuItem = new javax.swing.JMenuItem();
@@ -620,6 +621,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         razaoSocialjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         razaoSocialjLabel.setText("Lenz Comércio de Materiais de Contrução Ltda ERIELI");
         getContentPane().add(razaoSocialjLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 860, 50));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        jLabel1.setText("2015");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 130, 80, -1));
 
         jMenu1.setText("Arquivo");
 
@@ -1274,6 +1279,7 @@ private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JButton imprimirjButton6;
     private javax.swing.JButton imprimirjButton7;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
