@@ -497,8 +497,7 @@ jPanel7Layout.setHorizontalGroup(
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jLabel9)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                                            .addComponent(jLabel9)))))))
                     .addGap(0, 6, Short.MAX_VALUE))))
     );
     jPanel1Layout.setVerticalGroup(
@@ -2148,15 +2147,18 @@ jPanel7Layout.setHorizontalGroup(
             arquivo.write("\r\n");
         }
         arquivo.write("X26" + "|");
-        arquivo.write(nvolumesjTextField.getText() + "|");
-        arquivo.write(evolumesjTextField.getText() + "|");
         arquivo.write(pesobrutojTextField.getText() + "|");
         arquivo.write(pesoliquidojTextField.getText() + "|");
-        
-         arquivo.write("\r\n");
-         arquivo.write("Z||" + notaSaidaBean.getInfoTexto() + " a)      EMPRESA ME OU EPP OPTANTE PELO SIMPLES NACIONAL;b) NÃO GERA DIREITO A CRÉDITO FISCAL DE IPI. Valor aproximado dos tributos com base na lei  12.741/2012 "
+        arquivo.write(nvolumesjTextField.getText() + "|");
+        arquivo.write(evolumesjTextField.getText() + "|");
+        arquivo.write("\r\n");
+        String infAdicionais = "Z||" + notaSaidaBean.getInfoTexto() + " a)      EMPRESA ME OU EPP OPTANTE PELO SIMPLES NACIONAL;b) NÃO GERA DIREITO A CRÉDITO FISCAL DE IPI. Valor aproximado dos tributos com base na lei  12.741/2012 "
                 + " Federal R$ " + Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosFederal()) + "; Estadual R$ " +  Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosEstadual()) +
-                ";municipal R$ 0,00. FONTE: IBPT." + infojTextArea.getText() + "|");
+                ";municipal R$ 0,00. FONTE: IBPT.";
+        if (infojTextArea.getText().length()>0){
+            infAdicionais = infAdicionais + infojTextArea.getText();
+        }
+        arquivo.write(infAdicionais + "|");
         
     }
 
