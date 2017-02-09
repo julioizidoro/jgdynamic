@@ -53,6 +53,7 @@ public class FrmLancamentoCaixa extends javax.swing.JFrame implements ItelaConsu
     private char placeHolder;
     private Config config;
     private Planoconta planoConta;
+    private Movimentocaixa caixa;
 
 
     /** Creates new form FrmLancamentoCaixa */
@@ -71,9 +72,14 @@ public class FrmLancamentoCaixa extends javax.swing.JFrame implements ItelaConsu
         this.setLocationRelativeTo(null);
         planoConta = new Planoconta();
         if (caixa!=null){
+            this.caixa = caixa;
             popularTela(caixa);
+            dataCaixa = caixa.getDataMovimento();
+        }else {
+            this.caixa = new Movimentocaixa();
+            dataCaixa = new Date();
         }
-        dataCaixa = new Date();
+        
         setVisible(true);
     }
 
@@ -100,13 +106,14 @@ public class FrmLancamentoCaixa extends javax.swing.JFrame implements ItelaConsu
         HistoricojTextField.setText(caixa.getDescricao());
         entradajFormattedTextField.setValue(caixa.getValorEntrada());
         saidajFormattedTextField.setEditable(true);
-        datacaixajDateChooser.setEnabled(false);
-        CodigoContajTextField.setEditable(false);
-        PlanoContasjTextField.setEditable(false);
-        HistoricojTextField.setEditable(false);
-        entradajFormattedTextField.setEditable(false);
-        saidajFormattedTextField.setEditable(false);
-        SalvarjButton.setEnabled(false);
+        saidajFormattedTextField.setValue(caixa.getValorSaida());
+        datacaixajDateChooser.setEnabled(true);
+        CodigoContajTextField.setEditable(true);
+        PlanoContasjTextField.setEditable(true);
+        HistoricojTextField.setEditable(true);
+        entradajFormattedTextField.setEditable(true);
+        saidajFormattedTextField.setEditable(true);
+        SalvarjButton.setEnabled(true);
     }
 
     /** This method is called from within the constructor to
@@ -459,7 +466,7 @@ private void datacaixajDateChooserPropertyChange(java.beans.PropertyChangeEvent 
     private javax.swing.JLabel valorSaidajLabel1;
     // End of variables declaration//GEN-END:variables
 
-    Movimentocaixa caixa = new Movimentocaixa();
+    
 
     public void setData(Object objeto) {
         throw new UnsupportedOperationException("Not supported yet.");

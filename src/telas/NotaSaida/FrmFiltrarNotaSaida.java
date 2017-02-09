@@ -185,8 +185,14 @@ jPanel1Layout.setHorizontalGroup(
            sql = sql + "n.dataEmissao>='" + Formatacao.ConvercaoDataSql(dataInicialjDateChooser.getDate()) + 
                    "'  and n.dataEmissao<='" + Formatacao.ConvercaoDataSql(dataFinaljDateChooser.getDate()) + "' ";
        }
-       if (numerojTextField.getText().length()>0){
-           sql = sql + " and n.numero=" + numerojTextField.getText();
+       if ((dataInicialjDateChooser.getDate()!=null) && (dataFinaljDateChooser.getDate()!=null)){
+            if (numerojTextField.getText().length()>0){
+                sql = sql + " and n.numero=" + numerojTextField.getText();
+            }
+       }else {
+           if (numerojTextField.getText().length()>0){
+                sql = sql + " n.numero=" + numerojTextField.getText();
+            }  
        }
        sql = sql + " order by n.numero";
        telaNotaSaida.filtrarNotaSaida(sql);

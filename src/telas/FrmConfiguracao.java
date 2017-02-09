@@ -11,12 +11,25 @@
 
 package telas;
 
+import Regras.DevolucaoController;
+import Regras.EntradaProdutoController;
+import Regras.EstoqueController;
+import Regras.VendaController;
 import controler.ConfiguracaoSistema;
 import controler.Sigap;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.util.List;
 import javax.swing.JOptionPane;
+import model.Devolucao;
+import model.Devolucaoproduto;
+import model.Docentrada;
+import model.Entradaproduto;
+import model.Estoque;
+import model.Saida;
+import model.Venda;
+import view.Viewrelatoriodevolucao;
 
 /**
  *
@@ -403,6 +416,51 @@ public class FrmConfiguracao extends javax.swing.JFrame {
 
     private void jButton4fecharMovimentoCaixa(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4fecharMovimentoCaixa
         this.dispose();
+//        VendaController vendaController = new VendaController();
+//        List<Venda> listaVendas = vendaController.listarVendaPeriodo("2016-12-23", "2017-01-01");
+//        for (int i=0;i<listaVendas.size();i++){
+//            List<Saida> listaSaida = vendaController.listarSaidaVenda(listaVendas.get(i).getIdvenda());
+//            if (listaSaida!=null){
+//                for (int j=0;j<listaSaida.size();j++){
+//                    EstoqueController estoqueController = new EstoqueController();
+//                    Estoque estoque = estoqueController.consultarEstoque(listaSaida.get(j).getProduto(), 2);
+//                    if (estoque!=null){
+//                        estoque.setQuantidadeEstoque(estoque.getQuantidadeEstoque() - listaSaida.get(j).getQuantidade());
+//                        estoqueController.salvarEstoque(estoque);
+//                    }
+//                            
+//                }
+//            }
+//        }
+//        DevolucaoController devolucaoController = new DevolucaoController();
+//        List<Viewrelatoriodevolucao> listaDevolucao = devolucaoController.relatorioDevolucao("2016-12-23", "2017-01-01", 0, "");
+//        for (int i = 0; i < listaDevolucao.size(); i++) {
+//            EstoqueController estoqueController = new EstoqueController();
+//            Estoque estoque = estoqueController.consultarEstoque(listaDevolucao.get(i).getProdutoIdproduto(), 2);
+//            if (estoque != null) {
+//                estoque.setQuantidadeEstoque(estoque.getQuantidadeEstoque() + listaDevolucao.get(i).getQuantidadeDevolucao());
+//                estoqueController.salvarEstoque(estoque);
+//            }
+//        }
+        
+          //this.dispose();
+//        EntradaProdutoController entradaProdutoController = new EntradaProdutoController();
+//        List<Docentrada> listaVendas = entradaProdutoController.pesquisarEntradaPeriodo("2016-12-23", "2017-01-01",2);
+//        for (int i=0;i<listaVendas.size();i++){
+//            List<Entradaproduto> listaSaida = entradaProdutoController.listarEntradaProduto(listaVendas.get(i));
+//            if (listaSaida!=null){
+//                for (int j=0;j<listaSaida.size();j++){
+//                    EstoqueController estoqueController = new EstoqueController();
+//                    Estoque estoque = estoqueController.consultarEstoque(listaSaida.get(j).getProduto(), 2);
+//                    if (estoque!=null){
+//                        estoque.setQuantidadeEstoque(estoque.getQuantidadeEstoque() + listaSaida.get(j).getQuantidade());
+//                        estoqueController.salvarEstoque(estoque);
+//                    }
+//                            
+//                }
+//            }
+//        }
+//        JOptionPane.showMessageDialog(rootPane, "Terminou");
 }//GEN-LAST:event_jButton4fecharMovimentoCaixa
 
     /**
