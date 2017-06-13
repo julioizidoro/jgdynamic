@@ -89,5 +89,10 @@ public class ProdutoFacade {
            produtoDao = new ProdutoDao();
            return produtoDao.consultarProdutoExportacao();
        }
+       
+       public List<Produto> consultarProdutoSemCEST() throws Exception {
+           produtoDao = new ProdutoDao();
+           return produtoDao.consultarProdutoSemCEST();
+       }
 
 }

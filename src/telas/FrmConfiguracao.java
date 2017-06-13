@@ -11,25 +11,18 @@
 
 package telas;
 
-import Regras.DevolucaoController;
-import Regras.EntradaProdutoController;
-import Regras.EstoqueController;
-import Regras.VendaController;
+import Regras.CestController;
+import Regras.ProdutoController;
 import controler.ConfiguracaoSistema;
 import controler.Sigap;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import model.Devolucao;
-import model.Devolucaoproduto;
-import model.Docentrada;
-import model.Entradaproduto;
-import model.Estoque;
-import model.Saida;
-import model.Venda;
-import view.Viewrelatoriodevolucao;
+import model.Cest;
+import model.Produto;
 
 /**
  *
@@ -514,5 +507,65 @@ public class FrmConfiguracao extends javax.swing.JFrame {
     private javax.swing.JTextField smtpjTextField;
     private javax.swing.JTextField tipoCodigojTextField;
     // End of variables declaration//GEN-END:variables
+
+    public void corrigirCest(){
+        List<Cest> lista = new ArrayList<Cest>();
+        CestController cestController = new CestController();
+        lista = cestController.listar("");
+        if (lista!=null){
+            for(int i=0;i<lista.size();i++){
+               gravarNCM(lista.get(i));
+            }
+        }
+        JOptionPane.showMessageDialog(rootPane, "Terminou");
+    }
+    
+    public void gravarNCM(Cest cest){
+        String novoNCM="";
+        for(int i=0;i<cest.getNcm().length();i++){
+            if (cest.getNcm().charAt(i)!='.'){
+                novoNCM = novoNCM + cest.getNcm().charAt(i);
+            }
+        }
+        if (cest.getId()>800){
+            System.out.println(cest.getNcm());
+        }
+        CestController cestController = new CestController();
+        cest.setNcm(novoNCM);
+        cestController.salvar(cest);
+    }
+    
+    public void atualizarCEST(){
+        ProdutoController produtoController = new ProdutoController();
+        List<Produto> lista =produtoController.consultarProduto();
+        CestController cestController = new CestController();
+        for (int i=0;i<lista.size();i++){
+            Cest cest = cestController.cunsultarCest(lista.get(i).getNcm());
+            if (cest!=null){
+                lista.get(i).setCest(cest.getCest());
+                produtoController.salvarProduto(lista.get(i));
+            }
+        }
+        JOptionPane.showMessageDialog(rootPane,"Terminou");
+    }
+    
+    public void atualizarCESTGrupo(){
+        ProdutoController produtoController = new ProdutoController();
+        List<Produto> lista =produtoController.consultarProdutoSemCEST();
+        CestController cestController = new CestController();
+        for (int i=0;i<lista.size();i++){
+            String ncm = lista.get(i).getNcm();
+            if (ncm.length()>4){
+                ncm = ncm.substring(0, 4);
+            }
+            Cest cest = cestController.cunsultarCest(ncm);
+            if (cest!=null){
+                lista.get(i).setCest(cest.getCest());
+                produtoController.salvarProduto(lista.get(i));
+            }
+        }
+        JOptionPane.showMessageDialog(rootPane,"Terminou");
+    }
+
 
 }

@@ -54,4 +54,13 @@ public class CestController {
         }
     }
     
+    public void salvar(Cest cest) {
+        ibptFacade = new CestFacade();
+        try {
+            ibptFacade.salvar(cest);
+        } catch (SQLException ex) {
+            Logger.getLogger(CestController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

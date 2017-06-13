@@ -34,7 +34,7 @@ public class CestDao {
     
     public List<Cest> listar(String descricao) throws SQLException{
         manager = ConexaoSingleton.getConexao();
-        Query q = manager.createQuery("select i from Cest i where i.descricao like '%" + descricao + "%' order by i.descricao" );
+        Query q = manager.createQuery("select i from Cest i where i.descricao like '%" + descricao + "%' order by i.id" );
         List<Cest> lista = null;
         if (q.getResultList().size()>0){
             lista =  q.getResultList();
@@ -63,5 +63,13 @@ public class CestDao {
         }
         manager.close();
         return cest;
+    }
+    
+    public void salvar(Cest cest) throws SQLException{
+        manager = ConexaoSingleton.getConexao();
+        manager.getTransaction().begin();
+        manager.merge(cest);
+        manager.getTransaction().commit(); 
+        manager.close();
     }
 }

@@ -131,5 +131,14 @@ public class ProdutoController {
         }
     }
     
+    public List<Produto> consultarProdutoSemCEST() {
+        ProdutoFacade produtoFacade = new ProdutoFacade();
+         try {
+             return produtoFacade.consultarProdutoSemCEST();
+         } catch (Exception ex) {
+             Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+             return null;
+         }
+    }
     
 }

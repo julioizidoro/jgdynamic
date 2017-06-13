@@ -174,4 +174,15 @@ public class ProdutoDao {
         manager.close();
         return listaProduto;
     }    
+    
+    public List<Produto> consultarProdutoSemCEST() throws Exception {
+        manager = ConexaoSingleton.getConexao();
+        List<Produto> listaProduto = new ArrayList<Produto>();
+        Query q = manager.createQuery("select p from Produto p where p.cest=0 and p.aliquota=6");
+        if (q.getResultList().size()>0){
+            listaProduto =  q.getResultList();
+        }
+        manager.close();
+        return listaProduto;
+    }    
 }

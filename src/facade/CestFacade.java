@@ -38,4 +38,9 @@ public class CestFacade {
         return cestDao.cunsultarCest(ncm);
     }
     
+    public void salvar(Cest cest) throws SQLException{
+        cestDao = new CestDao();
+        cestDao.salvar(cest);
+    }
+    
 }
