@@ -304,6 +304,7 @@ public final class FrmConsultaProdutos extends javax.swing.JFrame implements Ite
         jMenu6 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         alterarEstoquejMenuItem = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -657,6 +658,14 @@ public final class FrmConsultaProdutos extends javax.swing.JFrame implements Ite
         });
         jMenu6.add(jMenuItem11);
 
+        jMenuItem14.setText("Aliquotas");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem14);
+
         jMenuBar1.add(jMenu6);
 
         alterarEstoquejMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
@@ -1004,6 +1013,10 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         }
         new relatoriosJasper(url, parameters);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        new FrmRelatorioAliquotas(this.config);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -1040,6 +1053,7 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

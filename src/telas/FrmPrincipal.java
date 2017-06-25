@@ -99,6 +99,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         usuariologadojLabel.setText("Usuário Logado : " + this.usuarioLogado.getUsuario().getNome());
         nomeFantasiajLabel.setText(config.getEmpresa().getNomeFantasia());
         razaoSocialjLabel.setText(config.getEmpresa().getRazaoSocial());
+        //jMenuCest.setVisible(false);
         this.setVisible(true);
     }
     
@@ -158,7 +159,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenuItem28 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
@@ -190,6 +190,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem25 = new javax.swing.JMenuItem();
         jMenuItem26 = new javax.swing.JMenuItem();
+        jMenuCest = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SIGAP - Sistema de Gestão Integrada para Associações de Aposentados");
@@ -680,14 +681,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenu4.setText("Relatórios");
 
-        jMenuItem2.setText("Produtos");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem2);
-
         jMenu5.setText("Estoque");
         jMenu5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -924,6 +917,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem26);
 
+        jMenuCest.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ADD, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuCest.setText("CEST");
+        jMenuCest.setName(""); // NOI18N
+        jMenuCest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCestActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuCest);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -1116,10 +1119,6 @@ private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         new FrmGrupoProduto();
     }//GEN-LAST:event_imprimirjButton4ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void adicionarPlanoContasjButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarPlanoContasjButton4ActionPerformed
         new FrmConsultaProdutos(config);
     }//GEN-LAST:event_adicionarPlanoContasjButton4ActionPerformed
@@ -1244,6 +1243,10 @@ private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         new FrmConsultarEncerramento(config, usuarioLogado);
     }//GEN-LAST:event_jMenuItem28ActionPerformed
 
+    private void jMenuCestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCestActionPerformed
+        new FrmCest();
+    }//GEN-LAST:event_jMenuCestActionPerformed
+
 
     /**
     * @param args the command line arguments
@@ -1283,6 +1286,7 @@ private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuCest;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
@@ -1294,7 +1298,6 @@ private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;

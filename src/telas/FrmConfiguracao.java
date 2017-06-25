@@ -12,7 +12,6 @@
 package telas;
 
 import Regras.CestController;
-import Regras.ProdutoController;
 import controler.ConfiguracaoSistema;
 import controler.Sigap;
 import java.awt.Image;
@@ -22,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Cest;
-import model.Produto;
 
 /**
  *
@@ -535,37 +533,7 @@ public class FrmConfiguracao extends javax.swing.JFrame {
         cestController.salvar(cest);
     }
     
-    public void atualizarCEST(){
-        ProdutoController produtoController = new ProdutoController();
-        List<Produto> lista =produtoController.consultarProduto();
-        CestController cestController = new CestController();
-        for (int i=0;i<lista.size();i++){
-            Cest cest = cestController.cunsultarCest(lista.get(i).getNcm());
-            if (cest!=null){
-                lista.get(i).setCest(cest.getCest());
-                produtoController.salvarProduto(lista.get(i));
-            }
-        }
-        JOptionPane.showMessageDialog(rootPane,"Terminou");
-    }
     
-    public void atualizarCESTGrupo(){
-        ProdutoController produtoController = new ProdutoController();
-        List<Produto> lista =produtoController.consultarProdutoSemCEST();
-        CestController cestController = new CestController();
-        for (int i=0;i<lista.size();i++){
-            String ncm = lista.get(i).getNcm();
-            if (ncm.length()>4){
-                ncm = ncm.substring(0, 4);
-            }
-            Cest cest = cestController.cunsultarCest(ncm);
-            if (cest!=null){
-                lista.get(i).setCest(cest.getCest());
-                produtoController.salvarProduto(lista.get(i));
-            }
-        }
-        JOptionPane.showMessageDialog(rootPane,"Terminou");
-    }
 
 
 }

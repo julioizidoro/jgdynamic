@@ -14,6 +14,7 @@ package telas.Entrada.nova;
 import telas.Entrada.*;
 import Interfaces.ItelaConsulta;
 import Regras.AliquotaController;
+import Regras.CestController;
 import Regras.ConfiguracaoController;
 import Regras.ContasPagarController;
 import Regras.CustoProdutoController;
@@ -2255,9 +2256,20 @@ private void codigojTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIR
             produto.setNcm(listaProdutos.get(linhaNota).getCodigoNCM());
             if (produto.getNcm().length()>0){
                 ncmjTextField.setText(produto.getNcm());
+                if (produto.getCest()!=null){
+                    if (produto.getCest().equalsIgnoreCase("0")){
+                        String cest = consultarCodigoCest(produto.getNcm());
+                        if (cest.length()>1){
+                            produto.setCest(cest);
+                            produto.setAliquota(6);
+                        }
+                    }
+                }
             }
             if (listaProdutos.get(linhaNota).getValorICMSST()>0){
-                produto.setAliquota(6);
+                if (produto.getCest().equalsIgnoreCase("0")){
+                    JOptionPane.showMessageDialog(rootPane, "Produto :" + produto.getReferencia() + " possui ST na NF-e e não possui CEST");
+                }
             }
             produto = produtoController.salvarProduto(produto);
             codigoFabricantejTextField.setText(listaProdutos.get(linhaNota).getCodigo());
@@ -2729,6 +2741,23 @@ private void codigojTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIR
         } else {
             JOptionPane.showMessageDialog(rootPane, "Estoque não localizado");
         }
-
+    }
+    
+    public String consultarCodigoCest(String ncm){
+        CestController cestController = new CestController();
+        Cest cest = cestController.cunsultarCest(ncm);
+        String codigoCest="";
+        if (cest!=null){
+            codigoCest = cest.getCest();
+        }else {
+            if (ncm.length()>4){
+                ncm = ncm.substring(0, 4);
+            }
+            cest = cestController.cunsultarCest(ncm);
+            if (cest!=null){
+                codigoCest = cest.getCest();
+            }
+        }
+        return codigoCest;
     }
 }

@@ -37,6 +37,7 @@ import telas.ControleCheques.ItelaControleCheque;
 import telas.Devolucao.Defeito.IDevolucaoDefeito;
 import telas.Estoque.FrmRelatorioEstoque;
 import telas.NotaSaida.INotaSaidaBean;
+import telas.Produtos.IRelatorioAliquota;
 import telas.RelatorioVendas.FrmRelatorioVenda;
 import telas.RelatorioVendas.ItelaGiro;
 
@@ -51,6 +52,7 @@ public final class FrmConsultaFornecedor extends javax.swing.JFrame implements I
     private FrmRelatorioVenda frmRelatorioVenda;
     private ItelaGiro telaGiro;
     private IforPedido telaPedido;
+    private IRelatorioAliquota telaRelatorioAliquota;
     private ItelaControleCheque telaCheque;
     private IDevolucaoDefeito telaDefeito;
     private INotaSaidaBean telaNotaSaida;
@@ -97,6 +99,23 @@ public final class FrmConsultaFornecedor extends javax.swing.JFrame implements I
         nomejTextField.requestFocus();
         setVisible(true);
     }
+     
+    public FrmConsultaFornecedor(IRelatorioAliquota telaRelatorioAliquota) {
+        this.telaConsulta = null;
+        telaPedido = null;
+        this.telaCheque = null;
+        this.telaGiro = null;
+        this.telaRelatorioAliquota = telaRelatorioAliquota;
+        initComponents();             
+        URL url = this.getClass().getResource("/imagens/logo_mini.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
+        this.setLocationRelativeTo(null);
+        setModelProduto(null, null);
+        nomejTextField.requestFocus();
+        setVisible(true);
+    }
+
      
      public FrmConsultaFornecedor(IDevolucaoDefeito teladefeito) {
         this.telaConsulta = null;
