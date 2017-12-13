@@ -2904,6 +2904,7 @@ private void codigojTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIR
         entradaEstoque.getNotaFiscal().setSubSerie(subSeriejTextField.getText());
         entradaEstoque.getNotaFiscal().setValorProdutos(Formatacao.ConvercaoMonetariaFloat(valorProdutosjTextField.getText()));
         entradaEstoque.getNotaFiscal().setValorTotal(Formatacao.ConvercaoMonetariaFloat(valorTotaljTextField.getText()));
+        entradaEstoque.getNotaFiscal().setChave(this.nota.getChaveAcesso());
         entradaEstoque.getDocEntrada().setEmpresa(config.getEmpresa().getIdempresa());
         entradaEstoque.getDocEntrada().setCondicaoPagamento((String) condicaoPagamentojComboBox.getSelectedItem());
         entradaEstoque.getDocEntrada().setDataEntrada(dataEntradajDateChooser.getDate());
@@ -2914,6 +2915,7 @@ private void codigojTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIR
         entradaEstoque.getDocEntrada().setValorDesconto(Formatacao.ConvercaoMonetariaFloat(valorDescontojTextField.getText()));
         entradaEstoque.getDocEntrada().setValorEncargos(Formatacao.ConvercaoMonetariaFloat(valorEncargosjTextField.getText()));
         entradaEstoque.getDocEntrada().setValorTotal(Formatacao.ConvercaoMonetariaFloat(valorTotaljTextField.getText()));
+        entradaEstoque.getNotaFiscal().setChave(datePattern);
     }
 
     public void alterarEntrada(){

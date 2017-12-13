@@ -727,12 +727,14 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
             JOptionPane.showMessageDialog(rootPane, "Nota Fiscal Cancelada com Sucesso");
             NotaSaidaController notaSaidaController = new NotaSaidaController();
             listaNotaSaida.get(this.linha).setSituacao("CANCELADA");
+            listaNotaSaida.get(this.linha).setMotivocancelamento(cJustificativa);
             notaSaidaController.salvarNotaSaida(listaNotaSaida.get(this.linha));
-            new FrmLocalizarArquivoNFe(this, this.config.getCaminhoNFe());
+            //new FrmLocalizarArquivoNFe(this, this.config.getCaminhoNFe());
         }else {
             JOptionPane.showMessageDialog(rootPane, "Erro oa gerar Nota Fiscal");
         }
         leitor.close();
+        carregarModelNotaSaida();
     }
     
     public byte[] carregarXML() throws IOException {

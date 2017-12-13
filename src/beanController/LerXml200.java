@@ -188,6 +188,15 @@ public class LerXml200 implements  ILerNFe{
             node = nodeLista.item(0).getFirstChild();
             this.nota.setValorTotal(Sigap.ConvercaoMonetariaFloat(node.getNodeValue()));
         }
+        
+        nodeLista = item.getElementsByTagName("chNFe");
+        if (nodeLista.getLength() == 0) {
+           this.nota.setChaveAcesso("");
+        } else {
+            node = nodeLista.item(0).getFirstChild();
+            this.nota.setChaveAcesso((node.getNodeValue()));
+        }
+
     }
 
     public void lerFornecedor() throws Exception {

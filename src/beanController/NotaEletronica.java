@@ -34,6 +34,7 @@ public class NotaEletronica {
     private float valorFatura;
     private String serie;
     private String subSerie;
+    private String chaveAcesso;
 
     public float getBaseICMS() {
         return baseICMS;
@@ -202,4 +203,14 @@ public class NotaEletronica {
     public void setValorTotal(float valorTotal) {
         this.valorTotal = valorTotal;
     }
+
+    public String getChaveAcesso() {
+        return chaveAcesso;
+    }
+
+    public void setChaveAcesso(String chaveAcesso) {
+        this.chaveAcesso = chaveAcesso;
+    }
+    
+    
 }

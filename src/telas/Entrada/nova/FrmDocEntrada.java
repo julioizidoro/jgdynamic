@@ -716,6 +716,7 @@ dataSaidajDateChooser = new com.toedter.calendar.JDateChooser(null, null, datePa
                 notaFiscal.setNumero(numerojTextField.getText());
                 notaFiscal.setSerie(seriejTextField.getText());
                 notaFiscal.setSubSerie(subSeriejTextField.getText());
+                notaFiscal.setChave(nota.getChaveAcesso());
             }
             notaFiscal.setTipoDocumento(tipoDocumentojComboBox.getSelectedItem().toString());
             if (valorProdutosjTextField.getText().length() > 0) {

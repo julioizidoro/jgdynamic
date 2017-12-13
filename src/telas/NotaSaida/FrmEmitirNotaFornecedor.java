@@ -2907,7 +2907,7 @@ jPanel7Layout.setHorizontalGroup(
             }
         }else {
             if (cfopST.getTipoemissao().equalsIgnoreCase("E")){
-                if (tipoNFejComboBox.getSelectedItem().toString().equalsIgnoreCase("Saida")){
+                if (!tipoNFejComboBox.getSelectedItem().toString().equalsIgnoreCase("Entrada")){
                     JOptionPane.showMessageDialog(rootPane, "CFOP c/ST nõa é para Entrada");
                     return false;
                 }
@@ -2932,8 +2932,8 @@ jPanel7Layout.setHorizontalGroup(
             }
         }else {
             if (cfop.getTipoemissao().equalsIgnoreCase("E")){
-                if (tipoNFejComboBox.getSelectedItem().toString().equalsIgnoreCase("Saida")){
-                    JOptionPane.showMessageDialog(rootPane, "CFOP c/ST nõa é para Entrada");
+                if (!tipoNFejComboBox.getSelectedItem().toString().equalsIgnoreCase("Entrada")){
+                    JOptionPane.showMessageDialog(rootPane, "CFOP c/ST não é para Entrada");
                     return false;
                 }
             }
