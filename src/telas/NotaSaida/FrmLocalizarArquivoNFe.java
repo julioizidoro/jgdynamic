@@ -28,8 +28,17 @@ public class FrmLocalizarArquivoNFe extends javax.swing.JFrame {
     public FrmLocalizarArquivoNFe(INotaSaidaBean telaNota, String dir) {
         this.telaNota = telaNota;
         initComponents();
-        File f = new File(dir);
-        carregarjFileChooser.setCurrentDirectory(f);
+//        if (dir==null){
+//            dir = "C:\\nfe\\";
+//        }
+//        File f = new File(dir);
+//        if (f==null){
+//            f = new File("C:\\nfe\\");
+//        }
+//        if (f==null){
+//            System.out.print("Nuloo");
+//        }
+        //carregarjFileChooser.setCurrentDirectory(f);
         URL url = this.getClass().getResource("/imagens/logo_mini.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         this.setIconImage(imagemTitulo);
@@ -56,7 +65,7 @@ public class FrmLocalizarArquivoNFe extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        carregarjFileChooser.setCurrentDirectory(null);
+        carregarjFileChooser.setCurrentDirectory(new java.io.File("C:\\nfe"));
         carregarjFileChooser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 carregarjFileChooserActionPerformed(evt);
