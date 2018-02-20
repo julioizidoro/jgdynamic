@@ -394,6 +394,7 @@ jPanel7Layout.setHorizontalGroup(
     jLabel22.setText("Tipo de Operação");
 
     infojTextArea.setColumns(1);
+    infojTextArea.setLineWrap(true);
     infojTextArea.setRows(6);
     jScrollPane2.setViewportView(infojTextArea);
 
@@ -1502,7 +1503,7 @@ jPanel7Layout.setHorizontalGroup(
                 notaSaidaBean.getFatura().setValorOrigianl(Formatacao.formatarStringfloat(valorOriginalFaturajTextField.getText()));
             }
             //calcularTotaisNotaFiscal();
-            notaSaidaBean.setInfoTexto("EMPRESA ENQUADRADA NO SIMPLES NACIONAL");
+            notaSaidaBean.setInfoTexto(" a) EMPRESA ME OU EPP OPTANTE PELO SIMPLES NACIONAL; b) NAO GERA DIREITO A CREDITO FISCAL DE IPI;");
             try {
                 gerarArquivoNFe();
 //                salvarNumeroNFe();
@@ -2152,12 +2153,14 @@ jPanel7Layout.setHorizontalGroup(
         arquivo.write(nvolumesjTextField.getText() + "|");
         arquivo.write(evolumesjTextField.getText() + "|");
         arquivo.write("\r\n");
-        String infAdicionais = "Z||" + notaSaidaBean.getInfoTexto() + " a)      EMPRESA ME OU EPP OPTANTE PELO SIMPLES NACIONAL;b) NÃO GERA DIREITO A CRÉDITO FISCAL DE IPI. Valor aproximado dos tributos com base na lei  12.741/2012 "
-                + " Federal R$ " + Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosFederal()) + "; Estadual R$ " +  Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosEstadual()) +
-                ";municipal R$ 0,00. FONTE: IBPT.";
+        String texto = notaSaidaBean.getInfoTexto() + "Valor aproximado dos tributos com base na lei  12.741/2012 "
+                + " Federal R$ " + Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosFederal()) + " Estadual R$ " +  Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosEstadual()) +
+                " Municipal R$ 0,00. FONTE: IBPT.;";;
+        
         if (infojTextArea.getText().length()>0){
-            infAdicionais = infAdicionais + infojTextArea.getText();
+            texto = texto + infojTextArea.getText();
         }
+        String infAdicionais = "Z||" + texto; 
         arquivo.write(infAdicionais + "|");
         
     }
@@ -2467,6 +2470,9 @@ jPanel7Layout.setHorizontalGroup(
         double valorCalcualdo = 0;
         double totaldespesasAcessorias =0;
         CestController ibptController = new CestController();
+        if (despAcessoriasjTextField.getText().length()>0){
+            totaldespesasAcessorias = totaldespesasAcessorias + Double.parseDouble(despAcessoriasjTextField.getText());
+        }
         for (int i = 0; i < listaProdutoBean.size(); i++) {
             valorTotalProdutos += listaProdutoBean.get(i).getValortotal();
             valorTributosFederal += listaProdutoBean.get(i).getValorTributoFederal();
@@ -2698,7 +2704,7 @@ jPanel7Layout.setHorizontalGroup(
                 MunicipiosController municipiosController = new MunicipiosController();
                 Municipios mun = municipiosController.getMunicipio(Fornec.getMunicipios());
                 if (mun!=null){
-                    codigoUFjTextField.setText(mun.getEstado());
+                    codigoUFjTextField.setText(mun.getCodigouf());
                 }
             }
             modeloreferenciajTextField.setText("01");

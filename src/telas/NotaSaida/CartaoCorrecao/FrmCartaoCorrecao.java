@@ -32,7 +32,6 @@ import model.Fornecedor;
 import model.Municipios;
 import model.Notasaida;
 import model.Terminalcliente;
-import net.sf.ehcache.search.expression.Not;
 import telas.ContasReceber.CreditoBean;
 import telas.NotaSaida.Fatura.DuplicataBean;
 import telas.NotaSaida.Fatura.FaturaBean;

@@ -39,6 +39,8 @@ public class Municipios implements Serializable {
     private String codigo;
     @Column(name = "nomeMunicipio")
     private String nomeMunicipio;
+    @Column(name = "codigouf")
+    private String codigouf;
 
     public Municipios() {
     }
@@ -77,6 +79,14 @@ public class Municipios implements Serializable {
 
     public void setNomeMunicipio(String nomeMunicipio) {
         this.nomeMunicipio = nomeMunicipio;
+    }
+
+    public String getCodigouf() {
+        return codigouf;
+    }
+
+    public void setCodigouf(String codigouf) {
+        this.codigouf = codigouf;
     }
 
     @Override

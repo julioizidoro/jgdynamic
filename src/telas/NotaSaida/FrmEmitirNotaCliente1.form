@@ -320,7 +320,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="naturezaOperacaojTextField">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Venda de Mercadorias"/>
+                <Property name="text" type="java.lang.String" value="Venda com  ECF"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">

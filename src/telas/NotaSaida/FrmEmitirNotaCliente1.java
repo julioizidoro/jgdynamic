@@ -302,7 +302,7 @@ jPanel7Layout.setHorizontalGroup(
 
     seriejTextField.setEditable(false);
 
-    naturezaOperacaojTextField.setText("Venda de Mercadorias");
+    naturezaOperacaojTextField.setText("Venda com  ECF");
 
     jLabel6.setText("Natureza da Operação");
 
@@ -450,7 +450,7 @@ jPanel7Layout.setHorizontalGroup(
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 84, Short.MAX_VALUE)
+                                            .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                                             .addComponent(valorDescontoCalculadojTextField))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1331,7 +1331,7 @@ jPanel7Layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 975, Short.MAX_VALUE)
             .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -1431,7 +1431,7 @@ jPanel7Layout.setHorizontalGroup(
                 notaSaidaBean.getFatura().setValorOrigianl(Formatacao.formatarStringfloat(valorOriginalFaturajTextField.getText()));
             }
             //calcularTotaisNotaFiscal();
-            notaSaidaBean.setInfoTexto("I – Documento emitido por ME ou EPP optante pelo SIMPLES NACIONAL e\n" + " II – Não gera direito a crédito de fiscal de IPI.") ;
+            notaSaidaBean.setInfoTexto(" a)EMPRESA ME OU EPP OPTANTE PELO SIMPLES NACIONAL; b) NAO GERA DIREITO A CREDITO FISCAL DE IPI;");
             try {
                 gerarArquivoNFe();
 //                salvarNumeroNFe();
@@ -1585,8 +1585,8 @@ jPanel7Layout.setHorizontalGroup(
 
     private void tipoOperacaojComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoOperacaojComboBoxItemStateChanged
         if (tipoOperacaojComboBox.getSelectedItem().toString().equalsIgnoreCase("Venda")){
-            naturezaOperacaojTextField.setText("Venda de Mercadorias");
-        }else naturezaOperacaojTextField.setText("Devolucao de Mercadorias");
+            naturezaOperacaojTextField.setText("VENDA COM ECF");
+        }else naturezaOperacaojTextField.setText("DEVOLUÇÃO DE MERCADORIAS");
     }//GEN-LAST:event_tipoOperacaojComboBoxItemStateChanged
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -2111,7 +2111,7 @@ jPanel7Layout.setHorizontalGroup(
             if (listaProdutoBean.get(i).getProduto().getAliquota()==6){
                 arquivo.write("N10g|0|500||||");
             }else {
-                arquivo.write("N10h|0|900||||");
+                arquivo.write("N10d|0|102||||");
             }
             arquivo.write("\r\n");
             gerarPisSimplesNacional();
@@ -2166,10 +2166,14 @@ jPanel7Layout.setHorizontalGroup(
         arquivo.write(pesobrutojTextField.getText() + "|");
         arquivo.write(pesoliquidojTextField.getText() + "|");
         
-         arquivo.write("\r\n");
-        arquivo.write("Z||" + notaSaidaBean.getInfoTexto() + " - VALOR APROXIMADO DOS TRIBUTOS R$ "
-                + Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosFederal() + notaSaidaBean.getTotalTributiosEstadual())
-                + infojTextArea.getText() + "|");
+        arquivo.write("\r\n");
+        String texto = notaSaidaBean.getInfoTexto() +"Valor aproximado dos tributos com base na lei  12.741/2012 "
+                + " Federal R$ " + Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosFederal()) + " Estadual R$ " +  Formatacao.foramtarDoubleString(notaSaidaBean.getTotalTributiosEstadual()) +
+                " Municipal R$ 0,00. FONTE: IBPT.;";
+        if (infojTextArea.getText().length()>0){
+            texto = texto + infojTextArea.getText();
+        }
+        arquivo.write("Z||" + texto +  "|"); 
         
     }
     

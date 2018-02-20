@@ -4,7 +4,6 @@
  */
 package telas.NotaSaida;
 
-import telas.NotaSaida.CartaoCorrecao.FrmCartaoCorrecao;
 import Regras.ClienteController;
 import Regras.Formatacao;
 import Regras.NotaSaidaController;
@@ -42,6 +41,7 @@ import model.Municipios;
 import model.Notasaida;
 import model.Terminalcliente;
 import telas.ContasReceber.CreditoBean;
+import telas.NotaSaida.CartaoCorrecao.FrmCartaoCorrecao;
 import telas.NotaSaida.Fatura.DuplicataBean;
 import telas.NotaSaida.Fatura.FaturaBean;
 
@@ -129,6 +129,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
             }
         });
         BarradeTarefasjToolBar.add(AdicionarjButton);
+        AdicionarjButton.getAccessibleContext().setAccessibleDescription("Emitir NF-e");
 
         PesquisarjButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/processomenos.png"))); // NOI18N
         PesquisarjButton.setText("Cancelar");
@@ -144,6 +145,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
             }
         });
         BarradeTarefasjToolBar.add(PesquisarjButton);
+        PesquisarjButton.getAccessibleContext().setAccessibleDescription("Cancelar NF-e");
 
         AdicionarjButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/processomais.png"))); // NOI18N
         AdicionarjButton1.setText("Devolução");
@@ -161,6 +163,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
             }
         });
         BarradeTarefasjToolBar.add(AdicionarjButton1);
+        AdicionarjButton1.getAccessibleContext().setAccessibleDescription("Emitir NF-e Devolução");
 
         PesquisarjButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/processomenos.png"))); // NOI18N
         PesquisarjButton1.setText("Correção");
@@ -177,6 +180,8 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
             }
         });
         BarradeTarefasjToolBar.add(PesquisarjButton1);
+        PesquisarjButton1.getAccessibleContext().setAccessibleDescription("Carta de Correção");
+
         BarradeTarefasjToolBar.add(SeparadordeTarefasjSeparator);
 
         ImprimirjButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/finreceber.png"))); // NOI18N
@@ -332,7 +337,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -340,8 +345,8 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(BarradeTarefasjToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 878, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(BarradeTarefasjToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -626,7 +631,7 @@ public class FrmConsultaNotaSaida extends javax.swing.JFrame implements INotaSai
         gerarArquivoAcbr(texto);
         Timer timer = new Timer();
         timer.schedule(new RemindTask(), 10 * 1000);
-    }
+    }    
 
     public void inlcluirProdutoContas(Object objeto) {
         throw new UnsupportedOperationException("Not supported yet.");

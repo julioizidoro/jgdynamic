@@ -228,7 +228,7 @@ public class FrmInutilizarNFe extends javax.swing.JFrame {
         }
         Timer timer = new Timer();
         timer.schedule(new RemindTask(), 5 * 1000);
-        imprimirInutilizacao();
+        //imprimirInutilizacao();
     }
     
     public void imprimirInutilizacao(){

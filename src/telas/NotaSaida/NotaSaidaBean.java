@@ -7,10 +7,6 @@ package telas.NotaSaida;
 import telas.NotaSaida.Fatura.FaturaBean;
 import java.util.Date;
 import java.util.List;
-import model.Cliente;
-import model.Clienteendereco;
-import model.Empresa;
-import model.Fornecedor;
 
 /**
  *
@@ -49,6 +45,7 @@ public class NotaSaidaBean {
     private int codigoCliente;
     private int codigoFornecedor;
     private double despesasacessorias;
+    private String numeroSerieECF;
     
 
     public NotaSaidaBean() {
