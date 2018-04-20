@@ -15,10 +15,19 @@ import com.toedter.calendar.JTextFieldDateEditor;
 import controler.Config;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.Date;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 
 /**
  *
@@ -68,6 +77,7 @@ public class FrmMovimentoFinanceiro extends javax.swing.JFrame {
         maskPattern, placeHolder));
 jPanel2 = new javax.swing.JPanel();
 jButton1 = new javax.swing.JButton();
+jButton2 = new javax.swing.JButton();
 jPanel3 = new javax.swing.JPanel();
 jScrollPane1 = new javax.swing.JScrollPane();
 valoresjTable = new javax.swing.JTable();
@@ -140,6 +150,15 @@ jPanel1Layout.setHorizontalGroup(
         }
     });
 
+    jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icone_excel.gif"))); // NOI18N
+    jButton2.setText("Exportar");
+    jButton2.setToolTipText("Procurar Fechamentos");
+    jButton2.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton2ActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
     jPanel2Layout.setHorizontalGroup(
@@ -147,13 +166,17 @@ jPanel1Layout.setHorizontalGroup(
         .addGroup(jPanel2Layout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jButton1)
+            .addGap(26, 26, 26)
+            .addComponent(jButton2)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     jPanel2Layout.setVerticalGroup(
         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-            .addContainerGap(26, Short.MAX_VALUE)
-            .addComponent(jButton1)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jButton1)
+                .addComponent(jButton2))
             .addContainerGap())
     );
 
@@ -475,6 +498,71 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     
 }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Integer rows = valoresjTable.getModel().getRowCount();
+      if (rows > 0) {
+    
+    JFileChooser seleccionar = new JFileChooser();
+    
+    File arquivo;
+   
+    if (seleccionar.showDialog(null, "Exportar Excel") == JFileChooser.APPROVE_OPTION) {
+        
+        arquivo = seleccionar.getSelectedFile();            
+        int cantFila = valoresjTable.getRowCount();
+        int cantColumna = valoresjTable.getColumnCount();
+       
+        Workbook wb;
+        wb = new HSSFWorkbook();
+        Sheet folha = wb.createSheet("  ");
+
+        try {
+            for (int i = -1; i <cantFila; i++) {
+                
+                Row fila = folha.createRow(i+1);
+                
+                for (int j = 0;j<cantColumna; j++) {
+                    
+                    Cell celda = fila.createCell(j);
+                    
+                    if(i==-1) {
+    
+                        celda.setCellValue(String.valueOf(valoresjTable.getColumnName(j)));
+
+                                        
+                   
+                    } else {
+                        
+                       celda.setCellValue(String.valueOf(valoresjTable.getValueAt(i, j)));        
+                       
+                                 
+                    }
+                    
+                    
+                    wb.write(new FileOutputStream(arquivo + ".xls"));
+                
+                }
+            }
+            
+            JOptionPane.showMessageDialog(null, "Planilha exportada com sucesso.");
+        
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Por favor tente novamente"+e);
+        }
+        
+    } else {
+        JOptionPane.showMessageDialog(null, "Erro ao Exportar Planilha....");
+    }  
+
+    
+     }else{
+      
+          JOptionPane.showMessageDialog(null, "Favor escolha o pedido e clique em adicionar.!!"); 
+      
+      }   // fim do if
+    
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
  
@@ -495,6 +583,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private com.toedter.calendar.JDateChooser dataFinaljDateChooser;
     private com.toedter.calendar.JDateChooser dataIniciojDateChooser;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
