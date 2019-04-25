@@ -67,7 +67,9 @@ public class TransferenciaController {
         TransferenciaFacade transferenciaFacade = new TransferenciaFacade();
         try {
             try {
-                return transferenciaFacade.listaTransferencia(Formatacao.SubtarirDatas(new Date(), 90, "yyyy-MM-dd"));
+                Date data = Formatacao.ConvercaoStringData("01/09/2014");
+                return transferenciaFacade.listaTransferencia(Formatacao.ConvercaoDataSql(data));
+                //return transferenciaFacade.listaTransferencia(Formatacao.SubtarirDatas(new Date(), 90, "yyyy-MM-dd"));
             } catch (Exception ex) {
                 Logger.getLogger(TransferenciaController.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, " Erro Listar Transferencia " + ex);
